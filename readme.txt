@@ -1,5 +1,15 @@
 ************************************
-* Studi-Projekte-Server Git ********
+* ZUCK NodeJS Server:       ********
+************************************
+
+Repository klonen:
+git clone https://studi.f4.htw-berlin.de/git/s0555353/ZUCK_server.git
+
+server.js       -> der Server, hier kommt das nodeJS rein
+views/          -> in diesem Ordner kommt html, css, JS rein
+
+************************************
+* Infos zu Git:             ********
 ************************************
 
 Diese Datei wurde beim ersten automatischen Commit zur Initialisierung und

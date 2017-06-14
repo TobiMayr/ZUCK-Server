@@ -21,7 +21,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 
-//http://127.0.0.1:8081/sensor/window/true
+//http://NanoPiAir_Mailinh/sensor/window/true
 app.get('/sensor/window/:open', function(req, res){
     if(req.params.open == "true")
     {
@@ -34,3 +34,5 @@ app.get('/sensor/window/:open', function(req, res){
         windowOpen = false;
     }
 }); 
+
+console.log('Server started:  NanoPiAir_Mailinh:8081');
