@@ -6,14 +6,16 @@ var path = require('path');
 var app = express();
 
 var windowOpen = true;
+var pic = "http://bilder.bild.de/fotos/lachsack-36229038/Bild/1.bild.jpg";
 
 app.get('/', function(req, res){
    res.render('index', {
-       windowStatus: windowOpen
+       windowStatus: windowOpen,
+       ImageLink: pic
    });
 });
 
-app.listen(8081);
+app.listen(8080);
 
 //View Engine
 app.set('view engine', 'ejs');
@@ -27,11 +29,13 @@ app.get('/sensor/window/:open', function(req, res){
     {
         console.log("Window open");
         windowOpen = true;
+        pic = "http://bilder.bild.de/fotos/lachsack-36229038/Bild/1.bild.jpg";
     }
     else
     {
         console.log("Window closed");
         windowOpen = false;
+        pic = "http://bilder.bild.de/fotos/der-russische-praesident-wladimir-putin-exklusiv-im-bild-interview-44105778/Bild/2.bild.jpg";
     }
 }); 
 
