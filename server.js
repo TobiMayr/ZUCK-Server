@@ -6,13 +6,15 @@ var path = require('path');
 var app = express();
 
 var windowOpen = true;
-var sensorTemp1 = 'test';
+var sensorTempHumidity = 'test';
+var sensorTemp1;
 var sensorHumid1 = 'test';
 var pic = "http://bilder.bild.de/fotos/lachsack-36229038/Bild/1.bild.jpg";
 
 app.get('/', function(req, res){
    res.render('index', {
        windowStatus: windowOpen,
+       temperatureHumidity1: sensorTempHumidity,
        temperature1: sensorTemp1,
        humidity1: sensorHumid1,
        ImageLink: pic
@@ -44,11 +46,7 @@ app.get('/sensor/window/:open', function(req, res){
 });
 
 app.get('/sensor/temperature/:temp', function(req, res){
-    sensorTemp1 = req.params.temp;
-});
-
-app.get('/sensor/humidity/:humid', function(req, res){
-    sensorHumid1 = req.params.humid;
+    sensorTempHumidity = req.params.temp;
 });
 
 console.log('Server started:  NanoPiAir_Mailinh:8081');
