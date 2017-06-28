@@ -47,6 +47,10 @@ app.get('/sensor/window/:open', function(req, res){
 
 app.get('/sensor/temperature/:temp', function(req, res){
     sensorTempHumidity = req.params.temp;
+    //
+    var strArray = sensorTempHumidity.split("-")
+    sensorTemp1 = strArray[0];
+    sensorHumid1 = strArray[1];
 });
 
 console.log('Server started:  ZUCK_Server:8081');
