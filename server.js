@@ -49,4 +49,4 @@ app.get('/sensor/temperature/:temp', function(req, res){
     sensorTempHumidity = req.params.temp;
 });
 
-console.log('Server started:  NanoPiAir_Mailinh:8081');
+console.log('Server started:  ZUCK-Server:8081');
