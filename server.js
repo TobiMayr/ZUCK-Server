@@ -6,16 +6,20 @@ var path = require('path');
 var app = express();
 
 var windowOpen = true;
+var sensorTemp1 = 'test';
+var sensorHumid1 = 'test';
 var pic = "http://bilder.bild.de/fotos/lachsack-36229038/Bild/1.bild.jpg";
 
 app.get('/', function(req, res){
    res.render('index', {
        windowStatus: windowOpen,
+       temperature1: sensorTemp1,
+       humidity1: sensorHumid1,
        ImageLink: pic
    });
 });
 
-app.listen(8080);
+app.listen(8081);
 
 //View Engine
 app.set('view engine', 'ejs');
@@ -37,6 +41,14 @@ app.get('/sensor/window/:open', function(req, res){
         windowOpen = false;
         pic = "http://bilder.bild.de/fotos/der-russische-praesident-wladimir-putin-exklusiv-im-bild-interview-44105778/Bild/2.bild.jpg";
     }
-}); 
+});
+
+app.get('/sensor/temperature/:temp', function(req, res){
+    sensorTemp1 = req.params.temp;
+});
+
+app.get('/sensor/humidity/:humid', function(req, res){
+    sensorHumid1 = req.params.humid;
+});
 
 console.log('Server started:  NanoPiAir_Mailinh:8081');
