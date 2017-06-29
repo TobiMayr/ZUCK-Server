@@ -1,19 +1,20 @@
 
-# H1 ZUCK NodeJS Server
+# ZUCK NodeJS Server
 
 
-### H3 Repository klonen:
+### Repository klonen:
 `git clone https://github.com/TobiMayr/ZUCK-Server.git`
 
 `server.js`       -> der Server, hier kommt das nodeJS rein
+
 `views/`          -> in diesem Ordner kommt html, css, JS rein
 
 
-## H2 Sonstiges:
+## Sonstiges:
 
-### H3 Nodeserver beim Booten starten:
+### Nodeserver beim Booten starten:
 
-#### H4 Folgende Datei erstellen:
+#### Folgende Datei erstellen:
 unter: `/etc/systemd/system/nodeserver.service`
 
 ``` Bash
@@ -38,18 +39,19 @@ Environment=NODE_ENV=production PORT=1337
 
 [Install]
 WantedBy=multi-user.target
+```
 
-#### H4 Service aktivieren:
+#### Service aktivieren:
 `systemctl enable nodeserver.service`
 
-#### H4 Service starten:
+#### Service starten:
 `systemctl start nodeserver.service`
 
-#### H4 Service auf Fehler überprüfen:
+#### Service auf Fehler überprüfen:
 `systemctl status nodeserver.service`
 
 
-## H2 Infos zu Git: 
+## Infos zu Git: 
 
 
 Diese Datei wurde beim ersten automatischen Commit zur Initialisierung und
