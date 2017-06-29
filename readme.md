@@ -50,6 +50,8 @@ WantedBy=multi-user.target
 #### Service auf Fehler überprüfen:
 `systemctl status nodeserver.service`
 
+Mehr infos unter folgendem [link](https://www.axllent.org/docs/view/nodejs-service-with-systemd/)
+
 
 ## Infos zu Git: 
 
