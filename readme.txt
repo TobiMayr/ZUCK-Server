@@ -1,16 +1,56 @@
-************************************
-* ZUCK NodeJS Server:       ********
-************************************
 
-Repository klonen:
-git clone https://studi.f4.htw-berlin.de/git/s0555353/ZUCK_server.git
+# H1 ZUCK NodeJS Server
 
-server.js       -> der Server, hier kommt das nodeJS rein
-views/          -> in diesem Ordner kommt html, css, JS rein
 
-************************************
-* Infos zu Git:             ********
-************************************
+### H3 Repository klonen:
+`git clone https://github.com/TobiMayr/ZUCK-Server.git`
+
+`server.js`       -> der Server, hier kommt das nodeJS rein
+`views/`          -> in diesem Ordner kommt html, css, JS rein
+
+
+## H2 Sonstiges:
+
+### H3 Nodeserver beim Booten starten:
+
+#### H4 Folgende Datei erstellen:
+unter: `/etc/systemd/system/nodeserver.service`
+
+``` Bash
+[Unit]
+Description=NodeJS server on startup
+#Requires=After=mysql.service       # Requires the mysql service to run first
+
+[Service]
+ExecStart=/usr/bin/nodejs /root/NodeServer/server.js
+# Required on some systems
+#WorkingDirectory=/root/NodeServer
+Restart=always
+ # Restart service after 10 seconds if node service crashes
+ RestartSec=10
+ # Output to syslog
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=nodejs-example
+#User=<alternate user>
+#Group=<alternate group>
+Environment=NODE_ENV=production PORT=1337
+
+[Install]
+WantedBy=multi-user.target
+
+#### H4 Service aktivieren:
+`systemctl enable nodeserver.service`
+
+#### H4 Service starten:
+`systemctl start nodeserver.service`
+
+#### H4 Service auf Fehler überprüfen:
+`systemctl status nodeserver.service`
+
+
+## H2 Infos zu Git: 
+
 
 Diese Datei wurde beim ersten automatischen Commit zur Initialisierung und
 Bereitstellung weiterer Hilfe für dich erstellt. Du kannst sie gefahrlos löschen.
