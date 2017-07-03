@@ -1,5 +1,4 @@
-
-# ZUCK NodeJS Server
+ ZUCK NodeJS Server
 
 
 ### Repository klonen:
