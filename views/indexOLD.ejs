@@ -1,0 +1,20 @@
+<html>
+   <head>
+       <title>ZUCK</title>
+       <!--Seite alle 5 Sekunden neu laden-->
+       <script>
+
+	    setTimeout(function(){
+               window.location.reload(1);
+            }, 5000);
+       </script>
+   </head>
+   <body>
+       <h1>Wunderschoene ZUCK GUI</h1>
+       <p>Fenster AUF: <%= windowStatus %></p>
+       <p>Sensordata: <%= temperatureHumidity1 %></p>
+       <p>Sensordata: <%= humidity1 %></p>
+       <p>Sensordata: <%= temperature1 %></p>
+        <img src=<%= ImageLink %>>
+   </body>
+</html>

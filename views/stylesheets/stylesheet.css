@@ -1,0 +1,138 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+}
+body{
+    height: 100%;
+    width: 100%;
+    background: #000;
+    color: white;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    margin: 0;
+}
+header{
+    width: 100%;
+    height: 140%;
+    font-size: 1em;
+    text-align: center;
+}
+.news{
+    width: 66.66666%;
+    float: left;
+    padding: 1% 0 1% 0;
+}
+
+aside{
+    width: 33.33333%;
+    float: right;
+}
+.time{
+    float: right;
+}
+#clock{
+    width: 50%;
+    float: left;
+}
+#date{
+    width: 50%;
+    float: right
+}
+
+.inner-wrapper{
+    width: 66.66666%;
+    float: left;
+}
+h2{
+    text-align: center;
+}
+h2:after {
+    display: inline-block;
+    margin: 0 0 8px 20px;
+    height: 1px;
+    content: " ";
+    text-shadow: none;
+    background-color: #999;
+    width: 140px;
+}
+h2:before {
+    display: inline-block;
+    margin: 0 20px 8px 0;
+    height: 1px;
+    content: " ";
+    text-shadow: none;
+    background-color: #999;
+    width: 140px;
+}
+
+#media{
+    width: 50%;
+    float: left;
+}
+
+#media span, #sensor p{
+    margin-left: 10%
+}
+
+#stereo, #tv{
+    margin: 10% 0 0 5%;
+
+}
+
+#stereoIcon, #tvIcon{
+    width: 23.3%;
+    vertical-align: middle;
+}
+.plants{
+    margin: 10% 5% 0 0;
+    text-align: right;
+}
+#plantIcon{
+    width: 23.3%;
+    vertical-align:top;
+}
+
+#sensor {
+}
+#weather { 
+    /*background-color: darkolivegreen;*/
+}
+#weather p {
+    position: relative;
+}
+#weatherIcon{
+    display: inline-block;
+    width: 23.3%;
+    vertical-align: middle;
+}
+#clock{
+    font-size: 4em;
+}
+#date {  
+    text-align: right;
+    font-size: 2em;
+}
+.light{
+    float: right;
+    width: 50%;
+}
+.light1{
+    float: left;
+    width: 33.33333%;
+    text-align: center;
+    margin-top: 2%;
+}
+.light img{
+   width: 60%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+    
+}
+
+img:hover {
+    opacity: 0.5;
+}
