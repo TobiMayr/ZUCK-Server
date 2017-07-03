@@ -23,6 +23,8 @@ app.get('/', function(req, res){
    });
 });
 
+app.use(express.static(__dirname + "/public"));
+
 app.listen(8081);
 
 //View Engine
