@@ -13,6 +13,13 @@ var sensorHumid1 = 'test';
 var pic = "http://bilder.bild.de/fotos/lachsack-36229038/Bild/1.bild.jpg";
 var currentHumidityID = 0;
 
+//Glühbirne Python Script
+var PythonShell = require('python-shell');
+PythonShell.run('testscript.py', function (err) {
+    if(err) throw err;
+    console.log('finished');
+});
+
 app.get('/', function(req, res){
    res.render('index', {
        windowStatus: windowOpen,
