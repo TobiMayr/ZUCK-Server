@@ -1,12 +1,14 @@
- ZUCK NodeJS Server
+# ZUCK NodeJS Server
 
 
 ### Repository klonen:
 `git clone https://github.com/TobiMayr/ZUCK-Server.git`
 
-`server.js`       -> der Server, hier kommt das nodeJS rein
+`server.js`       -> der Server (nodeJS)
 
-`views/`          -> in diesem Ordner kommt html, css, JS rein
+`views/`          -> die Webseite (HTML/EJS)
+
+`public/`         -> die Webseite (CSS, Bilder)
 
 
 ## Sonstiges:
