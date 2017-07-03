@@ -66,8 +66,10 @@
             <h2>Licht</h2>
             <section id="bulb">
                 <div class="light1">
+                    <a href="lichtOn">
                     <img id="bulbIcon" src="images/lightbulb_new.svg">
                     <p>Wohnzimmer</p>
+                    </a>
                 </div>
                 <div class="light1">
                     <img src="images/lightbulb_new.svg">
@@ -96,7 +98,13 @@
             /*setTimeout(function(){
                window.location.reload(1);
             }, 5000);     */
-            
+
+
+            var licht = document.getElementsByClassName("light1");
+            licht[0].onclick = function (){
+                console.log("ES WERDE LICHT!")
+            };
+
             function updateTimeAndDate() {
                 var weekdays = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
                 var months = new Array("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");   

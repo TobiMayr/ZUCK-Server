@@ -14,11 +14,9 @@ var pic = "http://bilder.bild.de/fotos/lachsack-36229038/Bild/1.bild.jpg";
 var currentHumidityID = 0;
 
 //Glühbirne Python Script
-var PythonShell = require('python-shell');
-PythonShell.run('testscript.py', function (err) {
-    if(err) throw err;
-    console.log('finished');
-});
+
+
+
 
 app.get('/', function(req, res){
    res.render('index', {
@@ -38,7 +36,13 @@ app.listen(8081);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-
+app.get('/LichtOn', function (req, res) {
+        var PythonShell = require('python-shell');
+        PythonShell.run('testscript.py', function (err) {
+            if(err) throw err;
+            console.log('finished');
+        });
+});
 
 //http://NanoPiAir_Mailinh/sensor/window/true
 app.get('/sensor/window/:open', function(req, res){
