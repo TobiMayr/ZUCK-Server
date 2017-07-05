@@ -85,13 +85,22 @@ h2:before {
     width: 23.3%;
     vertical-align: middle;
 }
-.plants {
-    margin: 10% 5% 0 0;
+.plants, .windows {
+    margin: 10% 10% 0 0;
     text-align: right;
 }
 #plantIcon, #windowIcon{
     width: 23.3%;
-    vertical-align:top;
+}
+.plantTemp img{
+    width: 10%;
+    vertical-align: middle;
+
+}
+
+.plantHumid img{
+    width: 5%;
+    vertical-align: middle;
 }
 
 #sensor {

@@ -32,17 +32,30 @@
 
             <div class="plants">
                 <img id="plantIcon" src="../public/images/plant.svg">
+                
                 <span>Pflanze 1</span><br>
-                <span>Feuchtigkeit: <%= humidity1 %> und <%= temperature1 %></span>
+                <div class="plantTemp">
+                    <img src="../public/images/temperature.svg">
+                    <!--<span> <%= temperature1 %> </span>-->
+                    <span>22°</span>
+                </div>
+                <div class="plantHumid">
+                    <img src="../public/images/humidity.svg">
+                    <!--<span> <%= humidity1 %> </span>-->
+                    <span>15%</span>
+                </div>
             </div>
              
             <div class="plants">
                 <img id= "plantIcon" src="../public/images/plant.svg">
                 <span>Pflanze 2</span>
-            </div>   
+            </div> 
+            
+            <div class="windows">
                 <img id="windowIcon" src="../public/images/window.svg">
                 <span>Fenster 1</span>
-                <span>Fenster AUF: <%= windowStatus %></span>
+                <!--<span>Fenster AUF: <%= windowStatus %></span>-->
+            </div>
         </aside>
 
         <section class="inner-wrapper">
