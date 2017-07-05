@@ -4,16 +4,30 @@ var http = require('http');
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
+var PythonShell = require('python-shell');
+var fs = require('fs');
 var app = express();
 
 var windowOpen = true;
 var sensorTempHumidity = 'test';
 var sensorTemp1;
 var sensorHumid1 = 'test';
-var pic = "http://bilder.bild.de/fotos/lachsack-36229038/Bild/1.bild.jpg";
 var currentHumidityID = 0;
+var lightsIPs;
 
-//Glühbirne Python Script
+
+/*
+//Alle Glühbirnen im Netzwerk finden
+PythonShell.run('python/XXXX.py', function (err) {
+    if(err) throw err;
+    console.log('Searched for light bulbs');
+});
+
+fs.readFile('YYYYY.txt', 'utf8', function(err, contents) {
+    lightsIPs = contents;
+    console.log(contents);
+});
+*/
 
 
 
@@ -23,22 +37,20 @@ app.get('/', function(req, res){
        windowStatus: windowOpen,
        temperatureHumidity1: sensorTempHumidity,
        temperature1: sensorTemp1,
-       humidity1: sensorHumid1,
-       ImageLink: pic
+       humidity1: sensorHumid1
    });
 });
 
 app.use(express.static(__dirname + "/public"));
 
-app.listen(8081);
+app.listen(8082);
 
 //View Engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.get('/LichtOn', function (req, res) {
-        var PythonShell = require('python-shell');
-        PythonShell.run('testscript.py', function (err) {
+        PythonShell.run('python/toggle_light.py', function (err) {
             if(err) throw err;
             console.log('finished');
         });
@@ -50,20 +62,19 @@ app.get('/sensor/window/:open', function(req, res){
     {
         console.log("Window open");
         windowOpen = true;
-        pic = "http://bilder.bild.de/fotos/lachsack-36229038/Bild/1.bild.jpg";
+
     }
     else
     {
         console.log("Window closed");
         windowOpen = false;
-        pic = "http://bilder.bild.de/fotos/der-russische-praesident-wladimir-putin-exklusiv-im-bild-interview-44105778/Bild/2.bild.jpg";
     }
 });
 
 app.get('/sensor/temperature/:temp', function(req, res){
     sensorTempHumidity = req.params.temp;
     //
-    var strArray = sensorTempHumidity.split("-")
+    var strArray = sensorTempHumidity.split("-");
     sensorTemp1 = strArray[0];
     sensorHumid1 = strArray[1];
 });
