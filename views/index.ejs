@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>HomeAutomationService ZUCK</title>
-        <link rel="stylesheet" href="stylesheets/reset.css">
-        <link rel="stylesheet" href="stylesheets/stylesheet.css">
+        <link rel="stylesheet" href="/stylesheets/reset.css">
+        <link rel="stylesheet" href="/stylesheets/stylesheet.css">
     </head>
 
     <body>
@@ -31,13 +31,13 @@
             </section>
 
             <div class="plants">
-                <img id="plantIcon" src="images/plant.svg"> 
+                <img id="plantIcon" src="images/plant.svg">
                 <span>Pflanze 1</span><br>
                 <span>Feuchtigkeit: <%= humidity1 %> und <%= temperature1 %></span>
             </div>
              
             <div class="plants">
-                <img id= "plantIcon" src="images/plant.svg"> 
+                <img id= "plantIcon" src="images/plant.svg">
                 <span>Pflanze 2</span>
             </div>   
                 <img id="windowIcon" src="images/window.svg">
@@ -66,8 +66,10 @@
             <h2>Licht</h2>
             <section id="bulb">
                 <div class="light1">
+                    <a href="lichtOn">
                     <img id="bulbIcon" src="images/lightbulb_new.svg">
                     <p>Wohnzimmer</p>
+                    </a>
                 </div>
                 <div class="light1">
                     <img src="images/lightbulb_new.svg">
@@ -93,10 +95,16 @@
         </section>
         </section>        
         <script type="text/javascript">
-            setTimeout(function(){
+            /*setTimeout(function(){
                window.location.reload(1);
-            }, 5000);            
-            
+            }, 5000);     */
+
+
+            var licht = document.getElementsByClassName("light1");
+            licht[0].onclick = function (){
+                console.log("ES WERDE LICHT!")
+            };
+
             function updateTimeAndDate() {
                 var weekdays = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
                 var months = new Array("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");   
@@ -118,6 +126,3 @@
         </script>             
     </body>
 </html>
-
-
-<!--  <%= variablenName %> -->
