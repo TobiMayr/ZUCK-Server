@@ -136,3 +136,8 @@ h2:before {
 img:hover {
     opacity: 0.5;
 }
+
+a, a:visited, a:link, a:hover {
+    text-decoration: none;
+    color: white;
+}
