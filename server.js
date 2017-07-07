@@ -5,6 +5,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var PythonShell = require('python-shell');
+var options = {mode: 'text'}
 var fs = require('fs');
 var app = express();
 
@@ -52,8 +53,6 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 //IPs der Glühbirnen bekommen
-var PythonShell = require('python-shell');
-var options = {mode: 'text'}
 PythonShell.run('python/discover_bulbs.py', options, function (err, bulb_ips) {
     if (err) throw err;
     // results is an array consisting of messages collected during execution
