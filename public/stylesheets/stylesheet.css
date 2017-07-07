@@ -71,12 +71,7 @@ aside{
     width: 23.3%;
     float: left;
 }
-.plantTemp img{
-    width: 10%;
-    vertical-align: middle;
-}
-
-.plantHumid img{
+.plantHumid img, .plantTemp img{
     width: 5%;
     vertical-align: middle;
 }
