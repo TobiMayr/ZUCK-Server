@@ -86,8 +86,7 @@ h2:before {
     vertical-align: middle;
 }
 .plants, .windows {
-    margin: 10% 10% 0 0;
-    float: left;
+    margin: 10% 20% 0 20%;
     width: 100%;
 }
 #plantIcon, #windowIcon{
@@ -108,7 +107,7 @@ h2:before {
 }
 
 #sensor {
-    margin-right: 0px;
+    
 }
 #weather { 
     /*background-color: darkolivegreen;*/
