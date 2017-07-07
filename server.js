@@ -15,6 +15,8 @@ var sensorHumid1 = 'test';
 var currentHumidityID = 0;
 var lightsIPs;
 
+var port = 8082;
+
 
 /*
 //Alle Glühbirnen im Netzwerk finden
@@ -43,7 +45,7 @@ app.get('/', function(req, res){
 
 app.use(express.static(__dirname + "/public"));
 
-app.listen(8082);
+app.listen(port);
 
 //View Engine
 app.set('view engine', 'ejs');
@@ -92,4 +94,4 @@ app.get('/sensor/allocateId/temperature', function(req, res){
 });
 */
 
-console.log('Server started:  ZUCK_Server:8081');
+console.log('Server started at port:' + port);
