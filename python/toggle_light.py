@@ -1,7 +1,9 @@
 #! python
+import sys, json
+ip = str(sys.argv[1])
 
 from yeelight import Bulb
 from random import random
-bulb = Bulb("192.168.137.199")
+bulb = Bulb(ip)
 bulb.toggle()
 bulb.set_rgb(random()*255, random()*255, random()*255)

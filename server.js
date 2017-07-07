@@ -87,14 +87,16 @@ PythonShell.run('python/discover_bulbs.py', options, function (err, bulb_ips) {
 
 
 app.get('/LichtOn', function (req, res) {
-
-
-        // PythonShell.run('python/toggle_light.py', options, function (err, results) {
-        //     if (err) throw err;
-        //     // results is an array consisting of messages collected during execution
-        //     console.log('results: %j', results);
-        //     //
-        // });
+    var options2 = {
+       mode: 'text',
+       args: lightIPs[0]
+   };
+    PythonShell.run('python/toggle_light.py', options2, function (err, results) {
+        if (err) throw err;
+        // results is an array consisting of messages collected during execution
+        console.log('results: %j', results);
+        //
+    });
 });
 
 //http://NanoPiAir_Mailinh/sensor/window/true
@@ -112,7 +114,7 @@ app.get('/sensor/window/:open', function(req, res){
     }
 });
 
-app.get('/sensor/temperature/:temp', function(req, res){
+app.get('/sensor/temphumid/:temp', function(req, res){
     sensorTempHumidity = req.params.temp;
     //
     var strArray = sensorTempHumidity.split("-");
