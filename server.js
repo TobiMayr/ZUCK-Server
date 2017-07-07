@@ -14,7 +14,8 @@ var sensorTempHumidity = 'test';
 var sensorTemp1;
 var sensorHumid1 = 'test';
 var currentHumidityID = 0;
-var lightsIPs;
+var lightIPs = [];
+var lightNames = [];
 
 var port = 8082;
 
@@ -31,7 +32,6 @@ fs.readFile('YYYYY.txt', 'utf8', function(err, contents) {
     console.log(contents);
 });
 */
-
 
 
 
@@ -56,9 +56,35 @@ app.set('views', path.join(__dirname, 'views'));
 PythonShell.run('python/discover_bulbs.py', options, function (err, bulb_ips) {
     if (err) throw err;
     // results is an array consisting of messages collected during execution
-    console.log('results: %j', bulb_ips);
-    lightsIPs = bulb_ips;
+    var cleanLightsString = bulb_ips.toString().replace(/u/g,'').replace(/'/g,'"').replace(/[\[\]']+/g,'');
+    console.log(cleanLightsString);
+    var lightObj = JSON.parse(cleanLightsString);
+    for (var key in lightObj)
+    {
+        /*
+         var ip = lightObj.ip;
+         var label = lightObj.capabilities.name;
+         var toggleStatus = lightObj.capabilities.power;
+         var colour = lightObj.capabilities.rgb;
+         var brightness = lightObj.capabilities.bright;
+         */
+
+        if (key === 'ip'){
+            lightIPs.push(lightObj[key]);
+        }else if (key === 'capabilities'){
+            for (var capability in lightObj[key]){
+                if (capability === 'name'){
+                    lightNames.push(lightObj[key][capability]);
+                }
+            }
+        }
+    }
+
+    console.log('IPs: ' + lightIPs)
+    console.log('Names: ' + lightNames);
 });
+
+
 
 app.get('/LichtOn', function (req, res) {
 
