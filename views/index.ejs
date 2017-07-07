@@ -29,11 +29,12 @@
                 <p id="location">Berlin, Germany</p>
                 <img id="weatherIcon" src="images/weather.svg">
             </section>
-
-            <div class="plants">
+            
+            <div id="sensor">
+           <div class="plants">
                 <img id="plantIcon" src="images/plant.svg">
                 
-                <span>Pflanze 1</span><br>
+                <span class="plantName">Pflanze 1</span>
                 <div class="plantTemp">
                     <img src="images/temperature.svg">
                     <!--<span> <%= temperature1 %> </span>-->
@@ -45,16 +46,28 @@
                     <span>15%</span>
                 </div>
             </div>
-             
+            
             <div class="plants">
-                <img id= "plantIcon" src="images/plant.svg">
-                <span>Pflanze 2</span>
+                <img id="plantIcon" src="images/plant.svg">
+                
+                <span class="plantName">Pflanze 2</span>
+                <div class="plantTemp">
+                    <img src="images/temperature.svg">
+                    <!--<span> <%= temperature1 %> </span>-->
+                    <span>26°</span>
+                </div>
+                <div class="plantHumid">
+                    <img src="images/humidity.svg">
+                    <!--<span> <%= humidity1 %> </span>-->
+                    <span>19%</span>
+                </div>
             </div> 
             
             <div class="windows">
                 <img id="windowIcon" src="images/window.svg">
                 <span>Fenster 1</span>
                 <!--<span>Fenster AUF: <%= windowStatus %></span>-->
+            </div>
             </div>
         </aside>
 

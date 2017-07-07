@@ -5,6 +5,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var PythonShell = require('python-shell');
+var options = {mode: 'text'}
 var fs = require('fs');
 var app = express();
 
@@ -14,6 +15,8 @@ var sensorTemp1;
 var sensorHumid1 = 'test';
 var currentHumidityID = 0;
 var lightsIPs;
+
+var port = 8082;
 
 
 /*
@@ -43,22 +46,29 @@ app.get('/', function(req, res){
 
 app.use(express.static(__dirname + "/public"));
 
-app.listen(8082);
+app.listen(port);
 
 //View Engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.get('/LichtOn', function (req, res) {
-        var PythonShell = require('python-shell');
-        var options = {mode: 'text'}
+//IPs der Glühbirnen bekommen
+PythonShell.run('python/discover_bulbs.py', options, function (err, bulb_ips) {
+    if (err) throw err;
+    // results is an array consisting of messages collected during execution
+    console.log('results: %j', bulb_ips);
+    lightsIPs = bulb_ips;
+});
 
-        PythonShell.run('python/toggle_light.py', options, function (err, results) {
-            if (err) throw err;
-            // results is an array consisting of messages collected during execution
-            console.log('results: %j', results);
-            //sensorHumid1 = results;
-        });
+app.get('/LichtOn', function (req, res) {
+
+
+        // PythonShell.run('python/toggle_light.py', options, function (err, results) {
+        //     if (err) throw err;
+        //     // results is an array consisting of messages collected during execution
+        //     console.log('results: %j', results);
+        //     //
+        // });
 });
 
 //http://NanoPiAir_Mailinh/sensor/window/true
@@ -92,4 +102,4 @@ app.get('/sensor/allocateId/temperature', function(req, res){
 });
 */
 
-console.log('Server started:  ZUCK_Server:8081');
+console.log('Server started at port:' + port);
