@@ -15,6 +15,7 @@ var sensorTemp1;
 var sensorHumid1 = 'test';
 var currentHumidityID = 0;
 var lightsIPs;
+var lightIP1;
 
 var port = 8082;
 
@@ -61,14 +62,16 @@ PythonShell.run('python/discover_bulbs.py', options, function (err, bulb_ips) {
 });
 
 app.get('/LichtOn', function (req, res) {
-
-
-        // PythonShell.run('python/toggle_light.py', options, function (err, results) {
-        //     if (err) throw err;
-        //     // results is an array consisting of messages collected during execution
-        //     console.log('results: %j', results);
-        //     //
-        // });
+    var options2 = {
+       mode: 'text',
+       args: lightIP1
+   };
+    PythonShell.run('python/toggle_light.py', options2, function (err, results) {
+        if (err) throw err;
+        // results is an array consisting of messages collected during execution
+        console.log('results: %j', results);
+        //
+    });
 });
 
 //http://NanoPiAir_Mailinh/sensor/window/true
