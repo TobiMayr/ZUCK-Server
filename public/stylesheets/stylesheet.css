@@ -87,23 +87,28 @@ h2:before {
 }
 .plants, .windows {
     margin: 10% 10% 0 0;
-    text-align: right;
+    float: left;
+    width: 100%;
 }
 #plantIcon, #windowIcon{
     width: 23.3%;
+    float: left;
 }
 .plantTemp img{
     width: 10%;
     vertical-align: middle;
-
 }
 
 .plantHumid img{
     width: 5%;
     vertical-align: middle;
 }
+.plantTemp img, .plantHumid img, .plantName{
+    margin-left: 5%;
+}
 
 #sensor {
+    margin-right: 0px;
 }
 #weather { 
     /*background-color: darkolivegreen;*/
