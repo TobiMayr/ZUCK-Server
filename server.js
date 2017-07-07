@@ -51,16 +51,25 @@ app.listen(port);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.get('/LichtOn', function (req, res) {
-        var PythonShell = require('python-shell');
-        var options = {mode: 'text'}
+//IPs der Glühbirnen bekommen
+var PythonShell = require('python-shell');
+var options = {mode: 'text'}
+PythonShell.run('python/discover_bulbs.py', options, function (err, bulb_ips) {
+    if (err) throw err;
+    // results is an array consisting of messages collected during execution
+    console.log('results: %j', bulb_ips);
+    lightsIPs = bulb_ips;
+});
 
-        PythonShell.run('python/toggle_light.py', options, function (err, results) {
-            if (err) throw err;
-            // results is an array consisting of messages collected during execution
-            console.log('results: %j', results);
-            //sensorHumid1 = results;
-        });
+app.get('/LichtOn', function (req, res) {
+
+
+        // PythonShell.run('python/toggle_light.py', options, function (err, results) {
+        //     if (err) throw err;
+        //     // results is an array consisting of messages collected during execution
+        //     console.log('results: %j', results);
+        //     //
+        // });
 });
 
 //http://NanoPiAir_Mailinh/sensor/window/true
