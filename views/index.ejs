@@ -5,13 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>HomeAutomationService ZUCK</title>
-        <link rel="stylesheet" href="/stylesheets/reset.css">
-        <link rel="stylesheet" href="/stylesheets/stylesheet.css">
+        <link rel="stylesheet" href="stylesheets/reset.css">
+        <link rel="stylesheet" href="stylesheets/stylesheet.css">
     </head>
 
     <body>
         <header>
-            <h1>HomeAutomationService ZUCK</h1>
+           <!-- <h1></h1>-->
         </header>
 <!-- NEWS -->
         <section class="news">
@@ -24,25 +24,56 @@
                 <p id="clock"></p>
                 <p id="date"></p>
             </section>
-            <section id="weather">
-                <p id="temp">Temperatur: <%= temperatureHumidity1 %></p>
-                <p id="location">Berlin, Germany</p>
+            <section id="weather"> 
+                <!--<span id="temp">Temperatur: <%= temperature1 %></span> -->
                 <img id="weatherIcon" src="images/weather.svg">
-            </section>
+                <span id="weatherDescr"> Leicht bewökt</span>
+                <span id="weatherTemp">29°</span>
 
+                <br>
+                <span id="location">Berlin, Germany</span>
+                
+            </section>
+            
+            <div id="sensor">
+           <div class="plants">
+                <img id="plantIcon" src="images/plant.svg">
+                
+                <span class="plantName">Pflanze 1</span>
+                <div class="plantTemp">
+                    <img src="images/temperature.svg">
+                    <!--<span> <%= temperature1 %> </span>-->
+                    <span>22°</span>
+                </div>
+                <div class="plantHumid">
+                    <img src="images/humidity.svg">
+                    <!--<span> <%= humidity1 %> </span>-->
+                    <span>15%</span>
+                </div>
+            </div>
+            
             <div class="plants">
                 <img id="plantIcon" src="images/plant.svg">
-                <span>Pflanze 1</span><br>
-                <span>Feuchtigkeit: <%= humidity1 %> und <%= temperature1 %></span>
-            </div>
-             
-            <div class="plants">
-                <img id= "plantIcon" src="images/plant.svg">
-                <span>Pflanze 2</span>
-            </div>   
+                
+                <span class="plantName">Pflanze 2</span>
+                <div class="plantTemp">
+                    <img src="images/temperature.svg">
+                    <!--<span> <%= temperature1 %> </span>-->
+                    <span>26°</span>
+                </div>
+                <div class="plantHumid">
+                    <img src="images/humidity.svg">
+                    <!--<span> <%= humidity1 %> </span>-->
+                    <span>19%</span>
+                </div>
+            </div> 
+            
+            <div class="windows">
                 <img id="windowIcon" src="images/window.svg">
                 <span>Fenster 1</span>
-                <span>Fenster AUF: <%= windowStatus %></span>
+                <!--<span>Fenster AUF: <%= windowStatus %></span>-->
+            </div>
+            </div>
         </aside>
 
         <section class="inner-wrapper">

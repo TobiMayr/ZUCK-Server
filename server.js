@@ -4,17 +4,34 @@ var http = require('http');
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
+var PythonShell = require('python-shell');
+var options = {mode: 'text'}
+var fs = require('fs');
 var app = express();
 
 var windowOpen = true;
 var sensorTempHumidity = 'test';
 var sensorTemp1;
 var sensorHumid1 = 'test';
-var pic = "http://bilder.bild.de/fotos/lachsack-36229038/Bild/1.bild.jpg";
 var currentHumidityID = 0;
+var lightIPs = [];
+var lightNames = [];
 
-//Glühbirne Python Script
+var port = 8082;
 
+
+/*
+//Alle Glühbirnen im Netzwerk finden
+PythonShell.run('python/XXXX.py', function (err) {
+    if(err) throw err;
+    console.log('Searched for light bulbs');
+});
+
+fs.readFile('YYYYY.txt', 'utf8', function(err, contents) {
+    lightsIPs = contents;
+    console.log(contents);
+});
+*/
 
 
 
@@ -23,25 +40,63 @@ app.get('/', function(req, res){
        windowStatus: windowOpen,
        temperatureHumidity1: sensorTempHumidity,
        temperature1: sensorTemp1,
-       humidity1: sensorHumid1,
-       ImageLink: pic
+       humidity1: sensorHumid1
    });
 });
 
 app.use(express.static(__dirname + "/public"));
 
-app.listen(8081);
+app.listen(port);
 
 //View Engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+//IPs der Glühbirnen bekommen
+PythonShell.run('python/discover_bulbs.py', options, function (err, bulb_ips) {
+    if (err) throw err;
+    // results is an array consisting of messages collected during execution
+    var cleanLightsString = bulb_ips.toString().replace(/u/g,'').replace(/'/g,'"').replace(/[\[\]']+/g,'');
+    console.log(cleanLightsString);
+    var lightObj = JSON.parse(cleanLightsString);
+    for (var key in lightObj)
+    {
+        /*
+         var ip = lightObj.ip;
+         var label = lightObj.capabilities.name;
+         var toggleStatus = lightObj.capabilities.power;
+         var colour = lightObj.capabilities.rgb;
+         var brightness = lightObj.capabilities.bright;
+         */
+
+        if (key === 'ip'){
+            lightIPs.push(lightObj[key]);
+        }else if (key === 'capabilities'){
+            for (var capability in lightObj[key]){
+                if (capability === 'name'){
+                    lightNames.push(lightObj[key][capability]);
+                }
+            }
+        }
+    }
+
+    console.log('IPs: ' + lightIPs)
+    console.log('Names: ' + lightNames);
+});
+
+
+
 app.get('/LichtOn', function (req, res) {
-        var PythonShell = require('python-shell');
-        PythonShell.run('testscript.py', function (err) {
-            if(err) throw err;
-            console.log('finished');
-        });
+    var options2 = {
+       mode: 'text',
+       args: lightIPs[0]
+   };
+    PythonShell.run('python/toggle_light.py', options2, function (err, results) {
+        if (err) throw err;
+        // results is an array consisting of messages collected during execution
+        console.log('results: %j', results);
+        //
+    });
 });
 
 //http://NanoPiAir_Mailinh/sensor/window/true
@@ -50,20 +105,19 @@ app.get('/sensor/window/:open', function(req, res){
     {
         console.log("Window open");
         windowOpen = true;
-        pic = "http://bilder.bild.de/fotos/lachsack-36229038/Bild/1.bild.jpg";
+
     }
     else
     {
         console.log("Window closed");
         windowOpen = false;
-        pic = "http://bilder.bild.de/fotos/der-russische-praesident-wladimir-putin-exklusiv-im-bild-interview-44105778/Bild/2.bild.jpg";
     }
 });
 
-app.get('/sensor/temperature/:temp', function(req, res){
+app.get('/sensor/temphumid/:temp', function(req, res){
     sensorTempHumidity = req.params.temp;
     //
-    var strArray = sensorTempHumidity.split("-")
+    var strArray = sensorTempHumidity.split("-");
     sensorTemp1 = strArray[0];
     sensorHumid1 = strArray[1];
 });
@@ -76,4 +130,4 @@ app.get('/sensor/allocateId/temperature', function(req, res){
 });
 */
 
-console.log('Server started:  ZUCK_Server:8081');
+console.log('Server started at port:' + port);
