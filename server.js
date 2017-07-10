@@ -17,7 +17,7 @@ var currentHumidityID = 0;
 var lightIPs = [];
 var lightNames = [];
 
-var port = 8082;
+var port = 8083;
 
 
 /*
