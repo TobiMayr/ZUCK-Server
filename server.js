@@ -33,24 +33,7 @@ request(link, function (error , response , body) {
     }
 });
 
-<<<<<<< HEAD
-/*
-//Alle Glühbirnen im Netzwerk finden
-PythonShell.run('python/XXXX.py', function (err) {
-    if(err) throw err;
-    console.log('Searched for light bulbs');
-});
 
-fs.readFile('YYYYY.txt', 'utf8', function(err, contents) {
-    lightsIPs = contents;
-    console.log(contents);
-});
-*/
-
-
-
-app.get('/', function(req, res){
-=======
 app.get('/', function(req, res){
 
     var windowStat;
@@ -60,7 +43,6 @@ app.get('/', function(req, res){
         windowStat = windowSensors[0].isOpen;
     }
 
->>>>>>> 4c7d2c713315f23f81d277bb154f3e40f432f284
    res.render('index', {
        windowStatus: windowStat,
        temperatureHumidity1: sensorTempHumidity,
