@@ -11,19 +11,16 @@ var fs = require('fs');
 var request = require('request');
 var app = express();
 
-
-var windowOpen = true;
 var sensorTempHumidity = 'test';
 var sensorTemp1;
 var sensorHumid1 = 'test';
-var currentHumidityID = 0;
 var lightIPs = [];
 var lightNames = [];
 var windowSensors = [];
 var currentId = 1;
 
 var link = 'https://newsapi.org/v1/articles?source=die-zeit&sortBy=latest&apiKey=a1ef913e98c94358994dc8a8f7347aff;'
-var port = 8081;
+var port = 8082;
 
 request(link, function (error , response , body) {
 
@@ -37,26 +34,9 @@ request(link, function (error , response , body) {
 });
 
 
-
-
-/*
-//Alle Glühbirnen im Netzwerk finden
-PythonShell.run('python/XXXX.py', function (err) {
-    if(err) throw err;
-    console.log('Searched for light bulbs');
-});
-
-fs.readFile('YYYYY.txt', 'utf8', function(err, contents) {
-    lightsIPs = contents;
-    console.log(contents);
-});
-*/
-
-
-
 app.get('/', function(req, res){
    res.render('index', {
-       windowStatus: windowOpen,
+       windowStatus: windowSensors[0].isOpen,
        temperatureHumidity1: sensorTempHumidity,
        temperature1: sensorTemp1,
        humidity1: sensorHumid1
@@ -122,30 +102,36 @@ app.get('/LichtOn', function (req, res, next) {
 app.get('/sensor/window/:open/:id', function(req, res){
 
     var foundIp = false;
-    for(var windowSensor in windowSensors){
-        if(req.params.id === windowSensor.id){
+    for(var i = 0; i < windowSensors.length; i++){
+        if(parseInt(req.params.id) == windowSensors[i].id){
             foundIp = true;
-            if(req.params.open === "true")
+            console.log('found IP!');
+            if(req.params.open === 'true')
             {
                 console.log("Window open");
-                windowSensor.setOpen(true);
+                windowSensors[i].isOpen = true;
             }
             else
             {
                 console.log("Window closed");
-                windowSensor.setOpen(false);
+                windowSensors[i].isOpen = false;
             }
         }
     }
     if(!foundIp){
-        res.write('\zreset\z');
+        res.write('\z0\z');
         res.end();
     }
 });
 
 
 app.get('/sensor/signin/window/', function(req, res){
-    windowSensors.push(new windowSensor(currentId));
+    console.log('signed in with currentId: ' + currentId);
+    var windowSens = {
+        id: currentId,
+        isOpen: true
+    };
+    windowSensors.push(windowSens);
     res.write('\z' + currentId + '\z');
     res.end();
     currentId++;
