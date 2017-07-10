@@ -153,7 +153,7 @@ app.get('/sensor/signin/window/', function(req, res){
 
 app.get('/sensor/temphumid/:temp', function(req, res){
     sensorTempHumidity = req.params.temp;
-    //
+
     var strArray = sensorTempHumidity.split("-");
     sensorTemp1 = strArray[0];
     sensorHumid1 = strArray[1];
