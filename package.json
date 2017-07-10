@@ -8,9 +8,11 @@
     "start": "server.js"
   },
   "dependencies": {
+    "async": "^2.5.0",
     "body-parser": "*",
     "ejs": "^2.5.6",
     "express": "*",
+    "newsapi": "^2.0.1",
     "python-shell": "^0.4.0"
   },
   "author": "",
