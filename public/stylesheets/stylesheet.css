@@ -51,6 +51,15 @@ aside{
     margin-top: 10%;
     border-bottom: 1px solid white;
 }
+
+#indoortemphumid {
+    padding: 2%;
+}
+
+#outdoortemphumid {
+    padding: 2%;
+}
+
 #weatherIcon{
     display: inline-block;
     width: 28.3%;
