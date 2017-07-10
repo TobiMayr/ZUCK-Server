@@ -36,8 +36,6 @@ request(link, function (error , response , body) {
     }
 });
 
-
-
 /*
 //Alle Glühbirnen im Netzwerk finden
 PythonShell.run('python/XXXX.py', function (err) {
@@ -167,3 +165,4 @@ app.get('/sensor/allocateId/temperature', function(req, res){
 */
 
 console.log('Server started at port:' + port);
+
