@@ -80,13 +80,13 @@ PythonShell.run('python/discover_bulbs.py', options, function (err, bulb_ips) {
     var lightObj = JSON.parse(cleanLightsString);
     for (var key in lightObj)
     {
-        /!*
-         var ip = lightObj.ip;
+
+         /*var ip = lightObj.ip;
          var label = lightObj.capabilities.name;
          var toggleStatus = lightObj.capabilities.power;
          var colour = lightObj.capabilities.rgb;
-         var brightness = lightObj.capabilities.bright;
-         *!/
+         var brightness = lightObj.capabilities.bright;*/
+
 
         if (key === 'ip'){
             lightIPs.push(lightObj[key]);
