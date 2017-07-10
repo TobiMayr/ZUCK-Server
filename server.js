@@ -72,7 +72,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 //IPs der Glühbirnen bekommen
-/*PythonShell.run('python/discover_bulbs.py', options, function (err, bulb_ips) {
+PythonShell.run('python/discover_bulbs.py', options, function (err, bulb_ips) {
     if (err) throw err;
     // results is an array consisting of messages collected during execution
     var cleanLightsString = bulb_ips.toString().replace(/u/g,'').replace(/'/g,'"').replace(/[\[\]']+/g,'');
@@ -101,11 +101,11 @@ app.set('views', path.join(__dirname, 'views'));
 
     console.log('IPs: ' + lightIPs);
     console.log('Names: ' + lightNames);
-});*/
+});
 
 
 
-/*app.get('/LichtOn', function (req, res, next) {
+app.get('/LichtOn', function (req, res, next) {
     var options2 = {
        mode: 'text',
        args: lightIPs[0]
@@ -115,7 +115,7 @@ app.set('views', path.join(__dirname, 'views'));
         // results is an array consisting of messages collected during execution
     });
 
-});*/
+});
 
 //http://zuck_server/sensor/window/true
 app.get('/sensor/window/:open/:id', function(req, res){
