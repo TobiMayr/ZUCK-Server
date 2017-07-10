@@ -49,6 +49,7 @@ aside{
 #weather { 
     width: 100%;
     margin-top: 10%;
+    border-bottom: 1px solid white;
 }
 #weatherIcon{
     display: inline-block;
@@ -61,21 +62,25 @@ aside{
 }
 /*----- SENSOR DATA----*/
 #sensor {
-    margin: 0 20% 0 20%;
+    margin: 0 5% 0 5%;
     width: 100%;
+
 }
 .plants, .windows{
     margin-top: 10%;
+    float: left;
+    width: 50%;
 }
 #plantIcon, #windowIcon{
-    width: 23.3%;
+    width: 33.3%;
     float: left;
 }
 .plantHumid img, .plantTemp img{
-    width: 5%;
+    width: 15%;
+    margin: 1%;
     vertical-align: middle;
 }
-.plantTemp img, .plantHumid img, .plantName{
+.plantTemp img, .plantHumid img, .sensorName, .sensorStatus{
     margin-left: 5%;
 }
 
