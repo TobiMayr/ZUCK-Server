@@ -5,10 +5,11 @@
 class light {
 
 
-    constructor(id, label, toggleStatus, colour) {
+    constructor(id, label, toggleStatus, colour, brightness) {
         this.id = id;
         this.label = label;
         this.toggleStatus = toggleStatus;
         this.colour = colour;
+        this.brightness = brightness;
     }
 }
