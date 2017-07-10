@@ -33,10 +33,17 @@ request(link, function (error , response , body) {
     }
 });
 
-
 app.get('/', function(req, res){
+
+    var windowStat;
+    if(!windowSensors[0]){
+        windowStat = false;
+    }else{
+        windowStat = windowSensors[0].isOpen;
+    }
+
    res.render('index', {
-       windowStatus: windowSensors[0].isOpen,
+       windowStatus: windowStat,
        temperatureHumidity1: sensorTempHumidity,
        temperature1: sensorTemp1,
        humidity1: sensorHumid1
@@ -61,13 +68,13 @@ PythonShell.run('python/discover_bulbs.py', options, function (err, bulb_ips) {
     var lightObj = JSON.parse(cleanLightsString);
     for (var key in lightObj)
     {
-        /*
-         var ip = lightObj.ip;
+
+         /*var ip = lightObj.ip;
          var label = lightObj.capabilities.name;
          var toggleStatus = lightObj.capabilities.power;
          var colour = lightObj.capabilities.rgb;
-         var brightness = lightObj.capabilities.bright;
-         */
+         var brightness = lightObj.capabilities.bright;*/
+
 
         if (key === 'ip'){
             lightIPs.push(lightObj[key]);
