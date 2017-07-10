@@ -50,16 +50,42 @@ aside{
     width: 100%;
     margin-top: 10%;
     border-bottom: 1px solid white;
+
 }
+
+#indoortemphumid {
+    padding: 2%;
+}
+
+#outdoortemp {
+
+}
+
+#outdoortemphumid {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+
+}
+
+#outdoortext {
+    position: relative;
+}
+
 #weatherIcon{
-    display: inline-block;
-    width: 28.3%;
-    float:right;
-    margin-right: 10%;
-}
-#weatherTemp, #weatherDescr, #location{
+    width: 40%;
     float: right;
+    margin-right: 10%;
+    padding-left: 3%;
 }
+
+#weatherTemp {
+    font-size: 2.3em;
+}
+
+/*#weatherTemp, #weatherDescr, #location{
+    float: right;
+}*/
 /*----- SENSOR DATA----*/
 #sensor {
     margin: 0 5% 0 5%;

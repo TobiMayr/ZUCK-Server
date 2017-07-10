@@ -24,16 +24,24 @@
                 <p id="clock"></p>
                 <p id="date"></p>
             </section>
-            <section id="weather"> 
-                <span id="temp"><p></p>Temperatur: <%= temperature1 %> °C</p></span>
-                <span id="humid"><p>Feuchtigkeit: <%= humidity1 %> %</p> </span>
-                <img id="weatherIcon" src="images/weather.svg">
-                <span id="weatherDescr"> Leicht bewökt</span>
-                <span id="weatherTemp">29°</span>
+            <section id="weather">
 
-                <br>
-                <span id="location">Berlin, Germany</span>
-                
+                <div id="outdoortemphumid">
+                    <img id="weatherIcon" src="images/weather.svg">
+                    <div id="outdoortemp">
+                        <p id="weatherTemp">29 °C &nbsp;</p>
+                        <p id="weatherDescr"> Leicht bewölkt</p>
+                        <br>
+                        <p id="location">Berlin, Germany</p>
+                    </div>
+
+                </div>
+
+                <div id="indoortemphumid">
+                    <span id="temp"><p>Temperatur: <%= temperature1 %> °C</p></span>
+                    <span id="humid"><p>Luftfeuchtigkeit: <%= humidity1 %> %</p> </span>
+                </div>
+
             </section>
             
             <div id="sensor">
@@ -132,7 +140,8 @@
                 </div>
             </section>
         </section>
-        </section>        
+        </section> 
+        <script src="javascript/zuckJS.js"></script>
         <script type="text/javascript">
             /*setTimeout(function(){
                window.location.reload(1);
