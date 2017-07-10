@@ -25,19 +25,23 @@
                 <p id="date"></p>
             </section>
             <section id="weather">
+
+                <div id="outdoortemphumid">
+                    <img id="weatherIcon" src="images/weather.svg">
+                    <div id="outdoortemp">
+                        <p id="weatherTemp">29 °C &nbsp;</p>
+                        <p id="weatherDescr"> Leicht bewölkt</p>
+                        <br>
+                        <p id="location">Berlin, Germany</p>
+                    </div>
+
+                </div>
+
                 <div id="indoortemphumid">
                     <span id="temp"><p>Temperatur: <%= temperature1 %> °C</p></span>
                     <span id="humid"><p>Luftfeuchtigkeit: <%= humidity1 %> %</p> </span>
                 </div>
-                <div id="outdoortemphumid">
-                    <img id="weatherIcon" src="images/weather.svg">
-                    <span id="weatherDescr"> Leicht bewölkt</span>
-                    <span id="weatherTemp">29 °C</span>
-                </div>
 
-                <br>
-                <span id="location">Berlin, Germany</span>
-                
             </section>
             
             <div id="sensor">
