@@ -152,14 +152,16 @@
 
                 var artNo = 0;
 
-                document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].publishedAt) + (res['articles'][artNo].title) + "</h3><br>" + (res['articles'][artNo].description) + "<br><br><h3>" + (res['articles'][artNo + 1].title) + "</h3><br>" + (res['articles'][artNo + 1].description) + "<br><br><h3>" + (res['articles'][artNo + 2].title) + "</h3><br>" + (res['articles'][artNo + 2].description);
+                console.log(res['articles'][artNo].publishedAt);
+
+                document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].title) + "</h3><br><p>" + (res['articles'][artNo].description) + "</p><br><br><h3>" + (res['articles'][artNo + 1].title) + "</h3><br><p>" + (res['articles'][artNo + 1].description) + "</p><br><br><h3>" + (res['articles'][artNo + 2].title) + "</h3><br><p>" + (res['articles'][artNo + 2].description) + "</p>";
 
                 setTimeout(function () {
                     setInterval(function () {
                         if (artNo <= 6) artNo += 3;
                         else artNo = 0;
 
-                        document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].title) + "</h3><br>" + (res['articles'][artNo].description) + "<br><br><h3>" + (res['articles'][artNo + 1].title) + "</h3><br>" + (res['articles'][artNo + 1].description) + "<br><br><h3>" + (res['articles'][artNo + 2].title) + "</h3><br>" + (res['articles'][artNo + 2].description);
+                        document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].title) + "</h3><br><p>" + (res['articles'][artNo].description) + "</p><br><br><h3>" + (res['articles'][artNo + 1].title) + "</h3><br><p>" + (res['articles'][artNo + 1].description) + "</p><br><br><h3>" + (res['articles'][artNo + 2].title) + "</h3><br><p>" + (res['articles'][artNo + 2].description) + "</p>";
 
                     }, 30000)
                 }, 30000);

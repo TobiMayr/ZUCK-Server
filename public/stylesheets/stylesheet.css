@@ -32,8 +32,15 @@ header{
     font-size: 103%;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-
+    /*padding-left: 2%;*/
 }
+
+#news p {
+    border: solid #ffffff;
+    border-width: 0 0 0 0.1em;
+    padding-left: 2%;
+}
+
 
 /*----- SIDE----*/
 aside{
