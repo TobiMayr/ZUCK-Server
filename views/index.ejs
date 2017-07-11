@@ -7,6 +7,7 @@
     <title>HomeAutomationService ZUCK</title>
     <link rel="stylesheet" href="stylesheets/reset.css">
     <link rel="stylesheet" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" href="stylesheets/responsive.css">
     <link rel="shortcut icon" href="">
 </head>
 
@@ -21,25 +22,35 @@
 
 <!-- SIDE -->
 <aside>
-    <div id="time">
-        <div><p id="clock"></p></div>
-        <div><p id="date"></p></div>
+    <div id="obenrechts">
+        <div id="time">
+            <div><p id="clock"></p></div>
+            <div><p id="date"></p></div>
+        </div>
+
+        <div id="weather">
+            <div id="weatherIconAndInfo">
+                <img id="weatherIcon" src="images/weather.svg">
+                <div id="CelsiusAndLoc">
+                    <p id="currentWeather"></p>
+                    <p id="location"></p>
+                </div>
+            </div>
+
+            <div id="indoorcontainer">
+                <table id="indoortemphumid">
+                    <tr>
+                        <th id="temp">Raumtemperatur: <%= temperature1 %> °C</th>
+                    </tr>
+                    <tr>
+                        <th id="humid">Luftfeuchtigkeit: <%= humidity1 %> %</th>
+                    </tr>
+                </table>
+                <!--<div id="temp"><p>Raumtemperatur: <%= temperature1 %> °C</p></div>
+                <div id="humid"><p>Luftfeuchtigkeit: <%= humidity1 %> %</p></div>-->
+            </div>
+        </div>
     </div>
-    <section id="weather">
-        <div id="indoortemphumid">
-            <span id="temp"><p>Temperatur: <%= temperature1 %> °C</p></span>
-            <span id="humid"><p>Luftfeuchtigkeit: <%= humidity1 %> %</p> </span>
-        </div>
-        <div id="outdoortemphumid">
-            <img id="weatherIcon" src="images/weather.svg">
-            <span id="weatherDescr"> Leicht bewölkt</span>
-            <span id="weatherTemp">29 °C</span>
-        </div>
-
-        <br>
-        <span id="location">Berlin, Germany</span>
-
-    </section>
 
     <div id="sensor">
         <div class="plants">
@@ -108,7 +119,7 @@
     <!-- LIGHTS -->
     <section class="light">
         <h2>Licht</h2>
-        <section id="bulb">
+        <section class="bulb">
             <div class="light1">
                 <a href="lichtOn">
                     <img id="bulbIcon" src="images/lightbulb_new.svg">
@@ -123,6 +134,8 @@
                 <img src="images/lightbulb_new.svg">
                 <p>Badezimmer</p>
             </div>
+        </section>
+        <section class="bulb">
             <div class="light1">
                 <img src="images/lightbulb_new.svg">
                 <p>Flur Unten</p>
@@ -139,36 +152,50 @@
     </section>
 </section>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var url = 'https://newsapi.org/v1/articles?source=die-zeit&sortBy=latest&apiKey=a1ef913e98c94358994dc8a8f7347aff';
-            $.getJSON(url).then(function (res) {
-                console.log(res) //{status: "ok", source: "fox-sports", sortBy: "top", articles: Array[10]}
-                //console.log(res['status'])
-                console.log(res['source']) //fox-sports
-                console.log(res['sortBy']) //top
-                console.log(res['articles'][0].title) //10
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var url = 'https://newsapi.org/v1/articles?source=die-zeit&sortBy=latest&apiKey=a1ef913e98c94358994dc8a8f7347aff';
+        $.getJSON(url).then(function (res) {
+            console.log(res) //{status: "ok", source: "fox-sports", sortBy: "top", articles: Array[10]}
+            //console.log(res['status'])
+            console.log(res['source']) //fox-sports
+            console.log(res['sortBy']) //top
+            console.log(res['articles'][0].title) //10
 
-                var artNo = 0;
+            var artNo = 0;
 
-                console.log(res['articles'][artNo].publishedAt);
+            console.log(res['articles'][artNo].publishedAt);
 
-                document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].title) + "</h3><br><p>" + (res['articles'][artNo].description) + "</p><br><br><h3>" + (res['articles'][artNo + 1].title) + "</h3><br><p>" + (res['articles'][artNo + 1].description) + "</p><br><br><h3>" + (res['articles'][artNo + 2].title) + "</h3><br><p>" + (res['articles'][artNo + 2].description) + "</p>";
+            document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].title) + "</h3><br><p>" + (res['articles'][artNo].description) + "</p><br><br><h3>" + (res['articles'][artNo + 1].title) + "</h3><br><p>" + (res['articles'][artNo + 1].description) + "</p><br><br><h3>" + (res['articles'][artNo + 2].title) + "</h3><br><p>" + (res['articles'][artNo + 2].description) + "</p>";
 
-                setTimeout(function () {
-                    setInterval(function () {
-                        if (artNo <= 6) artNo += 3;
-                        else artNo = 0;
+            setTimeout(function () {
+                setInterval(function () {
+                    if (artNo <= 6) artNo += 3;
+                    else artNo = 0;
 
-                        document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].title) + "</h3><br><p>" + (res['articles'][artNo].description) + "</p><br><br><h3>" + (res['articles'][artNo + 1].title) + "</h3><br><p>" + (res['articles'][artNo + 1].description) + "</p><br><br><h3>" + (res['articles'][artNo + 2].title) + "</h3><br><p>" + (res['articles'][artNo + 2].description) + "</p>";
+                    document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].title) + "</h3><br><p>" + (res['articles'][artNo].description) + "</p><br><br><h3>" + (res['articles'][artNo + 1].title) + "</h3><br><p>" + (res['articles'][artNo + 1].description) + "</p><br><br><h3>" + (res['articles'][artNo + 2].title) + "</h3><br><p>" + (res['articles'][artNo + 2].description) + "</p>";
 
-                    }, 30000)
-                }, 30000);
-            })
+                }, 30000)
+            }, 30000);
         })
+    })
 
-    </script>
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var api = "http://api.openweathermap.org/data/2.5/weather?q=Berlin&units=metric&APPID=bf0a224a7b36d53836dd5e19f4b986a8";
+        $.getJSON(api, function (data) {
+
+            document.getElementById("currentWeather").innerHTML = data.main.temp + " °C, " + data.weather[0].description;
+            document.getElementById("location").innerHTML = data.name + ", " + data.sys.country;
+
+        });
+    })
+</script>
 
 
 <script src="javascript/zuckJS.js"></script>

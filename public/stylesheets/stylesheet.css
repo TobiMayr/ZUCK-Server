@@ -10,7 +10,7 @@ html {
     box-sizing: border-box;
 }
 
-body{
+body {
     height: 100%;
     width: 100%;
     background: #000;
@@ -18,7 +18,7 @@ body{
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
-header{
+header {
     width: 100%;
     height: 140%;
     font-size: 1em;
@@ -26,122 +26,169 @@ header{
 }
 
 /*----- NEWS----*/
-#news{
+#news {
     width: 60%;
     float: left;
-    padding: 2% 0 2% 2%;
+    margin: 2% 0;
+    padding: 0 2%;
 
 }
 
 #news h3 {
-    font-size: 103%;
+    font-size: 1.3em;
     text-transform: uppercase;
     letter-spacing: 0.2em;
 }
 
 #news p {
+    font-size: 1.1em;
     border: solid #ffffff;
     border-width: 0 0 0 0.1em;
     padding-left: 2%;
 }
 
-
 /*----- SIDE----*/
-aside{
-    width: 33%;
+aside {
+    width: 31%;
     float: right;
+    padding-right: 2%;
 }
 
-#time{
+#obenrechts {
+    display: block;
+    width: 100%;
+    float: right;
+    /*border-bottom: solid #fff;
+    border-width: 0.05em;*/
+    padding-bottom: 5%;
+}
+
+#time {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    float: right;
+    padding-top: 2%;
+}
+
+#clock {
+    text-align: right;
+    font-size: 5em;
+}
+
+#date {
+    text-align: right;
+    font-size: 1.3em;
+}
+
+#weather {
+    display: flex;
+    flex-direction: column;
+    float: right;
+    margin-top: 5%;
+
+}
+
+
+#weatherIconAndInfo {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    margin-top: 2%;
+    float: right;
+    padding-bottom: 5%;
+}
+
+#weatherIconAndInfo p {
+    font-size: 1.8em;
+    margin-top: 8%;
+
+}
+
+#CelsiusAndLoc {
     display: flex;
     flex-direction: column;
 }
 
-#clock{
-    /*width: 50%;*/
-    /*float: left;*/
-    font-size: 5em;
+#CelsiusAndLoc p {
+    font-size: 1.2em;
+    text-align: center;
 }
 
-#date{
-    /*width: 50%;*/
-    /*float: right;*/
-    /*text-align: right;*/
-    font-size: 2em;
-}
-
-#weather { 
-    width: 100%;
-    margin-top: 10%;
-    border-bottom: 1px solid white;
-
-}
-
-#indoortemphumid {
-    padding: 2%;
-}
-
-#outdoortemp {
-
-}
-
-#outdoortemphumid {
+/*#outdoortemphumid {
     position: relative;
     display: flex;
-    flex-direction: row-reverse;
-
-}
-
-#outdoortext {
-    position: relative;
-}
-
-#weatherIcon{
-    width: 40%;
-    float: right;
-    margin-right: 10%;
-    padding-left: 3%;
-}
-
-#weatherTemp {
-    font-size: 2.3em;
-}
-
-/*#weatherTemp, #weatherDescr, #location{
-    float: right;
+    flex-direction: column;
 }*/
+
+#indoortemphumid {
+    position: relative;
+    font-size: 1.3em;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+
+#indoortemphumid th {
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+#indoorcontainer {
+    border-top: solid #fff;
+    border-bottom: solid #fff;
+    border-width: 0.05em;
+}
+
+#weatherIcon {
+    width: 50%;
+}
+
+#location {
+    float: right;
+    text-align: right;
+}
+
 /*----- SENSOR DATA----*/
 #sensor {
-    margin: 0 5% 0 5%;
-    width: 100%;
-
+    padding: 10% 0 0 10%;
 }
-.plants, .windows{
+
+.plants, .windows {
     margin-top: 10%;
     float: left;
     width: 50%;
 }
-#plantIcon, #windowIcon{
+
+#plantIcon, #windowIcon {
     width: 33.3%;
     float: left;
 }
-.plantHumid img, .plantTemp img{
+
+.plantHumid img, .plantTemp img {
     width: 15%;
     margin: 1%;
     vertical-align: middle;
 }
-.plantTemp img, .plantHumid img, .sensorName, .sensorStatus{
+
+.plantTemp img, .plantHumid img, .sensorName, .sensorStatus {
     margin-left: 5%;
 }
 
 /*----- MEDIA----*/
-.inner-wrapper{
+
+.inner-wrapper {
     width: 66.66666%;
     float: left;
 }
-h2{
+
+h2 {
+    font-size: 1.5em;
     text-align: center;
 }
+
 h2:after {
     display: inline-block;
     margin: 0 0 8px 20px;
@@ -151,6 +198,7 @@ h2:after {
     background-color: #999;
     width: 140px;
 }
+
 h2:before {
     display: inline-block;
     margin: 0 20px 8px 0;
@@ -160,43 +208,58 @@ h2:before {
     background-color: #999;
     width: 140px;
 }
-#media{
-    width: 50%;
+
+#media {
+    position: absolute;
+    width: 30%;
     float: left;
+    margin: 0 0 0 1%;
+    top: 50%;
 }
 
-#media span, #sensor p{
+#media span, #sensor p {
     margin-left: 10%
 }
 
-#stereo, #tv{
-    margin: 10% 0 0 5%;
+#stereo, #tv {
+    margin-left: 10%;
+    margin-top: 10%;
 
 }
 
-#stereoIcon, #tvIcon{
+#stereoIcon, #tvIcon {
     width: 23.3%;
     vertical-align: middle;
 }
 
 /*----- LIGHT----*/
-.light{
-    float: right;
-    width: 50%;
+.light {
+    /*float: right;*/
+    position: absolute;
+    width: 40%;
+    top: 50%;
+    left: 25%;
+
 }
-.light1{
+
+.bulb{
+    display: flex;
+    flex-direction: row;
+    padding-left: 10%;
+}
+
+.light1 {
     float: left;
-    width: 33.33333%;
+    width: 30%;
     text-align: center;
     margin-top: 2%;
+
 }
-.light img{
-   width: 60%;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    padding-left: 10%;
-    padding-right: 10%;
-    
+
+.light img {
+    width: 50%;
+    margin: 7%;
+
 }
 
 img:hover {
