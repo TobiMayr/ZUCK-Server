@@ -7,6 +7,7 @@
         <title>HomeAutomationService ZUCK</title>
         <link rel="stylesheet" href="stylesheets/reset.css">
         <link rel="stylesheet" href="stylesheets/stylesheet.css">
+        <link rel="shortcut icon" href="">
     </head>
 
     <body>
@@ -14,8 +15,8 @@
            <!-- <h1></h1>-->
         </header>
 <!-- NEWS -->
-        <section class="news">
-            <img id="feed" src="images/mail.png">
+        <section id="news">
+            <!--<img id="feed" src="images/mail.png">-->
         </section>
         
 <!-- SIDE -->
@@ -25,23 +26,19 @@
                 <p id="date"></p>
             </section>
             <section id="weather">
-
-                <div id="outdoortemphumid">
-                    <img id="weatherIcon" src="images/weather.svg">
-                    <div id="outdoortemp">
-                        <p id="weatherTemp">29 °C &nbsp;</p>
-                        <p id="weatherDescr"> Leicht bewölkt</p>
-                        <br>
-                        <p id="location">Berlin, Germany</p>
-                    </div>
-
-                </div>
-
                 <div id="indoortemphumid">
                     <span id="temp"><p>Temperatur: <%= temperature1 %> °C</p></span>
                     <span id="humid"><p>Luftfeuchtigkeit: <%= humidity1 %> %</p> </span>
                 </div>
+                <div id="outdoortemphumid">
+                    <img id="weatherIcon" src="images/weather.svg">
+                    <span id="weatherDescr"> Leicht bewölkt</span>
+                    <span id="weatherTemp">29 °C</span>
+                </div>
 
+                <br>
+                <span id="location">Berlin, Germany</span>
+                
             </section>
             
             <div id="sensor">
@@ -80,7 +77,7 @@
             <div class="windows">
                 <img id="windowIcon" src="images/window.svg">
                 <span class="sensorName">Fenster 1</span><br>
-                <span class="sensorStatus">Offen</span>
+                <span class="sensorStatus"><%= windowStatus %></span>
                 <!--<span>Fenster AUF: <%= windowStatus %></span>-->
             </div>
                  <div class="windows">
@@ -140,7 +137,39 @@
                 </div>
             </section>
         </section>
-        </section>        
+        </section>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+            var url = 'https://newsapi.org/v1/articles?source=die-zeit&sortBy=latest&apiKey=a1ef913e98c94358994dc8a8f7347aff';
+            $.getJSON(url).then(function(res){
+            console.log(res) //{status: "ok", source: "fox-sports", sortBy: "top", articles: Array[10]}
+            //console.log(res['status']) 
+            console.log(res['source']) //fox-sports
+            console.log(res['sortBy']) //top
+            console.log(res['articles'][0].title) //10
+                
+            var artNo = 0; 
+                     
+                document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].publishedAt)+(res['articles'][artNo].title) + "</h3><br>" + (res['articles'][artNo].description) + "<br><br><h3>" + (res['articles'][artNo+1].title) + "</h3><br>" + (res['articles'][artNo+1].description) + "<br><br><h3>" + (res['articles'][artNo+2].title) + "</h3><br>" + (res['articles'][artNo+2].description);
+       
+            setTimeout(function(){    
+                setInterval(function(){
+                    if(artNo <= 6) artNo += 3;
+                    else artNo = 0;  
+                
+                    document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].title) + "</h3><br>" + (res['articles'][artNo].description) + "<br><br><h3>" + (res['articles'][artNo+1].title) + "</h3><br>" + (res['articles'][artNo+1].description) + "<br><br><h3>" + (res['articles'][artNo+2].title) + "</h3><br>" + (res['articles'][artNo+2].description);
+                
+                }, 30000)
+            }, 30000);                           
+        })
+    })
+           
+</script>
+        
+        
+        <script src="javascript/zuckJS.js"></script>
         <script type="text/javascript">
             /*setTimeout(function(){
                window.location.reload(1);
@@ -167,7 +196,7 @@
                     min = "0" + min;
                 } 
                 document.getElementById("clock").innerHTML = hr + ":" + min;    
-                setTimeout(updateTimeAndDate, 10000);
+                setInterval(updateTimeAndDate, 10000);
             }
             updateTimeAndDate();
         </script>             
