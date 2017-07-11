@@ -21,10 +21,10 @@
 
 <!-- SIDE -->
 <aside>
-    <section id="time">
-        <p id="clock"></p>
-        <p id="date"></p>
-    </section>
+    <div id="time">
+        <div><p id="clock"></p></div>
+        <div><p id="date"></p></div>
+    </div>
     <section id="weather">
         <div id="indoortemphumid">
             <span id="temp"><p>Temperatur: <%= temperature1 %> °C</p></span>
@@ -191,7 +191,7 @@
         var day = currDate.getDate();
         var month = months[currDate.getMonth()];
         var year = currDate.getFullYear();
-        document.getElementById("date").innerHTML = weekday + "," + "</br>" + day + ". " + month + " " + year;
+        document.getElementById("date").innerHTML = weekday + ", " + day + ". " + month + " " + year;
         var hr = currDate.getHours();
         var min = currDate.getMinutes();
         if (min < 10) {
