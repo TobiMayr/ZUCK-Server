@@ -21,10 +21,18 @@ header{
 }
 
 /*----- NEWS----*/
-.news{
-    width: 66.66666%;
+#news{
+    width: 60%;
     float: left;
-    padding: 1% 0 1% 0;
+    padding: 2% 0 2% 2%;
+
+}
+
+#news h3 {
+    font-size: 103%;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+
 }
 
 /*----- SIDE----*/
