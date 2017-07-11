@@ -66,7 +66,10 @@ PythonShell.run('python/discover_bulbs.py', options, function (err, bulb_ips) {
     // results is an array consisting of messages collected during execution
     var cleanLightsString = bulb_ips.toString().replace(/u/g,'').replace(/'/g,'"').replace(/[\[\]']+/g,'');
     // console.log(cleanLightsString);
-    var lightObj = JSON.parse(cleanLightsString);
+    try {
+        var lightObj = JSON.parse(cleanLightsString);
+    } catch (e) {
+    }
     for (var key in lightObj)
     {
 
