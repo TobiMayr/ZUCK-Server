@@ -1,208 +1,236 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>HomeAutomationService ZUCK</title>
-        <link rel="stylesheet" href="stylesheets/reset.css">
-        <link rel="stylesheet" href="stylesheets/stylesheet.css">
-        <link rel="shortcut icon" href="">
-        <link href="asset/seather.css" rel="stylesheet" type="text/css">
-    </head>
 
-    <body>
-        <header>
-           <!-- <h1></h1>-->
-        </header>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HomeAutomationService ZUCK</title>
+    <link rel="stylesheet" href="stylesheets/reset.css">
+    <link rel="stylesheet" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" href="stylesheets/responsive.css">
+    <link rel="shortcut icon" href="">
+</head>
+
+<body>
+<header>
+    <!-- <h1></h1>-->
+</header>
 <!-- NEWS -->
-        <section id="news">
-            <!--<img id="feed" src="images/mail.png">-->
-        </section>
-        
+<section id="news">
+    <!--<img id="feed" src="images/mail.png">-->
+</section>
+
 <!-- SIDE -->
-        <aside>
-            <section id="time">
-                <p id="clock"></p>
-                <p id="date"></p>
-            </section>
-            <section id="weather">
-                <div id="seather"></div>
-                <div id="indoortemphumid">
-                    <span id="temp"><p>Temperatur: <%= temperature1 %> °C</p></span>
-                    <div id="temp"></div>
-                    <span id="humid"><p>Luftfeuchtigkeit: <%= humidity1 %> %</p> </span>
-                </div>
-                <div id="outdoortemphumid">
-                    <img id="weatherIcon" src="images/weather.svg">
-                    <span id="weatherDescr"> Leicht bewölkt</span>
-                    <span id="weatherTemp">29°C </span>
-                </div>
 
-                <br>
-                <span id="location">Berlin, Germany</span>
-                
-            </section>
-            
-            <div id="sensor">
-           <div class="plants">
-                <img id="plantIcon" src="images/plant.svg">
-                
-                <span class="sensorName">Pflanze 1</span>
-                <div class="plantTemp">
-                    <img src="images/temperature.svg">
-                    <!--<span> <%= temperature1 %> </span>-->
-                    <span>22°</span>
-                </div>
-                <div class="plantHumid">
-                    <img src="images/humidity.svg">
-                    <!--<span> <%= humidity1 %> </span>-->
-                    <span>15%</span>
-                </div>
-            </div>
-            
-            <div class="plants">
-                <img id="plantIcon" src="images/plant.svg">
-                
-                <span class="sensorName">Pflanze 2</span>
-                <div class="plantTemp">
-                    <img src="images/temperature.svg">
-                    <!--<span> <%= temperature1 %> </span>-->
-                    <span>26°</span>
-                </div>
-                <div class="plantHumid">
-                    <img src="images/humidity.svg">
-                    <!--<span> <%= humidity1 %> </span>-->
-                    <span>19%</span>
-                </div>
-            </div> 
-            
-            <div class="windows">
-                <img id="windowIcon" src="images/window.svg">
-                <span class="sensorName">Fenster 1</span><br>
-                <span class="sensorStatus"><%= windowStatus %></span>
-                <!--<span>Fenster AUF: <%= windowStatus %></span>-->
-            </div>
-                 <div class="windows">
-                <img id="windowIcon" src="images/window.svg">
-                <span class="sensorName">Fenster 1</span><br>
-                <span class="sensorStatus">Offen</span>
-                <!--<span>Fenster AUF: <%= windowStatus %></span>-->
-            </div>
-            </div>
-        </aside>
+<aside>
+    <div id="obenrechts">
+        <div id="time">
+            <div><p id="clock"></p></div>
+            <div><p id="date"></p></div>
+        </div>
 
-        <section class="inner-wrapper">
-<!-- MEDIA -->
-        <section id="media">
-            <h2>Media</h2>
-            <section id="device">
-                <div id="stereo">                    
-                    <img id="stereoIcon" src="images/stereo.svg">
-                    <span>Stereo</span>
+        <div id="weather">
+            <div id="weatherIconAndInfo">
+                <img id="weatherIcon" src="images/weather.svg">
+                <div id="CelsiusAndLoc">
+                    <p id="currentWeather"></p>
+                    <p id="location"></p>
                 </div>
-                <div id="tv">                    
-                    <img id="tvIcon" src="images/tv.svg">
-                    <span>TV Wohnzimmer</span>
-                </div>
-            </section>
+            </div>
+
+            <div id="indoorcontainer">
+                <table id="indoortemphumid">
+                    <tr>
+                        <th id="temp">Raumtemperatur: <%= temperature1 %> °C</th>
+                    </tr>
+                    <tr>
+                        <th id="humid">Luftfeuchtigkeit: <%= humidity1 %> %</th>
+                    </tr>
+                </table>
+                <!--<div id="temp"><p>Raumtemperatur: <%= temperature1 %> °C</p></div>
+                <div id="humid"><p>Luftfeuchtigkeit: <%= humidity1 %> %</p></div>-->
+            </div>
+        </div>
+    </div>
+
+    <div id="sensor">
+        <div class="plants">
+            <img id="plantIcon" src="images/plant.svg">
+
+            <span class="sensorName">Pflanze 1</span>
+            <div class="plantTemp">
+                <img src="images/temperature.svg">
+                <!--<span> <%= temperature1 %> </span>-->
+                <span>22°</span>
+            </div>
+            <div class="plantHumid">
+                <img src="images/humidity.svg">
+                <!--<span> <%= humidity1 %> </span>-->
+                <span>15%</span>
+            </div>
+        </div>
+
+        <div class="plants">
+            <img id="plantIcon" src="images/plant.svg">
+
+            <span class="sensorName">Pflanze 2</span>
+            <div class="plantTemp">
+                <img src="images/temperature.svg">
+                <!--<span> <%= temperature1 %> </span>-->
+                <span>26°</span>
+            </div>
+            <div class="plantHumid">
+                <img src="images/humidity.svg">
+                <!--<span> <%= humidity1 %> </span>-->
+                <span>19%</span>
+            </div>
+        </div>
+
+        <div class="windows">
+            <img id="windowIcon" src="images/window.svg">
+            <span class="sensorName">Fenster 1</span><br>
+            <span class="sensorStatus"><%= windowStatus %></span>
+            <!--<span>Fenster AUF: <%= windowStatus %></span>-->
+        </div>
+        <div class="windows">
+            <img id="windowIcon" src="images/window.svg">
+            <span class="sensorName">Fenster 1</span><br>
+            <span class="sensorStatus">Offen</span>
+            <!--<span>Fenster AUF: <%= windowStatus %></span>-->
+        </div>
+    </div>
+</aside>
+
+<section class="inner-wrapper">
+    <!-- MEDIA -->
+    <section id="media">
+        <h2>Media</h2>
+        <section id="device">
+            <div id="stereo">
+                <img id="stereoIcon" src="images/stereo.svg">
+                <span>Stereo</span>
+            </div>
+            <div id="tv">
+                <img id="tvIcon" src="images/tv.svg">
+                <span>TV Wohnzimmer</span>
+            </div>
         </section>
-        
-<!-- LIGHTS -->
-        <section class="light">
-            <h2>Licht</h2>
-            <section id="bulb">
-                <div class="light1">
-                    <a href="lichtOn">
+    </section>
+
+    <!-- LIGHTS -->
+    <section class="light">
+        <h2>Licht</h2>
+        <section class="bulb">
+            <div class="light1">
+                <a href="lichtOn">
                     <img id="bulbIcon" src="images/lightbulb_new.svg">
                     <p>Wohnzimmer</p>
-                    </a>
-                </div>
-                <div class="light1">
-                    <img src="images/lightbulb_new.svg">
-                    <p>Schlafzimmer</p>
-                </div>
-                <div class="light1">
-                    <img src="images/lightbulb_new.svg">
-                    <p>Badezimmer</p>
-                </div>
-                <div class="light1">
-                    <img src="images/lightbulb_new.svg">
-                    <p>Flur Unten</p>
-                </div>
-                <div class="light1">
-                    <img src="images/lightbulb_new.svg">
-                    <p>Flur Oben</p>
-                </div>
-                <div class="light1">
-                    <img src="images/lightbulb_new.svg">
-                    <p>Garage</p>
-                </div>
-            </section>
+                </a>
+            </div>
+            <div class="light1">
+                <img src="images/lightbulb_new.svg">
+                <p>Schlafzimmer</p>
+            </div>
+            <div class="light1">
+                <img src="images/lightbulb_new.svg">
+                <p>Badezimmer</p>
+            </div>
         </section>
+        <section class="bulb">
+            <div class="light1">
+                <img src="images/lightbulb_new.svg">
+                <p>Flur Unten</p>
+            </div>
+            <div class="light1">
+                <img src="images/lightbulb_new.svg">
+                <p>Flur Oben</p>
+            </div>
+            <div class="light1">
+                <img src="images/lightbulb_new.svg">
+                <p>Garage</p>
+            </div>
         </section>
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function(){
-            var url = 'https://newsapi.org/v1/articles?source=die-zeit&sortBy=latest&apiKey=a1ef913e98c94358994dc8a8f7347aff';
-            $.getJSON(url).then(function(res){
+    </section>
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var url = 'https://newsapi.org/v1/articles?source=die-zeit&sortBy=latest&apiKey=a1ef913e98c94358994dc8a8f7347aff';
+        $.getJSON(url).then(function (res) {
             console.log(res) //{status: "ok", source: "fox-sports", sortBy: "top", articles: Array[10]}
-            //console.log(res['status']) 
+            //console.log(res['status'])
             console.log(res['source']) //fox-sports
             console.log(res['sortBy']) //top
             console.log(res['articles'][0].title) //10
-                
-            var artNo = 0; 
-                     
-                document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].publishedAt)+(res['articles'][artNo].title) + "</h3><br>" + (res['articles'][artNo].description) + "<br><br><h3>" + (res['articles'][artNo+1].title) + "</h3><br>" + (res['articles'][artNo+1].description) + "<br><br><h3>" + (res['articles'][artNo+2].title) + "</h3><br>" + (res['articles'][artNo+2].description);
-       
-            setTimeout(function(){    
-                setInterval(function(){
-                    if(artNo <= 6) artNo += 3;
-                    else artNo = 0;  
-                
-                    document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].title) + "</h3><br>" + (res['articles'][artNo].description) + "<br><br><h3>" + (res['articles'][artNo+1].title) + "</h3><br>" + (res['articles'][artNo+1].description) + "<br><br><h3>" + (res['articles'][artNo+2].title) + "</h3><br>" + (res['articles'][artNo+2].description);
-                
+
+            var artNo = 0;
+
+            console.log(res['articles'][artNo].publishedAt);
+
+            document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].title) + "</h3><br><p>" + (res['articles'][artNo].description) + "</p><br><br><h3>" + (res['articles'][artNo + 1].title) + "</h3><br><p>" + (res['articles'][artNo + 1].description) + "</p><br><br><h3>" + (res['articles'][artNo + 2].title) + "</h3><br><p>" + (res['articles'][artNo + 2].description) + "</p>";
+
+            setTimeout(function () {
+                setInterval(function () {
+                    if (artNo <= 6) artNo += 3;
+                    else artNo = 0;
+
+                    document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].title) + "</h3><br><p>" + (res['articles'][artNo].description) + "</p><br><br><h3>" + (res['articles'][artNo + 1].title) + "</h3><br><p>" + (res['articles'][artNo + 1].description) + "</p><br><br><h3>" + (res['articles'][artNo + 2].title) + "</h3><br><p>" + (res['articles'][artNo + 2].description) + "</p>";
+
                 }, 30000)
-            }, 30000);                           
+            }, 30000);
         })
     })
-           
+
 </script>
 
 
-        <script src="javascript/zuckJS.js"></script>
-        <script type="text/javascript">
-            /*setTimeout(function(){
-               window.location.reload(1);
-            }, 5000);     */
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var api = "http://api.openweathermap.org/data/2.5/weather?q=Berlin&units=metric&APPID=bf0a224a7b36d53836dd5e19f4b986a8";
+        $.getJSON(api, function (data) {
+
+            document.getElementById("currentWeather").innerHTML = data.main.temp + " °C, " + data.weather[0].description;
+            document.getElementById("location").innerHTML = data.name + ", " + data.sys.country;
+
+        });
+    })
+</script>
 
 
-            var licht = document.getElementsByClassName("light1");
-            licht[0].onclick = function (){
-                console.log("ES WERDE LICHT!")
-            };
+<script src="javascript/zuckJS.js"></script>
+<script type="text/javascript">
+    /*setTimeout(function(){
+     window.location.reload(1);
+     }, 5000);     */
 
-            function updateTimeAndDate() {
-                var weekdays = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
-                var months = new Array("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");   
-                var currDate = new Date();
-                var weekday = weekdays[currDate.getDay()];
-                var day = currDate.getDate();
-                var month = months[currDate.getMonth()];
-                var year = currDate.getFullYear();            
-                document.getElementById("date").innerHTML = weekday + "," + "</br>"+ day + ". " + month + " " + year; 
-                var hr = currDate.getHours();
-                var min = currDate.getMinutes();
-                if (min < 10) {
-                    min = "0" + min;
-                } 
-                document.getElementById("clock").innerHTML = hr + ":" + min;    
-                setInterval(updateTimeAndDate, 10000);
-            }
-            updateTimeAndDate();
-        </script>  
 
-    </body>
+    var licht = document.getElementsByClassName("light1");
+    licht[0].onclick = function () {
+        console.log("ES WERDE LICHT!")
+    };
+
+    function updateTimeAndDate() {
+        var weekdays = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
+        var months = new Array("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
+        var currDate = new Date();
+        var weekday = weekdays[currDate.getDay()];
+        var day = currDate.getDate();
+        var month = months[currDate.getMonth()];
+        var year = currDate.getFullYear();
+        document.getElementById("date").innerHTML = weekday + ", " + day + ". " + month + " " + year;
+        var hr = currDate.getHours();
+        var min = currDate.getMinutes();
+        if (min < 10) {
+            min = "0" + min;
+        }
+        document.getElementById("clock").innerHTML = hr + ":" + min;
+        setInterval(updateTimeAndDate, 10000);
+    }
+    updateTimeAndDate();
+</script>
+
+</body>
 </html>
