@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="stylesheets/reset.css">
         <link rel="stylesheet" href="stylesheets/stylesheet.css">
         <link rel="shortcut icon" href="">
+        <link href="asset/seather.css" rel="stylesheet" type="text/css">
     </head>
 
     <body>
@@ -26,14 +27,16 @@
                 <p id="date"></p>
             </section>
             <section id="weather">
+                <div id="seather"></div>
                 <div id="indoortemphumid">
                     <span id="temp"><p>Temperatur: <%= temperature1 %> °C</p></span>
+                    <div id="temp"></div>
                     <span id="humid"><p>Luftfeuchtigkeit: <%= humidity1 %> %</p> </span>
                 </div>
                 <div id="outdoortemphumid">
                     <img id="weatherIcon" src="images/weather.svg">
                     <span id="weatherDescr"> Leicht bewölkt</span>
-                    <span id="weatherTemp">29 °C</span>
+                    <span id="weatherTemp">29°C </span>
                 </div>
 
                 <br>
@@ -167,8 +170,8 @@
     })
            
 </script>
-        
-        
+
+
         <script src="javascript/zuckJS.js"></script>
         <script type="text/javascript">
             /*setTimeout(function(){
@@ -199,6 +202,7 @@
                 setInterval(updateTimeAndDate, 10000);
             }
             updateTimeAndDate();
-        </script>             
+        </script>  
+
     </body>
 </html>

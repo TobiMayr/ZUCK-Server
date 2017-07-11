@@ -21,7 +21,7 @@ header{
 }
 
 /*----- NEWS----*/
-.news{
+#news{
     width: 66.66666%;
     float: left;
     padding: 1% 0 1% 0;
@@ -73,7 +73,7 @@ aside{
 }
 
 #weatherIcon{
-    width: 40%;
+    width: 30%;
     float: right;
     margin-right: 10%;
     padding-left: 3%;
