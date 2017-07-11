@@ -44,6 +44,7 @@ app.get('/', function(req, res){
     }
 
    res.render('index', {
+       title: 'HomeAutomationService ZUCK',
        windowStatus: windowStat,
        temperatureHumidity1: sensorTempHumidity,
        temperature1: sensorTemp1,
