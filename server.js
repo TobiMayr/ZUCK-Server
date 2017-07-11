@@ -102,11 +102,14 @@ app.get('/LichtOn', function (req, res, next) {
        mode: 'text',
        args: lightIPs[0]
    };
-    PythonShell.run('python/toggle_light.py', options2, function (err, results) {
-        if (err) throw err;
-        // results is an array consisting of messages collected during execution
-    });
+    if(lightIPs.length > 0){
+        PythonShell.run('python/toggle_light.py', options2, function (err, results) {
+            if (err) throw err;
+            // results is an array consisting of messages collected during execution
+        });
+    }
 
+    res.redirect('back');
 });
 
 //http://zuck_server/sensor/window/true
