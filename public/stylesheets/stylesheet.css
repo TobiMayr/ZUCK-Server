@@ -28,6 +28,7 @@ header {
 /*----- NEWS----*/
 
 #news {
+    display: flex;
     width: 60%;
     float: left;
     margin: 2% 0;
