@@ -197,8 +197,8 @@ h2:after {
     height: 1px;
     content: " ";
     text-shadow: none;
-    background-color: #999;
-    width: 140px;
+    background-color: #fff;
+    width: 40%;
 }
 
 h2:before {
@@ -207,8 +207,8 @@ h2:before {
     height: 1px;
     content: " ";
     text-shadow: none;
-    background-color: #999;
-    width: 140px;
+    background-color: #fff;
+    width: 40%;
 }
 
 #media {
