@@ -49,6 +49,10 @@ header {
     padding-left: 2%;
 }
 
+#newsIcon {
+    display: none;
+}
+
 /*----- SIDE----*/
 aside {
     width: 31%;
