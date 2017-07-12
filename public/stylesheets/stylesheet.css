@@ -34,10 +34,6 @@ header {
     padding: 0 2%;
 }
 
-#newsIcon {
-    visibility: hidden;
-}
-
 #news h3 {
     font-size: 1.3em;
     text-transform: none;
