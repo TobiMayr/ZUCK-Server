@@ -1,0 +1,51 @@
+@media screen and (min-width: 1000px) and (max-width: 1500px) {
+
+    /* für z.B. Macbook Pro 15" Standard-Auflösung */
+
+    /*--- NEWS ---*/
+
+    #news h3{
+        font-size: 0.9em;
+    }
+
+    #news p{
+        font-size: 0.8em;
+    }
+
+   /*--- WEATHER ---*/
+
+    #weatherIcon {
+        width: 40%;
+    }
+
+    #CelsiusAndLoc p {
+        font-size: 1.1em;
+    }
+
+    #indoortemphumid {
+        font-size: 1em;
+    }
+
+    /*--- SENSOR ---*/
+    #sensor {
+        padding: 10% 0 0 7%;
+    }
+
+    /*--- MEDIA ---*/
+
+    h2 {
+        font-size: 1.0em;
+    }
+
+    h2:before, h2:after {
+        width: 80px;
+    }
+
+    #media{
+        width: 30%;
+    }
+
+    /*----- LIGHT----*/
+
+
+}
