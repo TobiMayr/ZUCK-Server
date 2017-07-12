@@ -157,7 +157,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        var url = 'https://newsapi.org/v1/articles?source=die-zeit&sortBy=latest&apiKey=a1ef913e98c94358994dc8a8f7347aff';
+        var url = 'https://newsapi.org/v1/articles?source=die-zeit&sortBy=latest&apiKey=a1ef913e98c94358994dc8a8f7347aff&lang=de';
         $.getJSON(url).then(function (res) {
             console.log(res) //{status: "ok", source: "fox-sports", sortBy: "top", articles: Array[10]}
             //console.log(res['status'])
