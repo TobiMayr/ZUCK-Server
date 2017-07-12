@@ -39,10 +39,12 @@ header {
     font-size: 1.3em;
     text-transform: uppercase;
     letter-spacing: 0.2em;
+    text-align: center;
 }
 
 #news p {
     font-size: 1.1em;
+    line-height: 1.5;
     border: solid #ffffff;
     border-width: 0 0 0 0.1em;
     padding-left: 2%;
@@ -140,7 +142,7 @@ aside {
 
 #indoorcontainer {
     border-top: solid #fff;
-    border-bottom: solid #fff;
+    /*border-bottom: solid #fff;*/
     border-width: 0.05em;
 }
 
@@ -155,7 +157,7 @@ aside {
 
 /*----- SENSOR DATA----*/
 #sensor {
-    padding: 10% 0 0 10%;
+    padding: 0% 0 0 10%;
 }
 
 .plants, .windows {
@@ -198,7 +200,7 @@ h2:after {
     content: " ";
     text-shadow: none;
     background-color: #fff;
-    width: 40%;
+    width: 30%;
 }
 
 h2:before {
@@ -208,7 +210,7 @@ h2:before {
     content: " ";
     text-shadow: none;
     background-color: #fff;
-    width: 40%;
+    width: 30%;
 }
 
 #media {
@@ -271,4 +273,10 @@ img:hover {
 a, a:visited, a:link, a:hover {
     text-decoration: none;
     color: white;
+}
+
+@media screen and (max-width: 768px){
+    #news{
+        display: block !important;
+    }
 }
