@@ -40,6 +40,7 @@
             </div>
 
             <div id="indoorcontainer">
+                <img src="images/chiphouse.svg">
                 <table id="indoortemphumid">
                     <tr>
                         <th id="temp">Raumtemperatur: <%= temperature1 %> °C</th>
@@ -108,8 +109,8 @@
         <h2>Media</h2>
         <section id="device">
             <div id="stereo">
-                <img id="stereoIcon" src="images/stereo.svg">
-                <span>Stereo</span>
+                <a href="http://esp_zuck_01/socket0On"><img id="stereoIcon" src="images/coffee.svg"></a>
+                <span>Kaffee</span>
             </div>
             <div id="tv">
                 <img id="tvIcon" src="images/tv.svg">
@@ -157,7 +158,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        var url = 'https://newsapi.org/v1/articles?source=die-zeit&sortBy=latest&apiKey=a1ef913e98c94358994dc8a8f7347aff';
+        var url = 'https://newsapi.org/v1/articles?source=die-zeit&sortBy=latest&apiKey=a1ef913e98c94358994dc8a8f7347aff&lang=de';
         $.getJSON(url).then(function (res) {
             console.log(res) //{status: "ok", source: "fox-sports", sortBy: "top", articles: Array[10]}
             //console.log(res['status'])
