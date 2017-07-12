@@ -110,6 +110,8 @@ aside {
 #CelsiusAndLoc {
     display: flex;
     flex-direction: column;
+    margin-top: 18%;
+    padding-right: 2%;
 }
 
 #CelsiusAndLoc p {
@@ -127,11 +129,9 @@ aside {
     position: relative;
     font-size: 1.3em;
     text-align: left;
-    margin: 0 auto;
     margin-top: 4%;
     margin-bottom: 4%;
 }
-
 
 #indoortemphumid th {
     padding-top: 2%;
@@ -149,6 +149,7 @@ aside {
     margin: 1%;
    float: left;    
     margin-left: 10%;
+    margin-right: 2%;
 }
 
 #weatherIcon {
