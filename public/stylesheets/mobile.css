@@ -2,6 +2,37 @@
     *{
         overflow: visible;
     }
+
+    input {
+        display: none;
+        visibility: hidden;
+    }
+    label {
+        margin-top: 10%;
+        display: block;
+        padding: 0.5em 0 0.5em 0;
+        text-align: center;
+        border-bottom: 1px solid #CCC;
+        color: #fff;
+    }
+    label:hover {
+        color: pink;
+    }
+    #expand {
+        height: 0px;
+        overflow: hidden;
+        transition: height 0.5s;
+        color: #FFF;
+    }
+    #toggle:checked ~ #expand {
+        height: 600px;
+
+    }
+    #newsSection{
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
     header{
         display: block;
         background-color: #242424;
@@ -16,7 +47,7 @@
     body{
         background-color: #3B3F41;
     }
-    #news, #time, #weather{
+     #time, #weather{
         display: none;
     }
     aside{
