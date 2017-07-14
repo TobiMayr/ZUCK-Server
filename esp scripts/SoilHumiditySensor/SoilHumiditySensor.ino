@@ -49,7 +49,6 @@ void setup()
       String res = readServerResponse();
       EEPROM.write(IDAddress, res.toInt());
       EEPROM.commit();
-      writeBitToFlash(bitAddress, sendPos, true);
     } else
     {
       Serial.println("Connection failed");
@@ -57,20 +56,37 @@ void setup()
     ESP.deepSleep(5e6);
   } else
   {
+    String humidity = readHumidity();
     
-    
+    if (client.connect(host, httpPort))
+      {
+        int id = EEPROM.read(IDAddress);
+        String packet = "/sensor/soil/" + humidity;
+        packet = packet + "/";
+        packet = packet + id;
+        sendGetRequest(packet);
+
+        if(readServerResponse().toInt() == 0)
+        {
+          EEPROM.write(IDAddress, 0);
+          EEPROM.commit();
+        }
+      } else
+      {
+        Serial.println("Connection failed");
+      }
     
     delay(1000);
     ESP.deepSleep(240e6);
   }
 }
 
-void writeBitToFlash(int address, int pos, bool value)
+String readHumidity()
 {
-  byte EEPROMBYTE = EEPROM.read(address);
-  bitWrite(EEPROMBYTE, pos, value);
-  EEPROM.write(address, EEPROMBYTE);
-  EEPROM.commit();
+  int hum = analogRead(A0);
+  hum = (hum-457)/2.7;
+  hum = 100 - hum;
+  return "" + hum;
 }
 
 void sendGetRequest(String packet)

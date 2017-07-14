@@ -4,7 +4,7 @@
 const char* ssid = "ZUCK";
 const char* password = "ruckzuck";
 const char* host = "zuck_server";
-const int httpPort = 8081;
+const int httpPort = 8082;
 const int IDAddress = 0;
 const int bitAddress = 1;
 const int windowPos = 0;
