@@ -121,23 +121,21 @@
     <!-- LIGHTS -->
     <section class="light">
         <h2>Licht</h2>
+
         <section class="bulb">
+            <%if(lights[0].ip != 0){%>
+            <% for(var i = 0; i < lights.length; i++) { %>
             <div class="light1">
-                <a href="lichtOn">
-                    <img id="bulbIcon" src="images/lightbulb_new.svg">
-                    <p>Wohnzimmer</p>
+                <a href="/lights/<%=lights[i].ip %>">
+                    <img id="bulbIcon" src="<%=lights[i].imgSrc%>">
+                    <p><%=lights[i].label %></p>
                 </a>
             </div>
-            <div class="light1">
-                <img src="images/lightbulb_new.svg">
-                <p>Schlafzimmer</p>
-            </div>
-            <div class="light1">
-                <img src="images/lightbulb_new.svg">
-                <p>Badezimmer</p>
-            </div>
+            <% } %>
+            <% } %>
         </section>
         <section class="bulb">
+            <!--
             <div class="light1">
                 <img src="images/lightbulb_new.svg">
                 <p>Flur Unten</p>
@@ -150,6 +148,7 @@
                 <img src="images/lightbulb_new.svg">
                 <p>Garage</p>
             </div>
+            -->
         </section>
     </section>
 </section>
@@ -206,12 +205,6 @@
      window.location.reload(1);
      }, 5000);     */
 
-
-    var licht = document.getElementsByClassName("light1");
-    licht[0].onclick = function () {
-        console.log("ES WERDE LICHT!")
-    };
-
     function updateTimeAndDate() {
         var weekdays = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
         var months = new Array("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
@@ -230,6 +223,7 @@
         setInterval(updateTimeAndDate, 10000);
     }
     updateTimeAndDate();
+
 </script>
 
 </body>

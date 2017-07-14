@@ -15,7 +15,7 @@ var sensorTempHumidity = 'test';
 var sensorTemp1;
 var sensorHumid1 = 'test';
 var lightIPs = [];
-var lightNames = [];
+var lights = [];
 var windowSensors = [];
 var currentId = 1;
 
@@ -43,13 +43,27 @@ app.get('/', function(req, res){
         windowStat = windowSensors[0].isOpen;
     }
 
-   res.render('index', {
-       title: 'HomeAutomationService ZUCK',
-       windowStatus: windowStat,
-       temperatureHumidity1: sensorTempHumidity,
-       temperature1: sensorTemp1,
-       humidity1: sensorHumid1
-   });
+
+    if(!lights[0]){
+        lights.push(light = {
+            ip: 0,
+            label: 0,
+            toggleStatus: 0,
+            anAus: 0,
+            imgSrc: 0,
+            colour: 0,
+            brightness: 0
+        });
+    }
+
+    res.render('index', {
+        title: 'HomeAutomationService ZUCK',
+        windowStatus: windowStat,
+        temperatureHumidity1: sensorTempHumidity,
+        temperature1: sensorTemp1,
+        humidity1: sensorHumid1,
+        lights: lights
+    });
 });
 
 //app.use(favicon());
@@ -61,49 +75,70 @@ app.listen(port);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+
+function discoverBulbs() {
 //IPs der Glühbirnen bekommen
-PythonShell.run('python/discover_bulbs.py', options, function (err, bulb_ips) {
-    if (err) throw err;
-    // results is an array consisting of messages collected during execution
-    var cleanLightsString = bulb_ips.toString().replace(/u/g,'').replace(/'/g,'"').replace(/[\[\]']+/g,'');
-    // console.log(cleanLightsString);
-    try {
-        var lightObj = JSON.parse(cleanLightsString);
-    } catch (e) {
-    }
-    for (var key in lightObj)
-    {
+    PythonShell.run('python/discover_bulbs.py', options, function (err, bulb_ips) {
+        if (err) throw err;
+        // results is an array consisting of messages collected during execution
+        var cleanLightsString = bulb_ips.toString().replace(/u/g, '').replace(/'/g, '"').replace(/[\[\]']+/g, '');
+        // console.log(cleanLightsString);
+        try {
+            var lightObj = JSON.parse(cleanLightsString);
+        } catch (e) {
+        }
+        //for (var key in lightObj)
+        //{
+        lights = [];
+        if (lightObj) {
 
-         /*var ip = lightObj.ip;
-         var label = lightObj.capabilities.name;
-         var toggleStatus = lightObj.capabilities.power;
-         var colour = lightObj.capabilities.rgb;
-         var brightness = lightObj.capabilities.bright;*/
+            var light = {
+                ip: lightObj.ip,
+                label: lightObj.capabilities.name,
+                toggleStatus: lightObj.capabilities.power,
+                anAus: 'on',
+                imgSrc: 'images/lightbulb_new.svg',
+                colour: lightObj.capabilities.rgb,
+                brightness: lightObj.capabilities.bright
+            };
+            lights.push(light);
+        }
+        console.log(lights);
+        //}
+
+        //console.log('IPs: ' + lightIPs);
+        //console.log('Names: ' + lightNames);
+    });
+
+}
+discoverBulbs();
+setInterval(discoverBulbs, 30000);
 
 
-        if (key === 'ip'){
-            lightIPs.push(lightObj[key]);
-        }else if (key === 'capabilities'){
-            for (var capability in lightObj[key]){
-                if (capability === 'name'){
-                    lightNames.push(lightObj[key][capability]);
-                }
+
+
+app.get('/lights/:ip', function (req, res, next) {
+
+    for(var i = 0; i <lights.length; i++){
+        console.log("im array" + i);
+        if(req.params.ip == lights[i].ip){
+            console.log("ip gefunden");
+            if(lights[i].anAus == 'on'){
+                lights[i].imgSrc = "images/lightbulbOn.svg";
+                lights[i].anAus = 'off';
+                console.log("lampe an");
+            }else if(lights[i].anAus == 'off'){
+                lights[i].imgSrc = "images/lightbulb_new.svg";
+                lights[i].anAus = 'on';
+                console.log("lampe aus");
             }
         }
     }
-
-    console.log('IPs: ' + lightIPs);
-    console.log('Names: ' + lightNames);
-});
-
-
-
-app.get('/LichtOn', function (req, res, next) {
     var options2 = {
-       mode: 'text',
-       args: lightIPs[0]
-   };
-    if(lightIPs.length > 0){
+        mode: 'text',
+        args: req.params.ip
+    };
+    if(lights.length > 0){
         PythonShell.run('python/toggle_light.py', options2, function (err, results) {
             if (err) throw err;
             // results is an array consisting of messages collected during execution
@@ -112,6 +147,8 @@ app.get('/LichtOn', function (req, res, next) {
 
     res.redirect('back');
 });
+
+
 
 //http://zuck_server/sensor/window/true
 app.get('/sensor/window/:open/:id', function(req, res){
@@ -161,12 +198,14 @@ app.get('/sensor/temphumid/:temp', function(req, res){
 });
 
 /*
-app.get('/sensor/allocateId/temperature', function(req, res){
-    new humidity(++currentHumidityID, "Humidity_" + currentHumidityID, sensorTemp1, sensorHumid1);
-    res.write(currentHumidityID.toString());
-    res.end();
-});
-*/
+ app.get('/sensor/allocateId/temperature', function(req, res){
+ new humidity(++currentHumidityID, "Humidity_" + currentHumidityID, sensorTemp1, sensorHumid1);
+ res.write(currentHumidityID.toString());
+ res.end();
+ });
+ */
+
+
 
 console.log('Server started at port:' + port);
 
