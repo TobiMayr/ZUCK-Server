@@ -23,6 +23,7 @@ header {
     height: 140%;
     font-size: 2em;
     text-align: center;
+    display: none;
 }
 
 /*----- NEWS----*/
