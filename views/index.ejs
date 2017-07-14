@@ -9,16 +9,18 @@
     <link rel="stylesheet" href="stylesheets/reset.css">
     <link rel="stylesheet" href="stylesheets/stylesheet.css">
     <link rel="stylesheet" href="stylesheets/responsive.css">
+    <link rel="stylesheet" href="stylesheets/mobile.css">
+
     <link rel="shortcut icon" href="">
 </head>
 
 <body>
 <header>
-    <!-- <h1></h1>-->
+    <h1 onclick="topFunction()" id="topHeader">ZUCK</h1>
 </header>
 <!-- NEWS -->
+<img id="newsIcon" src="images/news.svg">
 <section id="news">
-    <!--<img id="feed" src="images/mail.png">-->
 </section>
 
 <!-- SIDE -->
@@ -40,6 +42,7 @@
             </div>
 
             <div id="indoorcontainer">
+                <img src="images/chiphouse.svg">
                 <table id="indoortemphumid">
                     <tr>
                         <th id="temp">Raumtemperatur: <%= temperature1 %> °C</th>
@@ -60,7 +63,7 @@
 
             <span class="sensorName">Pflanze 1</span>
             <div class="plantTemp">
-                <img src="images/temperature.svg">
+                <img src="images/temperature03.svg">
                 <!--<span> <%= temperature1 %> </span>-->
                 <span>22°</span>
             </div>
@@ -76,7 +79,7 @@
 
             <span class="sensorName">Pflanze 2</span>
             <div class="plantTemp">
-                <img src="images/temperature.svg">
+                <img src="images/temperature03.svg">
                 <!--<span> <%= temperature1 %> </span>-->
                 <span>26°</span>
             </div>
@@ -108,8 +111,8 @@
         <h2>Media</h2>
         <section id="device">
             <div id="stereo">
-                <img id="stereoIcon" src="images/stereo.svg">
-                <span>Stereo</span>
+                <a href="http://espzuck01/socketOn"><img id="stereoIcon" src="images/coffee.svg"></a>
+                <span>Kaffee</span>
             </div>
             <div id="tv">
                 <img id="tvIcon" src="images/tv.svg">
@@ -133,23 +136,32 @@
             </div>
             <% } %>
             <% } %>
+
         </section>
+        <!--
         <section class="bulb">
             <!--
             <div class="light1">
-                <img src="images/lightbulb_new.svg">
-                <p>Flur Unten</p>
+                <a href="/LichtRed">
+                    <img src="images/lightbulb_new.svg">
+                    <p>Flur Unten</p>
+                </a>
             </div>
             <div class="light1">
-                <img src="images/lightbulb_new.svg">
-                <p>Flur Oben</p>
+                <a href="/LichtBlue">
+                    <img src="images/lightbulb_new.svg">
+                    <p>Flur Oben</p>
+                </a>
             </div>
             <div class="light1">
-                <img src="images/lightbulb_new.svg">
-                <p>Garage</p>
+                <a href="/LichtGreen">
+                    <img src="images/lightbulb_new.svg">
+                    <p>Garage</p>
+                    </a>
             </div>
             -->
         </section>
+-->
     </section>
 </section>
 
@@ -188,7 +200,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        var api = "http://api.openweathermap.org/data/2.5/weather?q=Berlin&units=metric&APPID=bf0a224a7b36d53836dd5e19f4b986a8";
+        var api = "http://api.openweathermap.org/data/2.5/weather?q=Berlin&units=metric&lang=de&APPID=bf0a224a7b36d53836dd5e19f4b986a8";
         $.getJSON(api, function (data) {
 
             document.getElementById("currentWeather").innerHTML = data.main.temp + " °C, " + data.weather[0].description;
@@ -225,6 +237,18 @@
     updateTimeAndDate();
 
 </script>
-
+<script type="text/javascript">
+    window.onload=function(){
+        var elem = document.createElement("img");
+        elem.src = 'images/lightbulb_new.svg';
+        document.getElementByClass("light1").appendChild(elem);
+    }
+</script>
+<script>
+    function topFunction() {
+    document.body.scrollTop = 0; // For Chrome, Safari and Opera 
+    document.documentElement.scrollTop = 0; // For IE and Firefox
+}
+</script>
 </body>
 </html>

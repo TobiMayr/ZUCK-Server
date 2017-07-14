@@ -21,8 +21,9 @@ body {
 header {
     width: 100%;
     height: 140%;
-    font-size: 1em;
+    font-size: 2em;
     text-align: center;
+    display: none;
 }
 
 /*----- NEWS----*/
@@ -32,20 +33,28 @@ header {
     float: left;
     margin: 2% 0;
     padding: 0 2%;
-
 }
 
 #news h3 {
     font-size: 1.3em;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
+
+    text-transform: none;
+    /*letter-spacing: 0.2em;*/
+    text-align: left;
+    font-weight: bold;
+
 }
 
 #news p {
     font-size: 1.1em;
+    line-height: 1.5;
     border: solid #ffffff;
     border-width: 0 0 0 0.1em;
     padding-left: 2%;
+}
+
+#newsIcon {
+    display: none;
 }
 
 /*----- SIDE----*/
@@ -87,9 +96,7 @@ aside {
     flex-direction: column;
     float: right;
     margin-top: 5%;
-
 }
-
 
 #weatherIconAndInfo {
     position: relative;
@@ -110,11 +117,13 @@ aside {
 #CelsiusAndLoc {
     display: flex;
     flex-direction: column;
+    margin-top: 18%;
+    padding-right: 2%;
 }
 
 #CelsiusAndLoc p {
     font-size: 1.2em;
-    text-align: center;
+    text-align: right;
 }
 
 /*#outdoortemphumid {
@@ -126,12 +135,10 @@ aside {
 #indoortemphumid {
     position: relative;
     font-size: 1.3em;
-    text-align: center;
-    margin: 0 auto;
+    text-align: left;
     margin-top: 4%;
     margin-bottom: 4%;
 }
-
 
 #indoortemphumid th {
     padding-top: 2%;
@@ -139,9 +146,19 @@ aside {
 }
 
 #indoorcontainer {
-    border-top: solid #fff;
-    border-bottom: solid #fff;
+
+    /*border-top: solid #fff;
+    border-bottom: solid #fff;*/
+
     border-width: 0.05em;
+}
+#indoorcontainer img {
+    width: 20%;
+    height: auto;
+    margin: 1%;
+   float: left;    
+    margin-left: 10%;
+    margin-right: 2%;
 }
 
 #weatherIcon {
@@ -155,7 +172,7 @@ aside {
 
 /*----- SENSOR DATA----*/
 #sensor {
-    padding: 10% 0 0 10%;
+    padding: 0% 0 0 10%;
 }
 
 .plants, .windows {
@@ -197,8 +214,8 @@ h2:after {
     height: 1px;
     content: " ";
     text-shadow: none;
-    background-color: #999;
-    width: 140px;
+    background-color: #fff;
+    width: 30%;
 }
 
 h2:before {
@@ -207,8 +224,8 @@ h2:before {
     height: 1px;
     content: " ";
     text-shadow: none;
-    background-color: #999;
-    width: 140px;
+    background-color: #fff;
+    width: 30%;
 }
 
 #media {
@@ -271,4 +288,10 @@ img:hover {
 a, a:visited, a:link, a:hover {
     text-decoration: none;
     color: white;
+}
+
+@media screen and (max-width: 768px){
+    #news{
+        display: block !important;
+    }
 }

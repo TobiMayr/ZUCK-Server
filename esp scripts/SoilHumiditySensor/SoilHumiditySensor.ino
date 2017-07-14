@@ -4,21 +4,15 @@
 const char* ssid = "ZUCK";
 const char* password = "ruckzuck";
 const char* host = "zuck_server";
-const int httpPort = 8082;
+const int httpPort = 8081;
 const int IDAddress = 0;
-const int bitAddress = 1;
-const int windowPos = 0;
-const int sendPos = 1;
 WiFiClient client;
-
-const int CONTACTPIN = 4;
 
 void setup() 
 {
   Serial.begin(115200);
   EEPROM.begin(2);
-  pinMode(CONTACTPIN, INPUT_PULLUP);
-  
+
   delay(10);
 
   Serial.println("");
@@ -35,7 +29,8 @@ void setup()
     {
       delay(5000);
       Serial.print(".");
-    }
+    }else
+      ESP.deepSleep(120e6);
   }
 
   Serial.println("");
@@ -54,7 +49,6 @@ void setup()
       String res = readServerResponse();
       EEPROM.write(IDAddress, res.toInt());
       EEPROM.commit();
-      writeBitToFlash(bitAddress, sendPos, true);
     } else
     {
       Serial.println("Connection failed");
@@ -62,50 +56,15 @@ void setup()
     ESP.deepSleep(5e6);
   } else
   {
-    String windowOpen = "false";
-    boolean sendLast = bitRead(EEPROM.read(bitAddress), sendPos);
-    boolean sendNow = false;
-    boolean lastState = bitRead(EEPROM.read(bitAddress), windowPos);
-
-    if(!sendLast)
-    {
-      if(lastState)
-        windowOpen = "true";
-      else
-        windowOpen = "false";
-
-      sendNow = true;
-    }else
-    {
-      if (digitalRead(CONTACTPIN) == HIGH)
-      {
-        windowOpen = "true";
-        if (!lastState)
-        {
-          writeBitToFlash(bitAddress, windowPos, true);
-          sendNow = true;
-        }
-      } else
-      {
-        if (lastState)
-        {
-          writeBitToFlash(bitAddress, windowPos, false);
-          sendNow = true;
-        }
-      }
-    }
-
-    if (sendNow)
-    {
-      if (client.connect(host, httpPort))
+    String humidity = readHumidity();
+    
+    if (client.connect(host, httpPort))
       {
         int id = EEPROM.read(IDAddress);
-        String packet = "/sensor/window/" + windowOpen;
+        String packet = "/sensor/soil/" + humidity;
         packet = packet + "/";
         packet = packet + id;
         sendGetRequest(packet);
-        if(!sendLast)
-          writeBitToFlash(bitAddress, sendPos, true);
 
         if(readServerResponse().toInt() == 0)
         {
@@ -115,22 +74,19 @@ void setup()
       } else
       {
         Serial.println("Connection failed");
-        if(sendLast)
-          writeBitToFlash(bitAddress, sendPos, false);
       }
-    }
-
+    
     delay(1000);
     ESP.deepSleep(240e6);
   }
 }
 
-void writeBitToFlash(int address, int pos, bool value)
+String readHumidity()
 {
-  byte EEPROMBYTE = EEPROM.read(address);
-  bitWrite(EEPROMBYTE, pos, value);
-  EEPROM.write(address, EEPROMBYTE);
-  EEPROM.commit();
+  int hum = analogRead(A0);
+  hum = (hum-457)/2.7;
+  hum = 100 - hum;
+  return "" + hum;
 }
 
 void sendGetRequest(String packet)
@@ -156,7 +112,7 @@ String readServerResponse()
   return res;
 }
 
-void loop()
+void loop() 
 {
 
 }

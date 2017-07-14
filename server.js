@@ -148,7 +148,52 @@ app.get('/lights/:ip', function (req, res, next) {
     res.redirect('back');
 });
 
+/*
+app.get('/LichtRed', function (req, res, next) {
+    var options2 = {
+        mode: 'text',
+        args: lightIPs[0]
+    };
+    if(lightIPs.length > 0){
+        PythonShell.run('python/red_light.py', options2, function (err, results) {
+            if (err) throw err;
+            // results is an array consisting of messages collected during execution
+        });
+    }
 
+    res.redirect('back');
+});
+
+app.get('/LichtBlue', function (req, res, next) {
+    var options2 = {
+        mode: 'text',
+        args: lightIPs[0]
+    };
+    if(lightIPs.length > 0){
+        PythonShell.run('python/blue_light.py', options2, function (err, results) {
+            if (err) throw err;
+            // results is an array consisting of messages collected during execution
+        });
+    }
+
+    res.redirect('back');
+})
+
+app.get('/LichtGreen', function (req, res, next) {
+    var options2 = {
+        mode: 'text',
+        args: lightIPs[0]
+    };
+    if(lightIPs.length > 0){
+        PythonShell.run('python/green_light.py', options2, function (err, results) {
+            if (err) throw err;
+            // results is an array consisting of messages collected during execution
+        });
+    }
+
+    res.redirect('back');
+});
+*/
 
 //http://zuck_server/sensor/window/true
 app.get('/sensor/window/:open/:id', function(req, res){
