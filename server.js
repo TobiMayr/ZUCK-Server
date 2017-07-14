@@ -14,7 +14,6 @@ var app = express();
 var sensorTempHumidity = 'test';
 var sensorTemp1;
 var sensorHumid1 = 'test';
-var lightIPs = [];
 var lights = [];
 var windowSensors = [];
 var currentId = 1;
@@ -49,7 +48,7 @@ app.get('/', function(req, res){
             ip: 0,
             label: 0,
             toggleStatus: 0,
-            anAus: 0,
+            //anAus: 0,
             imgSrc: 0,
             colour: 0,
             brightness: 0
@@ -91,23 +90,26 @@ function discoverBulbs() {
         //{
         lights = [];
         if (lightObj) {
+            var imageSrc = '';
+            if(lightObj.capabilities.power == 'on'){
+                imageSrc = "images/lightbulbOn.svg";
+            }else if(lightObj.capabilities.power == 'off'){
+                imageSrc = "images/lightbulb_new.svg";
+            }
 
             var light = {
                 ip: lightObj.ip,
                 label: lightObj.capabilities.name,
                 toggleStatus: lightObj.capabilities.power,
-                anAus: 'on',
-                imgSrc: 'images/lightbulb_new.svg',
+                //anAus: 'on',
+                imgSrc: imageSrc,
                 colour: lightObj.capabilities.rgb,
                 brightness: lightObj.capabilities.bright
             };
             lights.push(light);
         }
         console.log(lights);
-        //}
 
-        //console.log('IPs: ' + lightIPs);
-        //console.log('Names: ' + lightNames);
     });
 
 }
@@ -123,13 +125,13 @@ app.get('/lights/:ip', function (req, res, next) {
         console.log("im array" + i);
         if(req.params.ip == lights[i].ip){
             console.log("ip gefunden");
-            if(lights[i].anAus == 'on'){
-                lights[i].imgSrc = "images/lightbulbOn.svg";
-                lights[i].anAus = 'off';
+            if(lights[i].toggleStatus == 'on'){
+                discoverBulbs();
+                //lights[i].imgSrc = "images/lightbulbOn.svg";
                 console.log("lampe an");
-            }else if(lights[i].anAus == 'off'){
-                lights[i].imgSrc = "images/lightbulb_new.svg";
-                lights[i].anAus = 'on';
+            }else if(lights[i].toggleStatus == 'off'){
+                discoverBulbs();
+                //lights[i].imgSrc = "images/lightbulb_new.svg";
                 console.log("lampe aus");
             }
         }

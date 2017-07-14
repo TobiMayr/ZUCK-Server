@@ -122,19 +122,19 @@
     </section>
 
     <!-- LIGHTS -->
-    <section class="light">
+        <section class="light">
         <h2>Licht</h2>
 
-        <section class="bulb">
+        <section class="bulb" id="bulb">
             <%if(lights[0].ip != 0){%>
-            <% for(var i = 0; i < lights.length; i++) { %>
-            <div class="light1">
-                <a href="/lights/<%=lights[i].ip %>">
-                    <img id="bulbIcon" src="<%=lights[i].imgSrc%>">
-                    <p><%=lights[i].label %></p>
-                </a>
-            </div>
-            <% } %>
+                <% for(var i = 0; i < lights.length; i++) { %>
+                <div class="light1">
+                    <a href="/lights/<%=lights[i].ip %>">
+                        <img id="bulbIcon" src="<%=lights[i].imgSrc%>">
+                        <p><%=lights[i].label %></p>
+                    </a>
+                </div>
+                <% } %>
             <% } %>
 
         </section>
@@ -237,18 +237,17 @@
     updateTimeAndDate();
 
 </script>
-<script type="text/javascript">
-    window.onload=function(){
-        var elem = document.createElement("img");
-        elem.src = 'images/lightbulb_new.svg';
-        document.getElementByClass("light1").appendChild(elem);
-    }
-</script>
 <script>
     function topFunction() {
     document.body.scrollTop = 0; // For Chrome, Safari and Opera 
     document.documentElement.scrollTop = 0; // For IE and Firefox
-}
+    }
+
+    setInterval(function() {
+            $("#bulb").load(location.href + " #bulb>*", "");
+    }, 1000); //bulb section jede Sekunde neu laden
+
+
 </script>
 </body>
 </html>
