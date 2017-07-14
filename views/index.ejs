@@ -166,34 +166,63 @@
 </section>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script type="text/javascript">
+    <script type="text/javascript">
     $(document).ready(function () {
         var url = 'https://newsapi.org/v1/articles?source=die-zeit&sortBy=latest&apiKey=a1ef913e98c94358994dc8a8f7347aff&lang=de';
         $.getJSON(url).then(function (res) {
-            console.log(res) //{status: "ok", source: "fox-sports", sortBy: "top", articles: Array[10]}
-            //console.log(res['status'])
-            console.log(res['source']) //fox-sports
-            console.log(res['sortBy']) //top
-            console.log(res['articles'][0].title) //10
 
             var artNo = 0;
 
-            console.log(res['articles'][artNo].publishedAt);
+     document.getElementById("news").innerHTML = 
+         "<a href=\"" 
+         +  (res['articles'][artNo].url) 
+         + "\"><h3>" 
+         + (res['articles'][artNo].title) 
+         + "</h3><br><p>" 
+         + (res['articles'][artNo].description) 
+         + "</p></a><br><br><a href=\"" 
+         + (res['articles'][artNo + 1].url) 
+         + "\"><h3>" 
+         + (res['articles'][artNo + 1].title) 
+         + "</h3><br><p>" 
+         + (res['articles'][artNo + 1].description) 
+         + "</p></a><br><br><a href=\"" 
+         + (res['articles'][artNo + 2].url) 
+         + "\"><h3>" 
+         + (res['articles'][artNo + 2].title) 
+         + "</h3><br><p>" 
+         + (res['articles'][artNo + 2].description) 
+         + "</p></a>";
 
-            document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].title) + "</h3><br><p>" + (res['articles'][artNo].description) + "</p><br><br><h3>" + (res['articles'][artNo + 1].title) + "</h3><br><p>" + (res['articles'][artNo + 1].description) + "</p><br><br><h3>" + (res['articles'][artNo + 2].title) + "</h3><br><p>" + (res['articles'][artNo + 2].description) + "</p>";
-
-            setTimeout(function () {
                 setInterval(function () {
                     if (artNo <= 6) artNo += 3;
                     else artNo = 0;
 
-                    document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].title) + "</h3><br><p>" + (res['articles'][artNo].description) + "</p><br><br><h3>" + (res['articles'][artNo + 1].title) + "</h3><br><p>" + (res['articles'][artNo + 1].description) + "</p><br><br><h3>" + (res['articles'][artNo + 2].title) + "</h3><br><p>" + (res['articles'][artNo + 2].description) + "</p>";
+                         document.getElementById("news").innerHTML = 
+         "<a href=\"" 
+         +  (res['articles'][artNo].url) 
+         + "\"><h3>" 
+         + (res['articles'][artNo].title) 
+         + "</h3><br><p>" 
+         + (res['articles'][artNo].description) 
+         + "</p></a><br><br><a href=\"" 
+         + (res['articles'][artNo + 1].url) 
+         + "\"><h3>" 
+         + (res['articles'][artNo + 1].title) 
+         + "</h3><br><p>" 
+         + (res['articles'][artNo + 1].description) 
+         + "</p></a><br><br><a href=\"" 
+         + (res['articles'][artNo + 2].url) 
+         + "\"><h3>" 
+         + (res['articles'][artNo + 2].title) 
+         + "</h3><br><p>" 
+         + (res['articles'][artNo + 2].description) 
+         + "</p></a>";
 
-                }, 30000)
-            }, 30000);
+                }, 30000);
         })
     })
-
+    
 </script>
 
 
