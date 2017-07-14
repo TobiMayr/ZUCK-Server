@@ -1,0 +1,162 @@
+#include <ESP8266WiFi.h>
+#include <EEPROM.h>
+
+const char* ssid = "ZUCK";
+const char* password = "ruckzuck";
+//const char* host = "zuck_server";
+const char* host = "192.168.137.148";
+const int httpPort = 8082;
+const int IDAddress = 0;
+WiFiClient client;
+
+const int DOOR_PIN = 4;
+const int LID_PIN = 5;
+String mailboxStatus = "undefined";
+
+void setup()
+{
+  Serial.begin(115200);
+  EEPROM.begin(2);
+  pinMode(DOOR_PIN, INPUT_PULLUP);
+  pinMode(LID_PIN, INPUT_PULLUP);
+
+  delay(10);
+
+  Serial.println("");
+  Serial.println("");
+  Serial.println("Connecting to");
+  Serial.println(ssid);
+
+  WiFi.begin(ssid, password);
+  int timeout = millis() + 5000;
+
+  while (WiFi.status() != WL_CONNECTED)
+  {
+    if(timeout-millis() > 0)
+    {
+      delay(5000);
+      Serial.print(".");
+    }
+  }
+
+  Serial.println("");
+  Serial.println("WiFi connected");
+  Serial.println("IP adress:");
+  Serial.println(WiFi.localIP());
+
+  Serial.println("Connecting to");
+  Serial.println(host);
+
+  if (EEPROM.read(0) == 0)
+  {
+    Serial.println("id");
+    if (client.connect(host, httpPort))
+    {
+      sendGetRequest("/sensor/signin/window");
+      String res = readServerResponse();
+      EEPROM.write(IDAddress, res.toInt());
+      EEPROM.commit();
+    } else
+    {
+      Serial.println("Connection failed");
+    }
+    ESP.deepSleep(0);
+  } else
+  {
+    boolean send = false;
+    boolean doorOpen = digitalRead(DOOR_PIN) == HIGH;
+    boolean lidOpen = digitalRead(LID_PIN) == HIGH;
+    String mailboxStatus;
+    
+    boolean doorOpen = digitalRead(DOOR_PIN) == HIGH;
+    boolean lidOpen = digitalRead(LID_PIN) == HIGH;
+
+    setMailboxStatus(doorOpen, lidOpen);
+    
+    if (sendNow)
+    {
+      if (client.connect(host, httpPort))
+      {
+        int id = EEPROM.read(IDAddress);
+        String packet = "/sensor/mailbox/" + mailboxStatus;
+        packet = packet + "/";
+        packet = packet + id;
+        sendGetRequest(packet);
+
+        if(readServerResponse().toInt() == 0)
+        {
+          EEPROM.write(IDAddress, 0);
+          EEPROM.commit();
+        }
+      } else
+      {
+        Serial.println("Connection failed");
+      }
+    }
+
+    delay(1000);
+    ESP.deepSleep(0);
+  }
+}
+
+void setmailboxStatus()
+{
+  if(doorOpen)
+  {
+    mailboxStatus = "emptied";
+    sendNow = true;
+  }else
+  {
+    if(lidOpen)
+    {
+      mailboxStatus = "filled";
+      sendNow = true;
+    }
+  }
+}
+
+void writeBitToFlash(int address, int pos, bool value)
+{
+  byte EEPROMBYTE = EEPROM.read(address);
+  bitWrite(EEPROMBYTE, pos, value);
+  EEPROM.write(address, EEPROMBYTE);
+  EEPROM.commit();
+}
+
+void writeThreeBitToFlash(int address, int pos_one, bool value_one, int pos_two, bool value_two, int pos_three, bool value_three)
+{
+  byte EEPROMBYTE = EEPROM.read(address);
+  bitWrite(EEPROMBYTE, pos_one, value_one);
+  bitWrite(EEPROM, pos_two, value_two);
+  bitWrite(EEPROM, pos_three, value_three);
+  EEPROM.write(address, EEPROMBYTE);
+  EEPROM.commit();
+}
+
+void sendGetRequest(String packet)
+{
+  client.print(String("GET ") + packet + " HTTP/1.1\r\n" + "HOST: " + host + "\r\n" + "Connection: close\r\n\r\n");
+}
+
+String readServerResponse()
+{
+  int timeout = millis() + 5000;
+
+  while (client.available() == 0)
+  {
+    if (timeout - millis() < 0)
+    {
+      Serial.println("Timeout!");
+      client.stop();
+      return "";
+    }
+  }
+  String preRes = client.readStringUntil('\z');
+  String res = client.readStringUntil('\z');
+  return res;
+}
+
+void loop()
+{
+
+}
