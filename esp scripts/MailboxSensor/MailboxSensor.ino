@@ -12,6 +12,7 @@ WiFiClient client;
 const int DOOR_PIN = 4;
 const int LID_PIN = 5;
 String mailboxStatus = "undefined";
+bool send = false;
 
 void setup()
 {
@@ -63,13 +64,9 @@ void setup()
     ESP.deepSleep(0);
   } else
   {
-    boolean send = false;
     boolean doorOpen = digitalRead(DOOR_PIN) == HIGH;
     boolean lidOpen = digitalRead(LID_PIN) == HIGH;
     String mailboxStatus;
-    
-    boolean doorOpen = digitalRead(DOOR_PIN) == HIGH;
-    boolean lidOpen = digitalRead(LID_PIN) == HIGH;
 
     setMailboxStatus(doorOpen, lidOpen);
     
@@ -99,7 +96,7 @@ void setup()
   }
 }
 
-void setmailboxStatus()
+void setMailboxStatus(bool doorOpen, bool lidOpen)
 {
   if(doorOpen)
   {
