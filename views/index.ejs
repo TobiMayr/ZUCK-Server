@@ -121,7 +121,7 @@
         <h2>Media</h2>
         <section id="device">
             <div id="stereo">
-                <a href="http://esp_zuck_01/socket0On"><img id="stereoIcon" src="images/coffee.svg"></a>
+                <a href="http://espzuck01/socketOn"><img id="stereoIcon" src="images/coffee.svg"></a>
                 <span>Kaffee</span>
             </div>
             <div id="tv">
@@ -134,25 +134,24 @@
     <!-- LIGHTS -->
     <section class="light">
         <h2>Licht</h2>
+
         <section class="bulb">
+            <%if(lights[0].ip != 0){%>
+            <% for(var i = 0; i < lights.length; i++) { %>
             <div class="light1">
-                <a href="lichtOn">
-                    <img id="bulbIcon" src="images/lightbulb_new.svg">
-                    <p>Wohnzimmer</p>
+                <a href="/lights/<%=lights[i].ip %>">
+                    <img id="bulbIcon" src="<%=lights[i].imgSrc%>">
+                    <p><%=lights[i].label %></p>
                 </a>
             </div>
-            <div class="light1">
-                <img src="images/lightbulb_new.svg"> 
-                <p>Schlafzimmer</p>
-            </div>
-            <div class="light1">
-                <img src="images/lightbulb_new.svg"> 
-                <p>Badezimmer</p>
-            </div>
+
+            <% } %>
+            <% } %>
 
         </section>
         
         <section class="bulb">
+            <!--
             <div class="light1">
                 <a href="/LichtRed">
                     <img src="images/lightbulb_new.svg">
@@ -171,39 +170,70 @@
                     <p>Garage</p>
                     </a>
             </div>
+            -->
         </section>
+
     </section>
 </section>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script type="text/javascript">
+    <script type="text/javascript">
     $(document).ready(function () {
         var url = 'https://newsapi.org/v1/articles?source=die-zeit&sortBy=latest&apiKey=a1ef913e98c94358994dc8a8f7347aff&lang=de';
         $.getJSON(url).then(function (res) {
-            console.log(res) //{status: "ok", source: "fox-sports", sortBy: "top", articles: Array[10]}
-            //console.log(res['status'])
-            console.log(res['source']) //fox-sports
-            console.log(res['sortBy']) //top
-            console.log(res['articles'][0].title) //10
 
             var artNo = 0;
 
-            console.log(res['articles'][artNo].publishedAt);
+     document.getElementById("news").innerHTML = 
+         "<a href=\"" 
+         +  (res['articles'][artNo].url) 
+         + "\"><h3>" 
+         + (res['articles'][artNo].title) 
+         + "</h3><br><p>" 
+         + (res['articles'][artNo].description) 
+         + "</p></a><br><br><a href=\"" 
+         + (res['articles'][artNo + 1].url) 
+         + "\"><h3>" 
+         + (res['articles'][artNo + 1].title) 
+         + "</h3><br><p>" 
+         + (res['articles'][artNo + 1].description) 
+         + "</p></a><br><br><a href=\"" 
+         + (res['articles'][artNo + 2].url) 
+         + "\"><h3>" 
+         + (res['articles'][artNo + 2].title) 
+         + "</h3><br><p>" 
+         + (res['articles'][artNo + 2].description) 
+         + "</p></a>";
 
-            document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].title) + "</h3><br><p>" + (res['articles'][artNo].description) + "</p><br><br><h3>" + (res['articles'][artNo + 1].title) + "</h3><br><p>" + (res['articles'][artNo + 1].description) + "</p><br><br><h3>" + (res['articles'][artNo + 2].title) + "</h3><br><p>" + (res['articles'][artNo + 2].description) + "</p>";
-
-            setTimeout(function () {
                 setInterval(function () {
                     if (artNo <= 6) artNo += 3;
                     else artNo = 0;
 
-                    document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].title) + "</h3><br><p>" + (res['articles'][artNo].description) + "</p><br><br><h3>" + (res['articles'][artNo + 1].title) + "</h3><br><p>" + (res['articles'][artNo + 1].description) + "</p><br><br><h3>" + (res['articles'][artNo + 2].title) + "</h3><br><p>" + (res['articles'][artNo + 2].description) + "</p>";
+                         document.getElementById("news").innerHTML = 
+         "<a href=\"" 
+         +  (res['articles'][artNo].url) 
+         + "\"><h3>" 
+         + (res['articles'][artNo].title) 
+         + "</h3><br><p>" 
+         + (res['articles'][artNo].description) 
+         + "</p></a><br><br><a href=\"" 
+         + (res['articles'][artNo + 1].url) 
+         + "\"><h3>" 
+         + (res['articles'][artNo + 1].title) 
+         + "</h3><br><p>" 
+         + (res['articles'][artNo + 1].description) 
+         + "</p></a><br><br><a href=\"" 
+         + (res['articles'][artNo + 2].url) 
+         + "\"><h3>" 
+         + (res['articles'][artNo + 2].title) 
+         + "</h3><br><p>" 
+         + (res['articles'][artNo + 2].description) 
+         + "</p></a>";
 
-                }, 30000)
-            }, 30000);
+                }, 30000);
         })
     })
-
+    
 </script>
 
 
@@ -227,12 +257,6 @@
      window.location.reload(1);
      }, 5000);     */
 
-
-    var licht = document.getElementsByClassName("light1");
-    licht[0].onclick = function () {
-        console.log("ES WERDE LICHT!")
-    };
-
     function updateTimeAndDate() {
         var weekdays = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
         var months = new Array("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
@@ -251,6 +275,7 @@
         setInterval(updateTimeAndDate, 10000);
     }
     updateTimeAndDate();
+
 </script>
 <script type="text/javascript">
     window.onload=function(){
