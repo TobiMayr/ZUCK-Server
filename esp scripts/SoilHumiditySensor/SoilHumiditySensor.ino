@@ -3,22 +3,15 @@
 
 const char* ssid = "ZUCK";
 const char* password = "ruckzuck";
-//const char* host = "zuck_server";
-const char* host = "192.168.137.148";
-const int httpPort = 8082;
+const char* host = "zuck_server";
+const int httpPort = 8081;
 const int IDAddress = 0;
 WiFiClient client;
 
-const int DOOR_PIN = 4;
-const int LID_PIN = 5;
-String mailboxStatus = "undefined";
-
-void setup()
+void setup() 
 {
   Serial.begin(115200);
   EEPROM.begin(2);
-  pinMode(DOOR_PIN, INPUT_PULLUP);
-  pinMode(LID_PIN, INPUT_PULLUP);
 
   delay(10);
 
@@ -30,13 +23,14 @@ void setup()
   WiFi.begin(ssid, password);
   int timeout = millis() + 5000;
 
-  while (WiFi.status() != WL_CONNECTED)
+  while(WiFi.status() != WL_CONNECTED)
   {
     if(timeout-millis() > 0)
     {
       delay(5000);
       Serial.print(".");
-    }
+    }else
+      ESP.deepSleep(120e6);
   }
 
   Serial.println("");
@@ -49,70 +43,34 @@ void setup()
 
   if (EEPROM.read(0) == 0)
   {
-    Serial.println("id");
     if (client.connect(host, httpPort))
     {
       sendGetRequest("/sensor/signin/window");
       String res = readServerResponse();
       EEPROM.write(IDAddress, res.toInt());
       EEPROM.commit();
+      writeBitToFlash(bitAddress, sendPos, true);
     } else
     {
       Serial.println("Connection failed");
     }
-    ESP.deepSleep(0);
+    ESP.deepSleep(5e6);
   } else
   {
-    boolean send = false;
-    boolean doorOpen = digitalRead(DOOR_PIN) == HIGH;
-    boolean lidOpen = digitalRead(LID_PIN) == HIGH;
-    String mailboxStatus;
     
-    boolean doorOpen = digitalRead(DOOR_PIN) == HIGH;
-    boolean lidOpen = digitalRead(LID_PIN) == HIGH;
-
-    setMailboxStatus(doorOpen, lidOpen);
     
-    if (send)
-    {
-      if (client.connect(host, httpPort))
-      {
-        int id = EEPROM.read(IDAddress);
-        String packet = "/sensor/mailbox/" + mailboxStatus;
-        packet = packet + "/";
-        packet = packet + id;
-        sendGetRequest(packet);
-
-        if(readServerResponse().toInt() == 0)
-        {
-          EEPROM.write(IDAddress, 0);
-          EEPROM.commit();
-        }
-      } else
-      {
-        Serial.println("Connection failed");
-      }
-    }
-
+    
     delay(1000);
-    ESP.deepSleep(0);
+    ESP.deepSleep(240e6);
   }
 }
 
-void setmailboxStatus()
+void writeBitToFlash(int address, int pos, bool value)
 {
-  if(doorOpen)
-  {
-    mailboxStatus = "emptied";
-    send = true;
-  }else
-  {
-    if(lidOpen)
-    {
-      mailboxStatus = "filled";
-      send = true;
-    }
-  }
+  byte EEPROMBYTE = EEPROM.read(address);
+  bitWrite(EEPROMBYTE, pos, value);
+  EEPROM.write(address, EEPROMBYTE);
+  EEPROM.commit();
 }
 
 void sendGetRequest(String packet)
@@ -138,7 +96,7 @@ String readServerResponse()
   return res;
 }
 
-void loop()
+void loop() 
 {
 
 }
