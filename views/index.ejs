@@ -130,19 +130,20 @@
 
 <!--------- LIGHT ------->
     <section class="light">
+
         <h2>Licht</h2>
 
-        <section class="bulb">
+        <section class="bulb" id="bulb">
             <%if(lights[0].ip != 0){%>
-            <% for(var i = 0; i < lights.length; i++) { %>
-            <div class="light1">
-                <a href="/lights/<%=lights[i].ip %>">
-                    <img id="bulbIcon" src="<%=lights[i].imgSrc%>">
-                    <p><%=lights[i].label %></p>
-                </a>
-            </div>
+                <% for(var i = 0; i < lights.length; i++) { %>
+                <div class="light1">
+                    <a href="/lights/<%=lights[i].ip %>">
+                        <img id="bulbIcon" src="<%=lights[i].imgSrc%>">
+                        <p><%=lights[i].label %></p>
+                    </a>
+                </div>
 
-            <% } %>
+                 <% } %>
             <% } %>
 
         </section>
@@ -286,11 +287,18 @@
 </script>
     
 <!--------- SCROLL TO TOP SCRIPT ------->
+
 <script>
     function topFunction() {
     document.body.scrollTop = 0; // For Chrome, Safari and Opera 
     document.documentElement.scrollTop = 0; // For IE and Firefox
-}
+    }
+
+    setInterval(function() {
+            $("#bulb").load(location.href + " #bulb>*", "");
+    }, 1000); //bulb section jede Sekunde neu laden
+
+
 </script>
     
     
