@@ -19,12 +19,22 @@
     <h1 onclick="topFunction()" id="topHeader">ZUCK</h1>
 </header>
 <!-- NEWS -->
+
+<!-- SIDE -->
+<!--<details open id="newsSection">
+    <summary>NEWS</summary>
 <img id="newsIcon" src="images/news.svg">
 <section id="news">
 </section>
-
-<!-- SIDE -->
-
+</details>-->
+<div id="newsSection">
+<input id="toggle" type="checkbox" unchecked>
+  <label for="toggle">NEWS</label>
+  <div id="expand">
+    <section id="news">
+</section>
+  </div>
+</div>
 <aside>
     <div id="obenrechts">
         <div id="time">
@@ -134,11 +144,12 @@
                     <p><%=lights[i].label %></p>
                 </a>
             </div>
+
             <% } %>
             <% } %>
 
         </section>
-        <!--
+        
         <section class="bulb">
             <!--
             <div class="light1">
@@ -279,5 +290,25 @@
     document.documentElement.scrollTop = 0; // For IE and Firefox
 }
 </script>
+    
+    
+<!--<script>
+    var originalContent = '';
+
+$(window).resize(function() {
+if (window.innerWidth < 768) {
+
+    originalContent = $('#newsSection').innerHTML;
+
+    $('#newsSection').replaceWith('#newsSectionMobile');
+
+} else if (window.innerWidth > 768) {
+
+    // Change back to original .LatestNews
+    $('.LatestNews').innerHTML = originalContent;
+}
+}).resize();
+</script>-->
+    
 </body>
 </html>
