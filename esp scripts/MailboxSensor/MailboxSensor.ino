@@ -73,7 +73,7 @@ void setup()
 
     setMailboxStatus(doorOpen, lidOpen);
     
-    if (sendNow)
+    if (send)
     {
       if (client.connect(host, httpPort))
       {
@@ -104,13 +104,13 @@ void setmailboxStatus()
   if(doorOpen)
   {
     mailboxStatus = "emptied";
-    sendNow = true;
+    send = true;
   }else
   {
     if(lidOpen)
     {
       mailboxStatus = "filled";
-      sendNow = true;
+      send = true;
     }
   }
 }
