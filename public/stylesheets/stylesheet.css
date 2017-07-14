@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:100,700,300);
 
 * {
     margin: 0;
@@ -15,7 +16,7 @@ body {
     width: 100%;
     background: #000;
     color: white;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+      font-family: 'Open Sans', Arial, sans-serif;
 }
 
 header {
@@ -27,14 +28,18 @@ header {
 }
 
 /*----- NEWS----*/
-
-#news {
+label, input{
+    display: none;
+}
+#newsSection {
     width: 60%;
     float: left;
     margin: 2% 0;
     padding: 0 2%;
 }
-
+#newsSection h2{
+    display: block;
+}
 #news h3 {
     font-size: 1.3em;
 
@@ -117,7 +122,7 @@ aside {
 #CelsiusAndLoc {
     display: flex;
     flex-direction: column;
-    margin-top: 18%;
+    margin-top: 12%;
     padding-right: 2%;
 }
 
@@ -203,12 +208,12 @@ aside {
     float: left;
 }
 
-h2 {
+.inner-wrapper h2 {
     font-size: 1.5em;
     text-align: center;
 }
 
-h2:after {
+.inner-wrapper h2:after {
     display: inline-block;
     margin: 0 0 8px 20px;
     height: 1px;
@@ -218,7 +223,7 @@ h2:after {
     width: 30%;
 }
 
-h2:before {
+.inner-wrapper h2:before {
     display: inline-block;
     margin: 0 20px 8px 0;
     height: 1px;
