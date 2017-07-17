@@ -144,6 +144,10 @@
 
         <h2>Licht</h2>
 
+        <input id="toggleLight" type="checkbox" unchecked>
+        <label for="toggleLight">LIGHT</label>
+    
+        <div id="expandLight">
         <section class="bulb" id="bulb">
             <%if(lights[0].ip != 0){%>
                 <% for(var i = 0; i < lights.length; i++) { %>
@@ -158,7 +162,7 @@
             <% } %>
 
         </section>
-        
+        </div>
         <section class="bulb">
             <!--
             <div class="light1">
