@@ -72,7 +72,7 @@
     }
     #sensor{
         width: 100%;
-    }
+        padding: 0 0 0 0%;}
 
     header{
         display: block;
@@ -93,6 +93,7 @@
     }
     aside{
         width: 100%;
+        padding-right: 0%;
     }
     .inner-wrapper{
         width: 100%;
@@ -101,6 +102,6 @@
         position: relative;
         width: 100%;
         left: 0;
-        margin-top: 10%;
+        margin-top: 5%;
     }
 }
