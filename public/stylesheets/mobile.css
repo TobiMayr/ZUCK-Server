@@ -9,13 +9,15 @@
         visibility: hidden;
     }
     label {
-        margin-top: 2.5em;
         display: block;
         padding: 2% 0 2% 0;
         text-align: center;
         border-bottom: 1px solid #CCC;
         color: #fff;
         background-color: #4E5899;
+    }
+    #newsLabel {
+        margin-top: 2.5em;
     }
     #news{
         width: 90%;
@@ -34,7 +36,7 @@
         height: auto;
 
     }
-    #newsSection{
+    #newsSection, #sensor{
         width: 100%;
         margin: 0;
         padding: 0;
@@ -45,6 +47,17 @@
     #news p{
         font-size: 0.8em;
     }
+    #expand2 {
+        height: 0px;
+        overflow: hidden;
+        transition: height 0.5s;
+        color: #FFF;
+    }
+    #toggle2:checked ~ #expand2 {
+        height: 180px;
+
+    }
+
     header{
         display: block;
         background-color: #242424;
