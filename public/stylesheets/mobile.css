@@ -8,6 +8,7 @@
         display: none;
         visibility: hidden;
     }
+    
     label {
         margin-top: 2.5em;
         display: block;
@@ -30,10 +31,20 @@
         transition: height 0.5s;
         color: #FFF;
     }
+    #expandMedia {
+        height: 0px;
+        overflow: hidden;
+        transition: height 0.5s;
+        color: #FFF;
+    }
+    
     #toggle:checked ~ #expand {
         height: auto;
-
-    }
+    }   
+        #toggleMedia:checked ~ #expandMedia {
+        height: auto;
+    } 
+    
     #newsSection{
         width: 100%;
         margin: 0;
