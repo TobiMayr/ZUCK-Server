@@ -87,14 +87,40 @@
     }
     #sensor{
         width: 100%;
-    }
+        padding: 0 0 0 0%;}
+
 
 /*----------MEDIA------*/
+    header{
+        display: block;
+        background-color: #242424;
+        width: 100%;
+        position: fixed;
+        top: 0px;
+        height: auto;
+    }
+    #topHeader{
+        cursor: pointer;
+    }
+    body{
+        background-color: #3B3F41;
+    }
+     #time, #weather{
+        display: none;
+    }
+    aside{
+        width: 100%;
+        padding-right: 0%;
+    }
+    .inner-wrapper{
+        width: 100%;
+    }
+
     #media, .light{
         position: relative;
         width: 100%;
         left: 0;
-        margin-top: 10%;
+        margin-top: 5%;
     }
     #expandMedia {
         height: 0px;
