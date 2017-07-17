@@ -221,6 +221,10 @@ app.get('/sensor/window/:open/:id', function(req, res){
         res.write('\z0\z');
         res.end();
     }
+    else{
+	res.write('\z1\z');
+	res.end();
+   }
 });
 
 

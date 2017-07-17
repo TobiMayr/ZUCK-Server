@@ -8,6 +8,7 @@
         display: none;
         visibility: hidden;
     }
+    
     label {
         display: block;
         padding: 2% 0 2% 0;
@@ -32,11 +33,22 @@
         transition: height 0.5s;
         color: #FFF;
     }
+    #expandMedia {
+        height: 0px;
+        overflow: hidden;
+        transition: height 0.5s;
+        color: #FFF;
+    }
+    
     #toggle:checked ~ #expand {
         height: auto;
 
-    }
-    #newsSection, #sensor{
+    }   
+        #toggleMedia:checked ~ #expandMedia {
+        height: auto;
+    } 
+    
+    #newsSection{
         width: 100%;
         margin: 0;
         padding: 0;
