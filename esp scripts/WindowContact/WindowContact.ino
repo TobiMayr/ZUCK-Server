@@ -3,7 +3,7 @@
 
 const char* ssid = "ZUCK";
 const char* password = "ruckzuck";
-const char* host = "zuck_server";
+const char* host = "192.168.0.108";
 const int httpPort = 8082;
 const int IDAddress = 0;
 const int bitAddress = 1;
@@ -35,7 +35,8 @@ void setup()
     {
       delay(5000);
       Serial.print(".");
-    }
+    }else
+      ESP.deepSleep(5e6);   //for Showtime, else 120
   }
 
   Serial.println("");
@@ -50,11 +51,12 @@ void setup()
   {
     if (client.connect(host, httpPort))
     {
+      Serial.println("Asking for ID");
       sendGetRequest("/sensor/signin/window");
       String res = readServerResponse();
       EEPROM.write(IDAddress, res.toInt());
       EEPROM.commit();
-      writeBitToFlash(bitAddress, sendPos, true);
+      writeBitToFlash(bitAddress, sendPos, false);
     } else
     {
       Serial.println("Connection failed");
@@ -62,6 +64,7 @@ void setup()
     ESP.deepSleep(5e6);
   } else
   {
+    Serial.println("Get window status");
     String windowOpen = "false";
     boolean sendLast = bitRead(EEPROM.read(bitAddress), sendPos);
     boolean sendNow = false;
@@ -99,6 +102,7 @@ void setup()
     {
       if (client.connect(host, httpPort))
       {
+        Serial.println("Sending window status");
         int id = EEPROM.read(IDAddress);
         String packet = "/sensor/window/" + windowOpen;
         packet = packet + "/";
@@ -106,9 +110,13 @@ void setup()
         sendGetRequest(packet);
         if(!sendLast)
           writeBitToFlash(bitAddress, sendPos, true);
+          
+        String res = readServerResponse();
+        Serial.println("Server response: " +res);
 
-        if(readServerResponse().toInt() == 0)
+        if(res.toInt() == 0)
         {
+          Serial.println("Reset ID");
           EEPROM.write(IDAddress, 0);
           EEPROM.commit();
         }
@@ -117,11 +125,12 @@ void setup()
         Serial.println("Connection failed");
         if(sendLast)
           writeBitToFlash(bitAddress, sendPos, false);
+          ESP.deepSleep(10e6);  //for showtime, else 5 min(300)
       }
     }
 
     delay(1000);
-    ESP.deepSleep(240e6);
+    ESP.deepSleep(10e6);  //for showtime, else 5 min(300)
   }
 }
 

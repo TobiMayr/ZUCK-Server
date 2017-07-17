@@ -3,8 +3,7 @@
 
 const char* ssid = "ZUCK";
 const char* password = "ruckzuck";
-//const char* host = "zuck_server";
-const char* host = "192.168.137.148";
+const char* host = "192.168.0.108";
 const int httpPort = 8082;
 const int IDAddress = 0;
 WiFiClient client;
@@ -53,7 +52,7 @@ void setup()
     Serial.println("id");
     if (client.connect(host, httpPort))
     {
-      sendGetRequest("/sensor/signin/window");
+      sendGetRequest("/sensor/signin/mailbox");
       String res = readServerResponse();
       EEPROM.write(IDAddress, res.toInt());
       EEPROM.commit();
@@ -80,7 +79,10 @@ void setup()
         packet = packet + id;
         sendGetRequest(packet);
 
-        if(readServerResponse().toInt() == 0)
+        String res = readServerResponse();
+        Serial.println("Server response: " +res);
+
+        if(res.toInt() == 0)
         {
           EEPROM.write(IDAddress, 0);
           EEPROM.commit();
