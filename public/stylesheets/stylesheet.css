@@ -17,11 +17,12 @@ body {
     background: #000;
     color: white;
       font-family: 'Open Sans', Arial, sans-serif;
+        line-height: normal;
+
 }
 
 header {
     width: 100%;
-    height: 140%;
     font-size: 2em;
     text-align: center;
     display: none;
@@ -220,7 +221,7 @@ aside {
     content: " ";
     text-shadow: none;
     background-color: #fff;
-    width: 30%;
+    width: 20%;
 }
 
 .inner-wrapper h2:before {
@@ -230,7 +231,7 @@ aside {
     content: " ";
     text-shadow: none;
     background-color: #fff;
-    width: 30%;
+    width: 20%;
 }
 
 #media {
