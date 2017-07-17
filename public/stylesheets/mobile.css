@@ -47,7 +47,7 @@
         width: 90%;
         margin: 5% 5% 0 5%; 
     } 
-    #expand {
+    #expand, #expand2, #expandMedia, #expandLight {
         height: 0px;
         overflow: hidden;
         transition: height 0.5s;
@@ -76,12 +76,6 @@
         padding-right: 0;
     }
     
-    #expand2 {
-        height: 0px;
-        overflow: hidden;
-        transition: height 0.5s;
-        color: #FFF;
-    }
     #toggle2:checked ~ #expand2 {
         height: 200px;
     }
@@ -122,12 +116,6 @@
         left: 0;
         margin-top: 5%;
     }
-    #expandMedia {
-        height: 0px;
-        overflow: hidden;
-        transition: height 0.5s;
-        color: #FFF;
-    }
        
     #toggleMedia:checked ~ #expandMedia {
         height: 250px;
@@ -137,12 +125,7 @@
         margin: 0;
     }
 /*----------LIGHT------*/
-    #expandLight {
-        height: 0px;
-        overflow: hidden;
-        transition: height 0.5s;
-        color: #FFF;
-    }
+
     #toggleLight:checked ~ #expandLight {
         height: 250px;
     } 
