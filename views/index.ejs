@@ -18,13 +18,19 @@
 <header>
     <h1 onclick="topFunction()" id="topHeader">ZUCK</h1>
 </header>
-<!-- NEWS -->
-<img id="newsIcon" src="images/news.svg">
-<section id="news">
+    
+<!--------- NEWS ------->
+<div id="newsSection">
+<input id="toggle" type="checkbox" unchecked>
+  <label for="toggle">NEWS</label>
+    <img id="newsIcon" src="images/news.svg">
+  <div id="expand">
+    <section id="news">
 </section>
-
-<!-- SIDE -->
-
+  </div>
+</div>
+    
+<!--------- SIDE ------->
 <aside>
     <div id="obenrechts">
         <div id="time">
@@ -62,11 +68,13 @@
             <img id="plantIcon" src="images/plant.svg">
 
             <span class="sensorName">Pflanze 1</span>
-            <div class="plantTemp">
+            <!--
+                <div class="plantTemp">
                 <img src="images/temperature03.svg">
-                <!--<span> <%= temperature1 %> </span>-->
+                <span> <%= temperature1 %> </span>
                 <span>22°</span>
-            </div>
+            </div>-->
+        
             <div class="plantHumid">
                 <img src="images/humidity.svg">
                 <!--<span> <%= humidity1 %> </span>-->
@@ -78,11 +86,11 @@
             <img id="plantIcon" src="images/plant.svg">
 
             <span class="sensorName">Pflanze 2</span>
-            <div class="plantTemp">
+            <!--<div class="plantTemp">
                 <img src="images/temperature03.svg">
-                <!--<span> <%= temperature1 %> </span>-->
+                <span> <%= temperature1 %> </span>
                 <span>26°</span>
-            </div>
+            </div>-->
             <div class="plantHumid">
                 <img src="images/humidity.svg">
                 <!--<span> <%= humidity1 %> </span>-->
@@ -97,17 +105,18 @@
             <!--<span>Fenster AUF: <%= windowStatus %></span>-->
         </div>
         <div class="windows">
-            <img id="windowIcon" src="images/window.svg">
-            <span class="sensorName">Fenster 1</span><br>
-            <span class="sensorStatus">Offen</span>
+            <img id="windowIcon" src="images/mailboxEmpty.svg">
+            <span class="sensorName">Briefkasten</span><br>
+            <span class="sensorStatus">nö</span>
             <!--<span>Fenster AUF: <%= windowStatus %></span>-->
         </div>
     </div>
 </aside>
 
 <section class="inner-wrapper">
-    <!-- MEDIA -->
-    <section id="media">
+
+<!--------- MEDIA ------->
+<section id="media">
         <h2>Media</h2>
         <section id="device">
             <div id="stereo">
@@ -121,29 +130,28 @@
         </section>
     </section>
 
-    <!-- LIGHTS -->
+<!--------- LIGHT ------->
     <section class="light">
+
         <h2>Licht</h2>
-        <section class="bulb">
-            <div class="light1">
-                <a href="lichtOn">
-                    <img id="bulbIcon" src="images/lightbulb_new.svg">
-                    <p>Wohnzimmer</p>
-                </a>
-            </div>
-            
-            <div class="light1">
-                <img src="images/lightbulb_new.svg"> 
-                <p>Schlafzimmer</p>
-            </div>
-            <div class="light1">
-                <img src="images/lightbulb_new.svg"> 
-                <p>Badezimmer</p>
-            </div>
+
+        <section class="bulb" id="bulb">
+            <%if(lights[0].ip != 0){%>
+                <% for(var i = 0; i < lights.length; i++) { %>
+                <div class="light1">
+                    <a href="/lights/<%=lights[i].ip %>">
+                        <img id="bulbIcon" src="<%=lights[i].imgSrc%>">
+                        <p><%=lights[i].label %></p>
+                    </a>
+                </div>
+
+                 <% } %>
+            <% } %>
 
         </section>
-        <!--
+        
         <section class="bulb">
+            <!--
             <div class="light1">
                 <a href="/LichtRed">
                     <img src="images/lightbulb_new.svg">
@@ -162,43 +170,74 @@
                     <p>Garage</p>
                     </a>
             </div>
+            -->
         </section>
--->
+
     </section>
 </section>
 
+<!--------- NEWS SCRIPT ------->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script type="text/javascript">
+    <script type="text/javascript">
     $(document).ready(function () {
         var url = 'https://newsapi.org/v1/articles?source=die-zeit&sortBy=latest&apiKey=a1ef913e98c94358994dc8a8f7347aff&lang=de';
         $.getJSON(url).then(function (res) {
-            console.log(res) //{status: "ok", source: "fox-sports", sortBy: "top", articles: Array[10]}
-            //console.log(res['status'])
-            console.log(res['source']) //fox-sports
-            console.log(res['sortBy']) //top
-            console.log(res['articles'][0].title) //10
 
             var artNo = 0;
 
-            console.log(res['articles'][artNo].publishedAt);
+     document.getElementById("news").innerHTML = 
+         "<a href=\"" 
+         +  (res['articles'][artNo].url) 
+         + "\"><h3>" 
+         + (res['articles'][artNo].title) 
+         + "</h3><br><p>" 
+         + (res['articles'][artNo].description) 
+         + "</p></a><br><br><a href=\"" 
+         + (res['articles'][artNo + 1].url) 
+         + "\"><h3>" 
+         + (res['articles'][artNo + 1].title) 
+         + "</h3><br><p>" 
+         + (res['articles'][artNo + 1].description) 
+         + "</p></a><br><br><a href=\"" 
+         + (res['articles'][artNo + 2].url) 
+         + "\"><h3>" 
+         + (res['articles'][artNo + 2].title) 
+         + "</h3><br><p>" 
+         + (res['articles'][artNo + 2].description) 
+         + "</p></a>";
 
-            document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].title) + "</h3><br><p>" + (res['articles'][artNo].description) + "</p><br><br><h3>" + (res['articles'][artNo + 1].title) + "</h3><br><p>" + (res['articles'][artNo + 1].description) + "</p><br><br><h3>" + (res['articles'][artNo + 2].title) + "</h3><br><p>" + (res['articles'][artNo + 2].description) + "</p>";
-
-            setTimeout(function () {
                 setInterval(function () {
                     if (artNo <= 6) artNo += 3;
                     else artNo = 0;
 
-                    document.getElementById("news").innerHTML = "<h3>" + (res['articles'][artNo].title) + "</h3><br><p>" + (res['articles'][artNo].description) + "</p><br><br><h3>" + (res['articles'][artNo + 1].title) + "</h3><br><p>" + (res['articles'][artNo + 1].description) + "</p><br><br><h3>" + (res['articles'][artNo + 2].title) + "</h3><br><p>" + (res['articles'][artNo + 2].description) + "</p>";
+                         document.getElementById("news").innerHTML = 
+         "<a href=\"" 
+         +  (res['articles'][artNo].url) 
+         + "\"><h3>" 
+         + (res['articles'][artNo].title) 
+         + "</h3><br><p>" 
+         + (res['articles'][artNo].description) 
+         + "</p></a><br><br><a href=\"" 
+         + (res['articles'][artNo + 1].url) 
+         + "\"><h3>" 
+         + (res['articles'][artNo + 1].title) 
+         + "</h3><br><p>" 
+         + (res['articles'][artNo + 1].description) 
+         + "</p></a><br><br><a href=\"" 
+         + (res['articles'][artNo + 2].url) 
+         + "\"><h3>" 
+         + (res['articles'][artNo + 2].title) 
+         + "</h3><br><p>" 
+         + (res['articles'][artNo + 2].description) 
+         + "</p></a>";
 
-                }, 30000)
-            }, 30000);
+                }, 30000);
         })
     })
-
+    
 </script>
 
-
+<!--------- WEATHER SCRIPT ------->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -212,18 +251,12 @@
     })
 </script>
 
-
+<!--------- TIME SCRIPT ------->
 <script src="javascript/zuckJS.js"></script>
 <script type="text/javascript">
     /*setTimeout(function(){
      window.location.reload(1);
      }, 5000);     */
-
-
-    var licht = document.getElementsByClassName("light1");
-    licht[0].onclick = function () {
-        console.log("ES WERDE LICHT!")
-    };
 
     function updateTimeAndDate() {
         var weekdays = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
@@ -243,7 +276,10 @@
         setInterval(updateTimeAndDate, 10000);
     }
     updateTimeAndDate();
+
 </script>
+    
+<!--------- LIGHT SCRIPT ------->
 <script type="text/javascript">
     window.onload=function(){
         var elem = document.createElement("img");
@@ -251,11 +287,22 @@
         document.getElementByClass("light1").appendChild(elem);
     }
 </script>
+    
+<!--------- SCROLL TO TOP SCRIPT ------->
+
 <script>
     function topFunction() {
     document.body.scrollTop = 0; // For Chrome, Safari and Opera 
     document.documentElement.scrollTop = 0; // For IE and Firefox
-}
+    }
+
+    setInterval(function() {
+            $("#bulb").load(location.href + " #bulb>*", "");
+    }, 1000); //bulb section jede Sekunde neu laden
+
+
 </script>
+    
+    
 </body>
 </html>

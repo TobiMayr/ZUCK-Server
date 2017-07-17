@@ -1,6 +1,49 @@
 @media screen and (max-width: 768px){
     *{
         overflow: visible;
+        overflow-x: hidden;
+    }
+
+    input {
+        display: none;
+        visibility: hidden;
+    }
+    label {
+        margin-top: 2.5em;
+        display: block;
+        padding: 2% 0 2% 0;
+        text-align: center;
+        border-bottom: 1px solid #CCC;
+        color: #fff;
+        background-color: #4E5899;
+    }
+    #news{
+        width: 90%;
+        margin: 5% 5% 0 5%; 
+    } 
+    label:hover {
+        color: pink;
+    }
+    #expand {
+        height: 0px;
+        overflow: hidden;
+        transition: height 0.5s;
+        color: #FFF;
+    }
+    #toggle:checked ~ #expand {
+        height: auto;
+
+    }
+    #newsSection{
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    #news h3{
+        font-size: 1em;
+    }
+    #news p{
+        font-size: 0.8em;
     }
     header{
         display: block;
@@ -16,7 +59,7 @@
     body{
         background-color: #3B3F41;
     }
-    #news, #time, #weather{
+     #time, #weather{
         display: none;
     }
     aside{
