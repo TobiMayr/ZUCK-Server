@@ -4,7 +4,7 @@
         overflow-x: hidden;
     }
 
-    input {
+    input, #media h2, #light h2{
         display: none;
         visibility: hidden;
     }
@@ -44,10 +44,12 @@
         height: auto;
 
     }   
-        #toggleMedia:checked ~ #expandMedia {
-        height: auto;
+    #toggleMedia:checked ~ #expandMedia {
+        height: 250px;
     } 
-    
+    #media{
+        margin: 0;
+    }
     #newsSection{
         width: 100%;
         margin: 0;
@@ -67,7 +69,9 @@
     }
     #toggle2:checked ~ #expand2 {
         height: 180px;
-
+    }
+    #sensor{
+        width: 100%;
     }
 
     header{
