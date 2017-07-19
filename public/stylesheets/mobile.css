@@ -50,10 +50,10 @@
         color: #31333F;
     }
     #news h3{
-        font-size: 0.7em;
+        font-size: 0.8em;
     }
     #news p{
-        font-size: 0.5em;
+        font-size: 0.6em;
     }
     #news{
         width: 90%;
@@ -88,7 +88,7 @@
         width: 40%;
         margin: 5%;
     }
-    .sensorName, #tv span, #stereo span{
+    .sensorName, #tv span, #stereo span, .light1 p{
         font-size: 0.8em;
         color: #31333F;
     }
@@ -115,6 +115,9 @@
 /*----------LIGHT------*/
     .light label{
         background-color: pink;
+    }
+    .light1{
+        margin: 10% 0 5% 0;
     }
 
 }
