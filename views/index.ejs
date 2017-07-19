@@ -14,15 +14,16 @@
     <link rel="shortcut icon" href="">
 </head>
 
-<body>
+<body id="top">
 <header>
-    <h1 onclick="topFunction()" id="topHeader">ZUCK</h1>
+    <!--<h1 onclick="topFunction()" id="topHeader">ZUCK</h1>-->
+    <h1 href="#top" onclick="scrollToTop();return false">ZUCK</h1>
 </header>
     
 <!--------- NEWS ------->
 <div id="newsSection">
 <input id="toggle" type="checkbox" unchecked>
-  <label id="newsLabel" for="toggle">NEWS</label>
+  <label for="toggle"><img src="images/news.svg">NEWS</label>
     <img id="newsIcon" src="images/news.svg">
   <div id="expand">
     <section id="news">
@@ -65,7 +66,7 @@
 
     <div id="sensor">
         <input id="toggle2" type="checkbox" unchecked>
-        <label for="toggle2">SENSOR</label>
+        <label for="toggle2"><img src="images/chiphouse.svg">SENSOR</label>
     
   <div id="expand2">
         <div class="plants">
@@ -123,7 +124,7 @@
 <!--------- MEDIA ------->
 <section id="media">
     <input id="toggleMedia" type="checkbox" unchecked>
-        <label for="toggleMedia">MEDIA</label>
+        <label for="toggleMedia"><img src="images/playbutton.svg">MEDIA</label>
         <h2>Media</h2>
     <div id="expandMedia">
         <section id="device">
@@ -141,19 +142,17 @@
 
 <!--------- LIGHT ------->
     <section class="light">
-
+        <input id="toggleLight" type="checkbox" unchecked>
+        <label for="toggleLight"><img src="images/lightbulb_new.svg">LIGHT</label>
         <h2>Licht</h2>
 
-        <input id="toggleLight" type="checkbox" unchecked>
-        <label for="toggleLight">LIGHT</label>
-    
         <div id="expandLight">
         <section class="bulb" id="bulb">
             <%if(lights[0].ip != 0){%>
                 <% for(var i = 0; i < lights.length; i++) { %>
                 <div class="light1">
                     <a href="/lights/<%=lights[i].ip %>">
-                        <img id="bulbIcon" src="<%=lights[i].imgSrc%>">
+                        <img name="bulbIcon" src="<%=lights[i].imgSrc%>">
                         <p><%=lights[i].label %></p>
                     </a>
                 </div>
@@ -162,9 +161,9 @@
             <% } %>
 
         </section>
-        </div>
+       
         <section class="bulb">
-            <!--
+            
             <div class="light1">
                 <a href="/LichtRed">
                     <img src="images/lightbulb_new.svg">
@@ -183,9 +182,9 @@
                     <p>Garage</p>
                     </a>
             </div>
-            -->
+            
         </section>
-
+ </div>
     </section>
 </section>
 
@@ -297,12 +296,13 @@
     window.onload=function(){
         var elem = document.createElement("img");
         elem.src = 'images/lightbulb_new.svg';
+        //FEHLER HIER:
         document.getElementByClass("light1").appendChild(elem);
     }
 </script>
     
 <!--------- SCROLL TO TOP SCRIPT ------->
-
+<!--
 <script>
     function topFunction() {
     document.body.scrollTop = 0; // For Chrome, Safari and Opera 
@@ -310,12 +310,34 @@
     }
 
     setInterval(function() {
+        var lightImgs = document.getElementsByName("bulbIcon");
+        var lightsVar = <%- JSON.stringify(lights) %>;
+        var needsRefresh = false;
+        for(var i = 0; i < lightsVar.length; i++){
+            if(lightsVar[i].imgSrc != lightImgs[i]){
+                needsRefresh = true;
+            }
+        }
+        if(needsRefresh){
+            console.log("needs refresh");
             $("#bulb").load(location.href + " #bulb>*", "");
+        }else{
+            console.log("no refresh");
+        }
     }, 1000); //bulb section jede Sekunde neu laden
 
 
-</script>
-    
+</script>-->
+    <script>
+    var timeOut;
+function scrollToTop() {
+	if (document.body.scrollTop!=0 || document.documentElement.scrollTop!=0){
+		window.scrollBy(0,-50);
+		timeOut=setTimeout('scrollToTop()',10);
+	}
+	else clearTimeout(timeOut);
+}
+    </script>
     
 </body>
 </html>
