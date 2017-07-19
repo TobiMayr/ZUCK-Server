@@ -46,9 +46,17 @@
         width: 8%;
         margin: 0%;
     }
+<<<<<<< HEAD
     
     #newsLabel {
         margin-top: 2.5em;
+=======
+    #news h3{
+        font-size: 0.8em;
+    }
+    #news p{
+        font-size: 0.6em;
+>>>>>>> 354f2d1dea5414279f4472bb3abaa859a9af3652
     }
     #news{
         width: 90%;
@@ -102,8 +110,14 @@
         top: 0px;
         height: auto;
     }
+<<<<<<< HEAD
     #topHeader{
         cursor: pointer;
+=======
+    .sensorName, #tv span, #stereo span, .light1 p{
+        font-size: 0.8em;
+        color: #31333F;
+>>>>>>> 354f2d1dea5414279f4472bb3abaa859a9af3652
     }
     body{
         background-color: #3B3F41;
@@ -130,6 +144,15 @@
         margin: 0;
     }
 /*----------LIGHT------*/
+<<<<<<< HEAD
 
+=======
+    .light label{
+        background-color: pink;
+    }
+    .light1{
+        margin: 10% 0 5% 0;
+    }
+>>>>>>> 354f2d1dea5414279f4472bb3abaa859a9af3652
 
 }
