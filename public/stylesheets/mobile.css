@@ -39,12 +39,15 @@
     label {
         display: block;
         cursor: pointer;
-        padding: 2% 0 2% 0;
-        text-align: center;
+        padding: 2% 0 2% 35%;
+        text-align: left;
+        height: 15%;
     }
     label img, .light label img {
         margin: 0%;
+        margin-right: 10%;
         width: 10%;
+       
     }
     #newsSection label{
         background-color: #9BDD27;
