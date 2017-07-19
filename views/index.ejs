@@ -154,7 +154,7 @@
                 <% for(var i = 0; i < lights.length; i++) { %>
                 <div class="light1">
                     <a href="/lights/<%=lights[i].ip %>">
-                        <img id="bulbIcon" src="<%=lights[i].imgSrc%>">
+                        <img name="bulbIcon" src="<%=lights[i].imgSrc%>">
                         <p><%=lights[i].label %></p>
                     </a>
                 </div>
@@ -298,6 +298,7 @@
     window.onload=function(){
         var elem = document.createElement("img");
         elem.src = 'images/lightbulb_new.svg';
+        //FEHLER HIER:
         document.getElementByClass("light1").appendChild(elem);
     }
 </script>
@@ -311,7 +312,20 @@
     }
 
     setInterval(function() {
+        var lightImgs = document.getElementsByName("bulbIcon");
+        var lightsVar = <%- JSON.stringify(lights) %>;
+        var needsRefresh = false;
+        for(var i = 0; i < lightsVar.length; i++){
+            if(lightsVar[i].imgSrc != lightImgs[i]){
+                needsRefresh = true;
+            }
+        }
+        if(needsRefresh){
+            console.log("needs refresh");
             $("#bulb").load(location.href + " #bulb>*", "");
+        }else{
+            console.log("no refresh");
+        }
     }, 1000); //bulb section jede Sekunde neu laden
 
 
