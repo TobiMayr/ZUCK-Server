@@ -27,7 +27,7 @@
     .inner-wrapper{
         width: 100%;
     }
-        input, #media h2, #light h2{
+        input, #media h2, .light h2{
         display: none;
         visibility: hidden;
     }
@@ -67,7 +67,9 @@
     #news p{
         font-size: 0.8em;
     }
-    
+    #obenrechts{
+        padding-bottom: 0;
+    }
 /*----------SENSOR------*/
     #sensor{
         padding-left: 0;

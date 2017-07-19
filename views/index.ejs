@@ -14,9 +14,10 @@
     <link rel="shortcut icon" href="">
 </head>
 
-<body>
+<body id="top">
 <header>
-    <h1 onclick="topFunction()" id="topHeader">ZUCK</h1>
+    <!--<h1 onclick="topFunction()" id="topHeader">ZUCK</h1>-->
+    <h1 href="#top" onclick="scrollToTop();return false">ZUCK</h1>
 </header>
     
 <!--------- NEWS ------->
@@ -302,7 +303,7 @@
 </script>
     
 <!--------- SCROLL TO TOP SCRIPT ------->
-
+<!--
 <script>
     function topFunction() {
     document.body.scrollTop = 0; // For Chrome, Safari and Opera 
@@ -314,8 +315,17 @@
     }, 1000); //bulb section jede Sekunde neu laden
 
 
-</script>
-    
+</script>-->
+    <script>
+    var timeOut;
+function scrollToTop() {
+	if (document.body.scrollTop!=0 || document.documentElement.scrollTop!=0){
+		window.scrollBy(0,-50);
+		timeOut=setTimeout('scrollToTop()',10);
+	}
+	else clearTimeout(timeOut);
+}
+    </script>
     
 </body>
 </html>
