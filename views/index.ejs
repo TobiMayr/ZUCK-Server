@@ -23,7 +23,7 @@
 <!--------- NEWS ------->
 <div id="newsSection">
 <input id="toggle" type="checkbox" unchecked>
-  <label id="newsLabel" for="toggle">NEWS</label>
+  <label for="toggle">NEWS</label>
     <img id="newsIcon" src="images/news.svg">
   <div id="expand">
     <section id="news">
@@ -142,12 +142,10 @@
 
 <!--------- LIGHT ------->
     <section class="light">
-
-        <h2>Licht</h2>
-
         <input id="toggleLight" type="checkbox" unchecked>
         <label for="toggleLight">LIGHT</label>
-    
+        <h2>Licht</h2>
+
         <div id="expandLight">
         <section class="bulb" id="bulb">
             <%if(lights[0].ip != 0){%>
@@ -163,9 +161,9 @@
             <% } %>
 
         </section>
-        </div>
+       
         <section class="bulb">
-            <!--
+            
             <div class="light1">
                 <a href="/LichtRed">
                     <img src="images/lightbulb_new.svg">
@@ -184,9 +182,9 @@
                     <p>Garage</p>
                     </a>
             </div>
-            -->
+            
         </section>
-
+ </div>
     </section>
 </section>
 
