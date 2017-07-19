@@ -62,6 +62,11 @@
     #news p{
         font-size: 0.7em;
     }
+    #news p{
+        border: solid #31333F;
+        border-width: 0 0 0 0.05em;
+
+    }
     #news{
         width: 90%;
         margin: 5%; 
