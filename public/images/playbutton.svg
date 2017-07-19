@@ -9,9 +9,9 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="svg8"
    version="1.1"
-   viewBox="0 0 178.08556 178.08556"
-   height="178.08556mm"
-   width="178.08556mm"
+   viewBox="0 0 180.09119 180.09119"
+   height="180.09119mm"
+   width="180.09119mm"
    sodipodi:docname="playbutton.svg"
    inkscape:version="0.92.1 r15371">
   <sodipodi:namedview
@@ -31,9 +31,9 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="0.31220833"
-     inkscape:cx="490.43251"
-     inkscape:cy="335.0874"
+     inkscape:zoom="1.766117"
+     inkscape:cx="398.77869"
+     inkscape:cy="191.55016"
      inkscape:window-x="-14"
      inkscape:window-y="-14"
      inkscape:window-maximized="1"
@@ -53,20 +53,20 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(-39.753927,-7.5729954)"
+     transform="translate(-38.751116,-6.5701847)"
      id="layer1"
-     style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-opacity:1">
+     style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:7.40304176;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
     <circle
        r="86.34407"
        cy="96.615776"
        cx="128.79671"
        id="path4485"
-       style="opacity:0.98999999;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:5.39742041;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="opacity:0.98999999;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:7.40304176;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <path
        transform="matrix(1.4909833,-0.65661105,0.47596488,2.0568662,-47.610037,-94.629201)"
        d="M 100.17162,124.56406 65.907261,132.15686 76.46388,98.686655 Z"
        id="path4491"
-       style="opacity:0.98999999;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:2.57500005;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:0.98999999;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:4.02715464;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:connector-curvature="0" />
   </g>
 </svg>
