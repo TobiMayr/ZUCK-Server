@@ -1,4 +1,4 @@
-@media screen and (max-width: 768px){
+@media screen and (max-width: 1025px){
     *{
         overflow: visible;
         overflow-x: hidden;
@@ -12,14 +12,16 @@
         height: auto;
     }
     h1{
-        background-color: #78B721
+        background-color: #78B721;
+        
+
     }
     #top{
         cursor: pointer;
     }
 /*-----------GENERAL LAYOUT-------*/
     body{
-        background-color: #F3EFF5;
+        background-color: #CDEAB9;
     }
      #time, #weather{
         display: none;
@@ -52,21 +54,22 @@
     }
     #news h3, p{
         color: #31333F;
+        margin-right: 10%;
+
     }
     #news h3{
         font-size: 0.9em;
     }
     #news p{
         font-size: 0.7em;
-    }
-    #news p{
         border: solid #31333F;
         border-width: 0 0 0 0.05em;
-
     }
+    
     #news{
-        width: 90%;
-        margin: 5%; 
+        width: 100%;
+        background-color: #F3EFF5;
+        padding: 5%;
     } 
     #expand, #expand2, #expandMedia, #expandLight {
         height: 0px;
@@ -92,7 +95,9 @@
     }
     #sensor{
         width: 100%;
-        padding: 0 0 0 0;}
+        padding: 0 0 0 0;
+        background-color: #F3EFF5;
+    }
     .plants, .windows{
         width: 40%;
         margin: 5%;
@@ -117,6 +122,7 @@
     }
     #media{
         margin: 0;
+        background-color: #F3EFF5;
     }
     #stereo, #tv{
         margin: 5%;
@@ -128,5 +134,9 @@
     .bulb{
         margin: 2% 0 2% 0;
     }
-
+    .light{
+        background-color: #F3EFF5;
+    }
+   
+   
 }
