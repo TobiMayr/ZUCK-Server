@@ -3,8 +3,8 @@
 
 const char* ssid = "ZUCK";
 const char* password = "ruckzuck";
-const char* host = "zuck_server";
-const int httpPort = 8081;
+const char* host = "192.168.0.108";
+const int httpPort = 8082;
 const int IDAddress = 0;
 WiFiClient client;
 
@@ -30,7 +30,7 @@ void setup()
       delay(5000);
       Serial.print(".");
     }else
-      ESP.deepSleep(120e6);
+      ESP.deepSleep(5e6);   //for Showtime, else 120
   }
 
   Serial.println("");
@@ -45,7 +45,8 @@ void setup()
   {
     if (client.connect(host, httpPort))
     {
-      sendGetRequest("/sensor/signin/window");
+      Serial.println("Asking for ID");
+      sendGetRequest("/sensor/signin/soil");
       String res = readServerResponse();
       EEPROM.write(IDAddress, res.toInt());
       EEPROM.commit();
@@ -60,13 +61,17 @@ void setup()
     
     if (client.connect(host, httpPort))
       {
+        Serial.println("Sending humidity");
         int id = EEPROM.read(IDAddress);
         String packet = "/sensor/soil/" + humidity;
         packet = packet + "/";
         packet = packet + id;
         sendGetRequest(packet);
 
-        if(readServerResponse().toInt() == 0)
+        String res = readServerResponse();
+        Serial.println("Server response: " +res);
+
+        if(res.toInt() == 0)
         {
           EEPROM.write(IDAddress, 0);
           EEPROM.commit();
@@ -84,7 +89,7 @@ void setup()
 String readHumidity()
 {
   int hum = analogRead(A0);
-  hum = (hum-457)/2.7;
+  hum = (hum-457)/4.2;
   hum = 100 - hum;
   return "" + hum;
 }

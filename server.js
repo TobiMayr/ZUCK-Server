@@ -90,23 +90,26 @@ function discoverBulbs() {
         //{
         lights = [];
         if (lightObj) {
-            var imageSrc = '';
-            if(lightObj.capabilities.power == 'on'){
-                imageSrc = "images/lightbulbOn.svg";
-            }else if(lightObj.capabilities.power == 'off'){
-                imageSrc = "images/lightbulb_new.svg";
-            }
+            Object.keys(lightObj).forEach(key => {
+                //console.log(key);
+                var imageSrc = '';
+                if (lightObj.capabilities.power == 'on') {
+                    imageSrc = "images/lightbulbOn.svg";
+                } else if (lightObj.capabilities.power == 'off') {
+                    imageSrc = "images/lightbulb_new.svg";
+                }
 
-            var light = {
-                ip: lightObj.ip,
-                label: lightObj.capabilities.name,
-                toggleStatus: lightObj.capabilities.power,
-                //anAus: 'on',
-                imgSrc: imageSrc,
-                colour: lightObj.capabilities.rgb,
-                brightness: lightObj.capabilities.bright
-            };
-            lights.push(light);
+                var light = {
+                    ip: lightObj.ip,
+                    label: lightObj.capabilities.name,
+                    toggleStatus: lightObj.capabilities.power,
+                    //anAus: 'on',
+                    imgSrc: imageSrc,
+                    colour: lightObj.capabilities.rgb,
+                    brightness: lightObj.capabilities.bright
+                };
+                lights.push(light);
+            });
         }
         console.log(lights);
 
@@ -221,6 +224,10 @@ app.get('/sensor/window/:open/:id', function(req, res){
         res.write('\z0\z');
         res.end();
     }
+    else{
+	res.write('\z1\z');
+	res.end();
+   }
 });
 
 

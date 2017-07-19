@@ -18,23 +18,19 @@
 <header>
     <h1 onclick="topFunction()" id="topHeader">ZUCK</h1>
 </header>
-<!-- NEWS -->
-
-<!-- SIDE -->
-<!--<details open id="newsSection">
-    <summary>NEWS</summary>
-<img id="newsIcon" src="images/news.svg">
-<section id="news">
-</section>
-</details>-->
+    
+<!--------- NEWS ------->
 <div id="newsSection">
 <input id="toggle" type="checkbox" unchecked>
-  <label for="toggle">NEWS</label>
+  <label id="newsLabel" for="toggle">NEWS</label>
+    <img id="newsIcon" src="images/news.svg">
   <div id="expand">
     <section id="news">
 </section>
   </div>
 </div>
+    
+<!--------- SIDE ------->
 <aside>
     <div id="obenrechts">
         <div id="time">
@@ -68,15 +64,21 @@
     </div>
 
     <div id="sensor">
+        <input id="toggle2" type="checkbox" unchecked>
+        <label for="toggle2">SENSOR</label>
+    
+  <div id="expand2">
         <div class="plants">
             <img id="plantIcon" src="images/plant.svg">
 
             <span class="sensorName">Pflanze 1</span>
-            <div class="plantTemp">
+            <!--
+                <div class="plantTemp">
                 <img src="images/temperature03.svg">
-                <!--<span> <%= temperature1 %> </span>-->
+                <span> <%= temperature1 %> </span>
                 <span>22°</span>
-            </div>
+            </div>-->
+        
             <div class="plantHumid">
                 <img src="images/humidity.svg">
                 <!--<span> <%= humidity1 %> </span>-->
@@ -88,11 +90,11 @@
             <img id="plantIcon" src="images/plant.svg">
 
             <span class="sensorName">Pflanze 2</span>
-            <div class="plantTemp">
+            <!--<div class="plantTemp">
                 <img src="images/temperature03.svg">
-                <!--<span> <%= temperature1 %> </span>-->
+                <span> <%= temperature1 %> </span>
                 <span>26°</span>
-            </div>
+            </div>-->
             <div class="plantHumid">
                 <img src="images/humidity.svg">
                 <!--<span> <%= humidity1 %> </span>-->
@@ -107,34 +109,45 @@
             <!--<span>Fenster AUF: <%= windowStatus %></span>-->
         </div>
         <div class="windows">
-            <img id="windowIcon" src="images/window.svg">
-            <span class="sensorName">Fenster 1</span><br>
-            <span class="sensorStatus">Offen</span>
+            <img id="windowIcon" src="images/mailboxEmpty.svg">
+            <span class="sensorName">Briefkasten</span><br>
+            <span class="sensorStatus">nö</span>
             <!--<span>Fenster AUF: <%= windowStatus %></span>-->
         </div>
     </div>
+        </div>
 </aside>
 
 <section class="inner-wrapper">
-    <!-- MEDIA -->
-    <section id="media">
+
+<!--------- MEDIA ------->
+<section id="media">
+    <input id="toggleMedia" type="checkbox" unchecked>
+        <label for="toggleMedia">MEDIA</label>
         <h2>Media</h2>
+    <div id="expandMedia">
         <section id="device">
             <div id="stereo">
-                <a href="http://espzuck01/socketOn"><img id="stereoIcon" src="images/coffee.svg"></a>
+                <a href="http://192.168.0.107/socketONOFF"><img id="stereoIcon" src="images/coffee.svg"></a>
                 <span>Kaffee</span>
             </div>
             <div id="tv">
-                <img id="tvIcon" src="images/tv.svg">
+                <a href="http://192.168.0.107/TVONOFF"><img id="tvIcon" src="images/tv.svg"></a>
                 <span>TV Wohnzimmer</span>
             </div>
         </section>
+    </div>
     </section>
 
-    <!-- LIGHTS -->
-        <section class="light">
+<!--------- LIGHT ------->
+    <section class="light">
+
         <h2>Licht</h2>
 
+        <input id="toggleLight" type="checkbox" unchecked>
+        <label for="toggleLight">LIGHT</label>
+    
+        <div id="expandLight">
         <section class="bulb" id="bulb">
             <%if(lights[0].ip != 0){%>
                 <% for(var i = 0; i < lights.length; i++) { %>
@@ -149,7 +162,7 @@
             <% } %>
 
         </section>
-        
+        </div>
         <section class="bulb">
             <!--
             <div class="light1">
@@ -176,6 +189,7 @@
     </section>
 </section>
 
+<!--------- NEWS SCRIPT ------->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function () {
@@ -236,7 +250,7 @@
     
 </script>
 
-
+<!--------- WEATHER SCRIPT ------->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -250,7 +264,7 @@
     })
 </script>
 
-
+<!--------- TIME SCRIPT ------->
 <script src="javascript/zuckJS.js"></script>
 <script type="text/javascript">
     /*setTimeout(function(){
@@ -277,6 +291,19 @@
     updateTimeAndDate();
 
 </script>
+    
+<!--------- LIGHT SCRIPT ------->
+<script type="text/javascript">
+    window.onload=function(){
+        var elem = document.createElement("img");
+        elem.src = 'images/lightbulb_new.svg';
+        //FEHLER HIER:
+        document.getElementByClass("light1").appendChild(elem);
+    }
+</script>
+    
+<!--------- SCROLL TO TOP SCRIPT ------->
+
 <script>
     function topFunction() {
     document.body.scrollTop = 0; // For Chrome, Safari and Opera 
@@ -303,24 +330,6 @@
 
 </script>
     
-    
-<!--<script>
-    var originalContent = '';
-
-$(window).resize(function() {
-if (window.innerWidth < 768) {
-
-    originalContent = $('#newsSection').innerHTML;
-
-    $('#newsSection').replaceWith('#newsSectionMobile');
-
-} else if (window.innerWidth > 768) {
-
-    // Change back to original .LatestNews
-    $('.LatestNews').innerHTML = originalContent;
-}
-}).resize();
-</script>-->
     
 </body>
 </html>
