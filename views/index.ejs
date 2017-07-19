@@ -98,7 +98,9 @@
             <div class="plantHumid">
                 <img src="images/humidity.svg">
                 <!--<span> <%= humidity1 %> </span>-->
-                <span>19%</span>
+                <%if(soilSensors[0].ip != '0'){%>
+                    <span><%=soilSensors[0].humidity%></span>
+                <%}%>
             </div>
         </div>
 
@@ -111,8 +113,9 @@
         <div class="windows">
             <img id="windowIcon" src="images/mailboxEmpty.svg">
             <span class="sensorName">Briefkasten</span><br>
-            <span class="sensorStatus">nö</span>
-            <!--<span>Fenster AUF: <%= windowStatus %></span>-->
+            <%if(mailboxSensors[0].ip != 'kein Mailbox-Sensor'){%>
+                <span class="sensorStatus"><%=mailboxSensors[0].status%></span>
+            <%}%>
         </div>
     </div>
         </div>
@@ -293,14 +296,14 @@
 </script>
     
 <!--------- LIGHT SCRIPT ------->
-<script type="text/javascript">
+<!--<script type="text/javascript">
     window.onload=function(){
         var elem = document.createElement("img");
         elem.src = 'images/lightbulb_new.svg';
         //FEHLER HIER:
         document.getElementByClass("light1").appendChild(elem);
     }
-</script>
+</script>->>
     
 <!--------- SCROLL TO TOP SCRIPT ------->
 
@@ -311,11 +314,17 @@
     }
 
     setInterval(function() {
-        var lightImgs = document.getElementsByName("bulbIcon");
+        var lightClasses = document.getElementsByName("bulbIcon");
         var lightsVar = <%- JSON.stringify(lights) %>;
         var needsRefresh = false;
         for(var i = 0; i < lightsVar.length; i++){
-            if(lightsVar[i].imgSrc != lightImgs[i]){
+
+            var lightClass = lightClasses[i];
+            var imageLink = lightClass.src;
+            imageLink = imageLink.split("/");
+            imageLink = imageLink[imageLink.length - 2] + '/' + imageLink[imageLink.length - 1];
+
+            if(lightsVar[i].imgSrc != imageLink){
                 needsRefresh = true;
             }
         }
