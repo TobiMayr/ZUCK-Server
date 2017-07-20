@@ -20,19 +20,15 @@ var soilSensors = [];
 var mailboxSensors = [];
 var currentId = 1;
 
-var link = 'https://newsapi.org/v1/articles?source=die-zeit&sortBy=latest&apiKey=a1ef913e98c94358994dc8a8f7347aff;'
 var port = 8082;
-
-request(link, function (error , response , body) {
-
-    if(!error && response.statusCode == 200){
-
-        console.log(body);
-    }
-    else{
-        console.log("hdsa");
-    }
-});
+var windowImgClosed = 'images/windowClosed.svg';
+var windowImgOpen = 'images/window.svg';
+var mailboxImgFilled = 'images/mailboxFull.svg';
+var mailboxImgEmpty = 'images/mailboxEmpty.svg';
+var lightImgOn = 'images/lightbulbOn.svg';
+var lightImgOff = 'images/lightbulb_new.svg';
+var plantImgDry ='images/plantDry.svg';
+var plantImgHealthy = 'images/plant.svg';
 
 
 app.get('/', function(req, res){
@@ -40,7 +36,7 @@ app.get('/', function(req, res){
     if(!windowSensors[0]){
         windowSensors.push(windowSens = {
             status: 'kein Sensor',
-            imgSrc: 'images/window.svg'
+            imgSrc: windowImgOpen
         });
     }
 
@@ -111,9 +107,9 @@ function discoverBulbs() {
                 var imageSrc = '';
 
                 if (lightsObj[i].capabilities.power == 'on') {
-                    imageSrc = "images/lightbulbOn.svg";
+                    imageSrc = lightImgOn
                 } else if (lightsObj[i].capabilities.power == 'off') {
-                    imageSrc = "images/lightbulb_new.svg";
+                    imageSrc = lightImgOff
                 }
 
 
@@ -159,11 +155,11 @@ app.get('/lights/:ip', function (req, res, next) {
             console.log("ip gefunden");
             if(lights[i].toggleStatus == 'on'){
                 discoverBulbs();
-                lights[i].imgSrc = "images/lightbulbOn.svg";
+                lights[i].imgSrc = lightImgOn
                 console.log("lampe an");
             }else if(lights[i].toggleStatus == 'off'){
                 discoverBulbs();
-                lights[i].imgSrc = "images/lightbulb_new.svg";
+                lights[i].imgSrc = lightImgOff
                 console.log("lampe aus");
             }
         }
@@ -241,13 +237,13 @@ app.get('/sensor/window/:open/:id', function(req, res){
             {
                 console.log("Window open");
                 windowSensors[i].status = 'Auf';
-                windowSensors[i].imgSrc = 'images/window.svg'
+                windowSensors[i].imgSrc = windowImgOpen
             }
             else
             {
                 console.log("Window closed");
                 windowSensors[i].status = 'Zu';
-                windowSensors[i].imgSrc = 'images/windowClosed.svg'
+                windowSensors[i].imgSrc = windowImgClosed
             }
         }
     }
@@ -268,7 +264,7 @@ app.get('/sensor/soil/:humidity/:id', function(req, res){
         if(parseInt(req.params.id) == soilSensors[i].id){
             foundIp = true;
             console.log('found IP from soil sensor');
-            soilSensors[i].humidity = parseInt(req.params.humidity) + '+';
+            soilSensors[i].humidity = parseInt(req.params.humidity) + '%';
         }
     }
     if(!foundIp){
@@ -288,7 +284,10 @@ app.get('/sensor/mailbox/:status/:id', function(req, res){
         if(parseInt(req.params.id) == mailboxSensors[i].id){
             foundIp = true;
             console.log('found IP!');
-            mailboxSensors[i].status = req.params.status + '+';
+            mailboxSensors[i].status = req.params.status;
+            if(req.params.status == 'Filled'){
+                mailboxSensors[i].imgSrc = mailboxImgFilled
+            }
         }
     }
     if(!foundIp){
@@ -305,7 +304,8 @@ app.get('/sensor/signin/mailbox/', function(req, res){
 
     var mailboxSens = {
         id: currentId,
-        status: 'empty'
+        status: 'empty',
+        imgSrc: mailboxImgEmpty
     };
     mailboxSensors.push(mailboxSens);
     res.write('\z' + currentId + '\z');
@@ -318,7 +318,8 @@ app.get('/sensor/signin/soil/', function(req, res){
     console.log('signed in soilsensor   with currentId: ' + currentId);
     var soilSens = {
         id: currentId,
-        humidity: 0
+        humidity: 0,
+        imgSrc: plantImgHealthy
     };
     soilSensors.push(soilSens);
     res.write('\z' + currentId + '\z');
@@ -331,7 +332,7 @@ app.get('/sensor/signin/window/', function(req, res){
     var windowSens = {
         id: currentId,
         status: 'Auf',
-        imgSrc: 'images/window.svg'
+        imgSrc: windowImgOpen
     };
     windowSensors.push(windowSens);
     res.write('\z' + currentId + '\z');
@@ -346,16 +347,6 @@ app.get('/sensor/temphumid/:temp', function(req, res){
     sensorTemp1 = strArray[0];
     sensorHumid1 = strArray[1];
 });
-
-/*
- app.get('/sensor/allocateId/temperature', function(req, res){
- new humidity(++currentHumidityID, "Humidity_" + currentHumidityID, sensorTemp1, sensorHumid1);
- res.write(currentHumidityID.toString());
- res.end();
- });
- */
-
-
 
 console.log('Server started at port:' + port);
 
