@@ -66,7 +66,7 @@
 
     <div id="sensor">
         <input id="toggle2" type="checkbox" unchecked>
-        <label for="toggle2"><img src="images/chiphouse.svg">SENSOR</label>
+        <label for="toggle2"><img src="images/chip.svg">SENSOR</label>
     
   <div id="expand2">
         <%for (var i = 0; i < soilSensors.length; i++) { %>
@@ -121,7 +121,7 @@
 <!--------- LIGHT ------->
     <section class="light">
         <input id="toggleLight" type="checkbox" unchecked>
-        <label for="toggleLight"><img src="images/lightbulb_new.svg">LIGHT</label>
+        <label for="toggleLight"><img src="images/lamp.svg">LIGHT</label>
         <h2>Licht</h2>
 
         <div id="expandLight">
@@ -165,6 +165,8 @@
  </div>
     </section>
 </section>
+    
+
 
 <!--------- NEWS SCRIPT ------->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -268,26 +270,7 @@
     updateTimeAndDate();
 
 </script>
-    
-<!--------- LIGHT SCRIPT ------->
-<!--<script type="text/javascript">
-    window.onload=function(){
-        var elem = document.createElement("img");
-        elem.src = 'images/lightbulb_new.svg';
-        //FEHLER HIER:
-        document.getElementByClass("light1").appendChild(elem);
-    }
-</script>->>
-    
-<!--------- SCROLL TO TOP SCRIPT ------->
-<!--
-<script>
-    function topFunction() {
-    document.body.scrollTop = 0; // For Chrome, Safari and Opera 
-    document.documentElement.scrollTop = 0; // For IE and Firefox
-    }
-</script>
--->
+
 <!--------- REFRESH LIGHT BULBS SCRIPT ------->
 <script>
     setInterval(function() {
