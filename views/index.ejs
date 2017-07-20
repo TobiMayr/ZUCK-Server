@@ -69,54 +69,29 @@
         <label for="toggle2"><img src="images/chiphouse.svg">SENSOR</label>
     
   <div id="expand2">
-        <div class="plants">
-            <img id="plantIcon" src="images/plant.svg">
+        <%for (var i = 0; i < soilSensors.length; i++) { %>
+                <div class="plants">
+                    <img id="plantIcon" src="images/plant.svg">
 
-            <span class="sensorName">Pflanze 1</span>
-            <!--
-                <div class="plantTemp">
-                <img src="images/temperature03.svg">
-                <span> <%= temperature1 %> </span>
-                <span>22°</span>
-            </div>-->
-        
-            <div class="plantHumid">
-                <img src="images/humidity.svg">
-                <!--<span> <%= humidity1 %> </span>-->
-                <span>15%</span>
-            </div>
-        </div>
+                    <span class="sensorName">Pflanze <%=i + 1%></span>
 
-        <div class="plants">
-            <img id="plantIcon" src="images/plant.svg">
-
-            <span class="sensorName">Pflanze 2</span>
-            <!--<div class="plantTemp">
-                <img src="images/temperature03.svg">
-                <span> <%= temperature1 %> </span>
-                <span>26°</span>
-            </div>-->
-            <div class="plantHumid">
-                <img src="images/humidity.svg">
-                <!--<span> <%= humidity1 %> </span>-->
-                <%if(soilSensors[0].ip != '0'){%>
-                    <span><%=soilSensors[0].humidity%></span>
-                <%}%>
-            </div>
-        </div>
-
+                    <div class="plantHumid">
+                        <img src="images/humidity.svg">
+                            <span><%=soilSensors[0].humidity%></span>
+                    </div>
+                </div>
+        <%}%>
         <div class="windows">
-            <img id="windowIcon" src="images/window.svg">
-            <span class="sensorName">Fenster 1</span><br>
-            <span class="sensorStatus"><%= windowStatus %></span>
-            <!--<span>Fenster AUF: <%= windowStatus %></span>-->
+            <%for (var i = 0; i < windowSensors.length; i++) { %>
+                <img id="windowIcon" src="<%=windowSensors[i].imgSrc%>">
+                <span class="sensorName">Fenster <%=i + 1%></span><br>
+                <span class="sensorStatus"><%= windowSensors[i].status %></span>
+            <%}%>
         </div>
         <div class="windows">
             <img id="windowIcon" src="images/mailboxEmpty.svg">
             <span class="sensorName">Briefkasten</span><br>
-            <%if(mailboxSensors[0].ip != 'kein Mailbox-Sensor'){%>
                 <span class="sensorStatus"><%=mailboxSensors[0].status%></span>
-            <%}%>
         </div>
     </div>
         </div>
@@ -311,7 +286,10 @@
     document.body.scrollTop = 0; // For Chrome, Safari and Opera 
     document.documentElement.scrollTop = 0; // For IE and Firefox
     }
-
+</script>
+-->
+<!--------- REFRESH LIGHT BULBS SCRIPT ------->
+<script>
     setInterval(function() {
         var lightClasses = document.getElementsByName("bulbIcon");
         var lightsVar = <%- JSON.stringify(lights) %>;
@@ -325,10 +303,15 @@
 
             if(lightsVar[i].imgSrc != imageLink){
                 needsRefresh = true;
+                document.getElementsByClassName("bulbIcon")[i].src = lightsVar[i].imgSrc;
             }
+            console.log(document.getElementsByClassName("bulbIcon"));
+            console.log(lightsVar[i].imgSrc);
+            console.log('\n\n');
         }
         if(needsRefresh){
             console.log("needs refresh");
+
             $("#bulb").load(location.href + " #bulb>*", "");
         }else{
             console.log("no refresh");
@@ -336,7 +319,7 @@
     }, 1000); //bulb section jede Sekunde neu laden
 
 
-</script>-->
+</script>
     <script>
     var timeOut;
 function scrollToTop() {

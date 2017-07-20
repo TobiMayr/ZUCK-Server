@@ -37,13 +37,12 @@ request(link, function (error , response , body) {
 
 app.get('/', function(req, res){
 
-    var windowStat;
     if(!windowSensors[0]){
-        windowStat = false;
-    }else{
-        windowStat = windowSensors[0].isOpen;
+        windowSensors.push(windowSens = {
+            status: 'kein Sensor',
+            imgSrc: 'images/window.svg'
+        });
     }
-
 
     if(!lights[0]){
         lights.push(light = {
@@ -72,7 +71,7 @@ app.get('/', function(req, res){
 
     res.render('index', {
         title: 'HomeAutomationService ZUCK',
-        windowStatus: windowStat,
+        windowSensors: windowSensors,
         temperatureHumidity1: sensorTempHumidity,
         temperature1: sensorTemp1,
         humidity1: sensorHumid1,
@@ -241,12 +240,14 @@ app.get('/sensor/window/:open/:id', function(req, res){
             if(req.params.open === 'true')
             {
                 console.log("Window open");
-                windowSensors[i].isOpen = true;
+                windowSensors[i].status = 'Auf';
+                windowSensors[i].imgSrc = 'images/window.svg'
             }
             else
             {
                 console.log("Window closed");
-                windowSensors[i].isOpen = false;
+                windowSensors[i].status = 'Zu';
+                windowSensors[i].imgSrc = 'images/windowClosed.svg'
             }
         }
     }
@@ -267,7 +268,7 @@ app.get('/sensor/soil/:humidity/:id', function(req, res){
         if(parseInt(req.params.id) == soilSensors[i].id){
             foundIp = true;
             console.log('found IP from soil sensor');
-            soilSensors[i].humidity = parseInt(req.params.humidity);
+            soilSensors[i].humidity = parseInt(req.params.humidity) + '+';
         }
     }
     if(!foundIp){
@@ -287,7 +288,7 @@ app.get('/sensor/mailbox/:status/:id', function(req, res){
         if(parseInt(req.params.id) == mailboxSensors[i].id){
             foundIp = true;
             console.log('found IP!');
-            mailboxSensors[i].status = req.params.status;
+            mailboxSensors[i].status = req.params.status + '+';
         }
     }
     if(!foundIp){
@@ -329,7 +330,8 @@ app.get('/sensor/signin/window/', function(req, res){
     console.log('signed in with currentId: ' + currentId);
     var windowSens = {
         id: currentId,
-        isOpen: true
+        status: 'Auf',
+        imgSrc: 'images/window.svg'
     };
     windowSensors.push(windowSens);
     res.write('\z' + currentId + '\z');
