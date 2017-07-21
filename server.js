@@ -94,7 +94,7 @@ function discoverBulbs() {
         // results is an array consisting of messages collected during execution
         var cleanLightsString = bulb_ips.toString().replace(/u/g, '').replace(/'/g, '"').replace(/[\[\]']+/g, '');
         cleanLightsString = '[' + cleanLightsString + ']';
-        // console.log(cleanLightsString);
+        console.log(cleanLightsString);
         try {
             var lightsObj = JSON.parse(cleanLightsString);
         } catch (e) {
@@ -174,8 +174,6 @@ app.get('/lights/:ip', function (req, res, next) {
             // results is an array consisting of messages collected during execution
         });
     }
-
-    res.redirect('back');
 });
 
 /*
