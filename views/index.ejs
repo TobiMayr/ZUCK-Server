@@ -307,6 +307,7 @@
 
 
 </script>
+<!--------- CHANGE LIGHT BULB ICONS ------->
 <script>
     function changeIcon(currentIp){
         console.log("hi");
@@ -326,6 +327,7 @@
     }
 
 </script>
+
 <script>
     var timeOut;
     function scrollToTop() {
@@ -334,6 +336,23 @@
             timeOut=setTimeout('scrollToTop()',10);
         }
         else clearTimeout(timeOut);
+    }
+</script>
+
+<!--------- TABABBLE ------->
+<script src="javascript/jquery.tabbable.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(document).keydown(handleDocumentKeyDown);
+    });
+
+    function handleDocumentKeyDown(event){
+        if(event.which === 83){
+            $.tabNext();
+
+        }else if (event.which === 87) {
+            $.tabPrev();
+        }
     }
 </script>
 
