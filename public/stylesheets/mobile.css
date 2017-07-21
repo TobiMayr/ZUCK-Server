@@ -40,6 +40,12 @@ box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
         display: none;
         visibility: hidden;
     }
+    #obenrechts{
+        display: none;   
+    }
+    #sensor{
+        position: relative;
+    }
     
 /*----------NEWS ------*/
     label {
