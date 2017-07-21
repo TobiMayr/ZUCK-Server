@@ -10,17 +10,9 @@
 html {
     box-sizing: border-box;
 }
-#bla path {
-                fill: yellow;
 
-            }
-.svg{
-    width: 50%;
-    margin: 7%;
-}
-            #bla:hover path {
-                fill: pink;
-            }
+
+           
 body {
     height: 100%;
     width: 100%;
@@ -171,7 +163,7 @@ aside {
     border-bottom: solid #fff;
     border-width: 0.05em;
 }
-#indoorcontainer img {
+/*#indoorcontainer img {
     width: 15%;
     height: auto;
     margin: 1%;
@@ -179,7 +171,15 @@ aside {
     margin-left: 10%;
     margin-right: 2%;
 }
-
+*/
+#houseIcon{
+     width: 15%;
+    height: auto;
+    margin: 1%;
+   float: left;    
+    margin-left: 10%;
+    margin-right: 2%;
+}
 #weatherIcon {
     width: 50%;
 }
@@ -210,12 +210,17 @@ aside {
     float: left;
 }
 
-.plantHumid img, .plantTemp img {
+/*.plantHumid img, .plantTemp img {
     width: 15%;
     margin: 1%;
     vertical-align: middle;
 }
-
+*/
+#humid1{
+    width: 15%;
+    margin: 1%;
+    vertical-align: middle;
+}
 .plantTemp img, .plantHumid img, .sensorName, .sensorStatus {
     margin-left: 5%;
 }
@@ -299,12 +304,11 @@ aside {
 
 }
 
-.light img {
+
+#bulb1{
     width: 50%;
     margin: 7%;
-
 }
-
 img:hover {
     opacity: 0.5;
 }

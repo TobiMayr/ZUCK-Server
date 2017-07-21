@@ -40,14 +40,14 @@
 
         <div id="weather">
             <div id="weatherIconAndInfo">
-                <img id="weatherIcon" src="images/weather.svg">
+                <img id="weatherIcon" class="svg" src="images/weather.svg">
                 <div id="CelsiusAndLoc">
                     <p id="currentWeather"></p>
                     <p id="location"></p>
                 </div>
             </div>
               <div id="indoorcontainer">
-                <img src="images/chiphouse.svg">
+                <img id="houseIcon" class="svg" src="images/chiphouse.svg">
 
                 <table id="indoortemphumid">
                     <tr>
@@ -71,25 +71,25 @@
         <div id="expand2">
             <%for (var i = 0; i < soilSensors.length; i++) { %>
             <div class="plants">
-                <img id="plantIcon" src="images/plant.svg">
+                <img id="plantIcon" class="svg"  src="images/plant.svg">
 
                 <span class="sensorName">Pflanze <%=i + 1%></span>
 
                 <div class="plantHumid">
-                    <img src="images/humidity.svg">
+                    <img id="humid1" class="svg" src="images/humidity.svg">
                     <span><%=soilSensors[0].humidity%></span>
                 </div>
             </div>
             <%}%>
             <div class="windows">
                 <%for (var i = 0; i < windowSensors.length; i++) { %>
-                <img id="windowIcon" src="<%=windowSensors[i].imgSrc%>">
+                <img id="windowIcon" class="svg" src="<%=windowSensors[i].imgSrc%>">
                 <span class="sensorName">Fenster <%=i + 1%></span><br>
                 <span class="sensorStatus"><%= windowSensors[i].status %></span>
                 <%}%>
             </div>
             <div class="windows">
-                <img id="windowIcon" src="images/mailboxEmpty.svg">
+                <img id="windowIcon" class="svg" src="images/mailboxEmpty.svg">
                 <span class="sensorName">Briefkasten</span><br>
                 <span class="sensorStatus"><%=mailboxSensors[0].status%></span>
             </div>
@@ -107,12 +107,12 @@
         <div id="expandMedia">
             <section id="device">
                 <div tabIndex="1" id="stereo">
-                    <a tabIndex="-1" href="http://192.168.0.107/socketONOFF"><img id="stereoIcon" src="images/coffee.svg"></a>
+                    <a tabIndex="-1" href="http://192.168.0.107/socketONOFF"><img id="stereoIcon" class="svg" src="images/coffee.svg"></a>
                     <span>Kaffee</span>
                 </div>
                 <div tabIndex="2" id="tv">
-                    <a tabIndex="-1" href="http://192.168.0.107/TVONOFF"><img id="tvIcon" src="images/tv.svg"></a>
-                    <span>TV Wohnzimmer</span>
+                    <a tabIndex="-1" href="http://192.168.0.107/TVONOFF"><img id="tvIcon" class="svg" src="images/tv.svg"></a>
+                    <span>TV</span>
                 </div>
             </section>
         </div>
@@ -131,7 +131,7 @@
                 <%var lightIp = lights[i].ip%>
                 <div class="light1">
                     <a href="/lights/<%=lights[i].ip %>" onclick="changeIcon('<%=lightIp%>')">
-                        <img name="bulbIcon" src="<%=lights[i].imgSrc%>" id="<%=lightIp%>">
+                        <img class="svg" name="bulbIcon" src="<%=lights[i].imgSrc%>" id="<%=lightIp%>">
                         <p><%=lights[i].label %></p>
                     </a>
                 </div>
@@ -144,19 +144,19 @@
 
                 <div class="light1">
                     <a href="/LichtRed">
-                        <img id="bla" class="svg social-link" src="images/lightbulb_new.svg">
+                        <img id="bulb1" class="svg" src="images/lightbulb_new.svg">
                         <p>Flur Unten</p>
                     </a>
                 </div>
                 <div class="light1">
                     <a href="/LichtBlue">
-                        <img src="images/lightbulb_new.svg">
+                        <img id="bulb1" class="svg" src="images/lightbulb_new.svg">
                         <p>Flur Oben</p>
                     </a>
                 </div>
                 <div class="light1">
                     <a href="/LichtGreen">
-                        <img src="images/lightbulb_new.svg">
+                        <img id="bulb1" class="svg" src="images/lightbulb_new.svg">
                         <p>Garage</p>
                     </a>
                 </div>
