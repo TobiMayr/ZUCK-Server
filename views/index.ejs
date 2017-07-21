@@ -19,18 +19,18 @@
     <!--<h1 onclick="topFunction()" id="topHeader">ZUCK</h1>-->
     <h1 href="#top" onclick="scrollToTop();return false">ZUCK</h1>
 </header>
-    
+
 <!--------- NEWS ------->
 <div id="newsSection">
-<input id="toggle" type="checkbox" unchecked>
-  <label for="toggle"><img src="images/news.svg">NEWS</label>
+    <input id="toggle" type="checkbox" unchecked>
+    <label for="toggle"><img src="images/news.svg">NEWS</label>
     <img id="newsIcon" src="images/news.svg">
-  <div id="expand">
-    <section id="news">
-</section>
-  </div>
+    <div id="expand">
+        <section id="news">
+        </section>
+    </div>
 </div>
-    
+
 <!--------- SIDE ------->
 <aside>
     <div id="obenrechts">
@@ -67,91 +67,66 @@
     <div id="sensor">
         <input id="toggle2" type="checkbox" unchecked>
         <label for="toggle2"><img src="images/chip.svg">SENSOR</label>
-    
-  <div id="expand2">
-        <div class="plants">
-            <img id="plantIcon" src="images/plant.svg">
 
-            <span class="sensorName">Pflanze 1</span>
-            <!--
-                <div class="plantTemp">
-                <img src="images/temperature03.svg">
-                <span> <%= temperature1 %> </span>
-                <span>22°</span>
-            </div>-->
-        
-            <div class="plantHumid">
-                <img src="images/humidity.svg">
-                <!--<span> <%= humidity1 %> </span>-->
-                <span>15%</span>
-            </div>
-        </div>
+        <div id="expand2">
+            <%for (var i = 0; i < soilSensors.length; i++) { %>
+            <div class="plants">
+                <img id="plantIcon" src="images/plant.svg">
 
-        <div class="plants">
-            <img id="plantIcon" src="images/plant.svg">
+                <span class="sensorName">Pflanze <%=i + 1%></span>
 
-            <span class="sensorName">Pflanze 2</span>
-            <!--<div class="plantTemp">
-                <img src="images/temperature03.svg">
-                <span> <%= temperature1 %> </span>
-                <span>26°</span>
-            </div>-->
-            <div class="plantHumid">
-                <img src="images/humidity.svg">
-                <!--<span> <%= humidity1 %> </span>-->
-                <%if(soilSensors[0].ip != '0'){%>
+                <div class="plantHumid">
+                    <img src="images/humidity.svg">
                     <span><%=soilSensors[0].humidity%></span>
+                </div>
+            </div>
+            <%}%>
+            <div class="windows">
+                <%for (var i = 0; i < windowSensors.length; i++) { %>
+                <img id="windowIcon" src="<%=windowSensors[i].imgSrc%>">
+                <span class="sensorName">Fenster <%=i + 1%></span><br>
+                <span class="sensorStatus"><%= windowSensors[i].status %></span>
                 <%}%>
             </div>
-        </div>
-
-        <div class="windows">
-            <img id="windowIcon" src="images/window.svg">
-            <span class="sensorName">Fenster 1</span><br>
-            <span class="sensorStatus"><%= windowStatus %></span>
-            <!--<span>Fenster AUF: <%= windowStatus %></span>-->
-        </div>
-        <div class="windows">
-            <img id="windowIcon" src="images/mailboxEmpty.svg">
-            <span class="sensorName">Briefkasten</span><br>
-            <%if(mailboxSensors[0].ip != 'kein Mailbox-Sensor'){%>
+            <div class="windows">
+                <img id="windowIcon" src="images/mailboxEmpty.svg">
+                <span class="sensorName">Briefkasten</span><br>
                 <span class="sensorStatus"><%=mailboxSensors[0].status%></span>
-            <%}%>
+            </div>
         </div>
     </div>
-        </div>
 </aside>
 
 <section class="inner-wrapper">
 
-<!--------- MEDIA ------->
-<section id="media">
-    <input id="toggleMedia" type="checkbox" unchecked>
+    <!--------- MEDIA ------->
+    <section id="media">
+        <input id="toggleMedia" type="checkbox" unchecked>
         <label for="toggleMedia"><img src="images/playbutton.svg">MEDIA</label>
         <h2>Media</h2>
-    <div id="expandMedia">
-        <section id="device">
-            <div id="stereo">
-                <a href="http://192.168.0.107/socketONOFF"><img id="stereoIcon" src="images/coffee.svg"></a>
-                <span>Kaffee</span>
-            </div>
-            <div id="tv">
-                <a href="http://192.168.0.107/TVONOFF"><img id="tvIcon" src="images/tv.svg"></a>
-                <span>TV Wohnzimmer</span>
-            </div>
-        </section>
-    </div>
+        <div id="expandMedia">
+            <section id="device">
+                <div id="stereo">
+                    <a href="http://192.168.0.107/socketONOFF"><img id="stereoIcon" src="images/coffee.svg"></a>
+                    <span>Kaffee</span>
+                </div>
+                <div id="tv">
+                    <a href="http://192.168.0.107/TVONOFF"><img id="tvIcon" src="images/tv.svg"></a>
+                    <span>TV Wohnzimmer</span>
+                </div>
+            </section>
+        </div>
     </section>
 
-<!--------- LIGHT ------->
+    <!--------- LIGHT ------->
     <section class="light">
         <input id="toggleLight" type="checkbox" unchecked>
         <label for="toggleLight"><img src="images/lamp.svg">LIGHT</label>
         <h2>Licht</h2>
 
         <div id="expandLight">
-        <section class="bulb" id="bulb">
-            <%if(lights[0].ip != 0){%>
+            <section class="bulb" id="bulb">
+                <%if(lights[0].ip != 0){%>
                 <% for(var i = 0; i < lights.length; i++) { %>
                 <div class="light1">
                     <a href="/lights/<%=lights[i].ip %>">
@@ -160,98 +135,98 @@
                     </a>
                 </div>
 
-                 <% } %>
-            <% } %>
+                <% } %>
+                <% } %>
 
-        </section>
-       
-        <section class="bulb">
-            
-            <div class="light1">
-                <a href="/LichtRed">
-                    <img src="images/lightbulb_new.svg">
-                    <p>Flur Unten</p>
-                </a>
-            </div>
-            <div class="light1">
-                <a href="/LichtBlue">
-                    <img src="images/lightbulb_new.svg">
-                    <p>Flur Oben</p>
-                </a>
-            </div>
-            <div class="light1">
-                <a href="/LichtGreen">
-                    <img src="images/lightbulb_new.svg">
-                    <p>Garage</p>
+            </section>
+
+            <section class="bulb">
+
+                <div class="light1">
+                    <a href="/LichtRed">
+                        <img src="images/lightbulb_new.svg">
+                        <p>Flur Unten</p>
                     </a>
-            </div>
-            
-        </section>
- </div>
+                </div>
+                <div class="light1">
+                    <a href="/LichtBlue">
+                        <img src="images/lightbulb_new.svg">
+                        <p>Flur Oben</p>
+                    </a>
+                </div>
+                <div class="light1">
+                    <a href="/LichtGreen">
+                        <img src="images/lightbulb_new.svg">
+                        <p>Garage</p>
+                    </a>
+                </div>
+
+            </section>
+        </div>
     </section>
 </section>
-    
+
 
 
 <!--------- NEWS SCRIPT ------->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function () {
         var url = 'https://newsapi.org/v1/articles?source=die-zeit&sortBy=latest&apiKey=a1ef913e98c94358994dc8a8f7347aff&lang=de';
         $.getJSON(url).then(function (res) {
 
             var artNo = 0;
 
-     document.getElementById("news").innerHTML = 
-         "<a href=\"" 
-         +  (res['articles'][artNo].url) 
-         + "\"><h3>" 
-         + (res['articles'][artNo].title) 
-         + "</h3><br><p>" 
-         + (res['articles'][artNo].description) 
-         + "</p></a><br><br><a href=\"" 
-         + (res['articles'][artNo + 1].url) 
-         + "\"><h3>" 
-         + (res['articles'][artNo + 1].title) 
-         + "</h3><br><p>" 
-         + (res['articles'][artNo + 1].description) 
-         + "</p></a><br><br><a href=\"" 
-         + (res['articles'][artNo + 2].url) 
-         + "\"><h3>" 
-         + (res['articles'][artNo + 2].title) 
-         + "</h3><br><p>" 
-         + (res['articles'][artNo + 2].description) 
-         + "</p></a>";
+            document.getElementById("news").innerHTML =
+                "<a href=\""
+                +  (res['articles'][artNo].url)
+                + "\"><h3>"
+                + (res['articles'][artNo].title)
+                + "</h3><br><p>"
+                + (res['articles'][artNo].description)
+                + "</p></a><br><br><a href=\""
+                + (res['articles'][artNo + 1].url)
+                + "\"><h3>"
+                + (res['articles'][artNo + 1].title)
+                + "</h3><br><p>"
+                + (res['articles'][artNo + 1].description)
+                + "</p></a><br><br><a href=\""
+                + (res['articles'][artNo + 2].url)
+                + "\"><h3>"
+                + (res['articles'][artNo + 2].title)
+                + "</h3><br><p>"
+                + (res['articles'][artNo + 2].description)
+                + "</p></a>";
 
-                setInterval(function () {
-                    if (artNo <= 6) artNo += 3;
-                    else artNo = 0;
+            setInterval(function () {
+                if (artNo <= 6) artNo += 3;
+                else artNo = 0;
 
-                         document.getElementById("news").innerHTML = 
-         "<a href=\"" 
-         +  (res['articles'][artNo].url) 
-         + "\"><h3>" 
-         + (res['articles'][artNo].title) 
-         + "</h3><br><p>" 
-         + (res['articles'][artNo].description) 
-         + "</p></a><br><br><a href=\"" 
-         + (res['articles'][artNo + 1].url) 
-         + "\"><h3>" 
-         + (res['articles'][artNo + 1].title) 
-         + "</h3><br><p>" 
-         + (res['articles'][artNo + 1].description) 
-         + "</p></a><br><br><a href=\"" 
-         + (res['articles'][artNo + 2].url) 
-         + "\"><h3>" 
-         + (res['articles'][artNo + 2].title) 
-         + "</h3><br><p>" 
-         + (res['articles'][artNo + 2].description) 
-         + "</p></a>";
+                document.getElementById("news").innerHTML =
+                    "<a href=\""
+                    +  (res['articles'][artNo].url)
+                    + "\"><h3>"
+                    + (res['articles'][artNo].title)
+                    + "</h3><br><p>"
+                    + (res['articles'][artNo].description)
+                    + "</p></a><br><br><a href=\""
+                    + (res['articles'][artNo + 1].url)
+                    + "\"><h3>"
+                    + (res['articles'][artNo + 1].title)
+                    + "</h3><br><p>"
+                    + (res['articles'][artNo + 1].description)
+                    + "</p></a><br><br><a href=\""
+                    + (res['articles'][artNo + 2].url)
+                    + "\"><h3>"
+                    + (res['articles'][artNo + 2].title)
+                    + "</h3><br><p>"
+                    + (res['articles'][artNo + 2].description)
+                    + "</p></a>";
 
-                }, 30000);
+            }, 30000);
         })
     })
-    
+
 </script>
 
 <!--------- WEATHER SCRIPT ------->
@@ -295,39 +270,33 @@
     updateTimeAndDate();
 
 </script>
-    
-<!--------- LIGHT SCRIPT ------->
-<!--<script type="text/javascript">
-    window.onload=function(){
-        var elem = document.createElement("img");
-        elem.src = 'images/lightbulb_new.svg';
-        //FEHLER HIER:
-        document.getElementByClass("light1").appendChild(elem);
-    }
-</script>->>
-    
-<!--------- SCROLL TO TOP SCRIPT ------->
 
+<!--------- REFRESH LIGHT BULBS SCRIPT ------->
 <script>
-    
-
     setInterval(function() {
         var lightClasses = document.getElementsByName("bulbIcon");
         var lightsVar = <%- JSON.stringify(lights) %>;
         var needsRefresh = false;
-        for(var i = 0; i < lightsVar.length; i++){
+        if(lightClasses[0]) {
+            for (var i = 0; i < lightsVar.length; i++) {
 
-            var lightClass = lightClasses[i];
-            var imageLink = lightClass.src;
-            imageLink = imageLink.split("/");
-            imageLink = imageLink[imageLink.length - 2] + '/' + imageLink[imageLink.length - 1];
+                var lightClass = lightClasses[i];
+                var imageLink = lightClass.src;
+                imageLink = imageLink.split("/");
+                imageLink = imageLink[imageLink.length - 2] + '/' + imageLink[imageLink.length - 1];
 
-            if(lightsVar[i].imgSrc != imageLink){
-                needsRefresh = true;
+                if (lightsVar[i].imgSrc != imageLink) {
+                    needsRefresh = true;
+                    document.getElementsByClassName("bulbIcon")[i].src = lightsVar[i].imgSrc;
+                }
+                console.log(document.getElementsByClassName("bulbIcon"));
+                console.log(lightsVar[i].imgSrc);
+                console.log('\n\n');
             }
         }
         if(needsRefresh){
             console.log("needs refresh");
+
             $("#bulb").load(location.href + " #bulb>*", "");
         }else{
             console.log("no refresh");
@@ -336,16 +305,16 @@
 
 
 </script>
-    <script>
+<script>
     var timeOut;
-function scrollToTop() {
-	if (document.body.scrollTop!=0 || document.documentElement.scrollTop!=0){
-		window.scrollBy(0,-50);
-		timeOut=setTimeout('scrollToTop()',10);
-	}
-	else clearTimeout(timeOut);
-}
-    </script>
-    
+    function scrollToTop() {
+        if (document.body.scrollTop!=0 || document.documentElement.scrollTop!=0){
+            window.scrollBy(0,-50);
+            timeOut=setTimeout('scrollToTop()',10);
+        }
+        else clearTimeout(timeOut);
+    }
+</script>
+
 </body>
 </html>
