@@ -13,9 +13,7 @@
     }
     h1{
         background-color: #78B721;
-        font-size: 1.5em;
-        
-
+        font-size: 1.5em;       
     }
     #top{
         cursor: pointer;
@@ -38,6 +36,7 @@
         display: none;
         visibility: hidden;
     }
+    
 /*----------NEWS ------*/
     label {
         display: block;
@@ -51,8 +50,7 @@
         margin: 0%;
         margin-right: 10%;
         width: 10%;
-        vertical-align: middle;
-       
+        vertical-align: middle;       
     }
     #newsSection label{
         background-color: #9BDD27;

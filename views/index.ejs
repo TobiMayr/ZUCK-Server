@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="stylesheets/stylesheet.css">
     <link rel="stylesheet" href="stylesheets/responsive.css">
     <link rel="stylesheet" href="stylesheets/mobile.css">
-
-    <link rel="shortcut icon" href="">
 </head>
 
 <body id="top">
@@ -49,7 +47,7 @@
             </div>
 
             <div id="indoorcontainer">
-                <img src="images/chiphouse.svg">
+                <img src="images/chip.svg">
                 <table id="indoortemphumid">
                     <tr>
                         <th id="temp">Raumtemperatur: <%= temperature1 %> °C</th>
@@ -106,12 +104,12 @@
         <h2>Media</h2>
         <div id="expandMedia">
             <section id="device">
-                <div id="stereo">
-                    <a href="http://192.168.0.107/socketONOFF"><img id="stereoIcon" src="images/coffee.svg"></a>
+                <div tabIndex="1" id="stereo">
+                    <a tabIndex="-1" href="http://192.168.0.107/socketONOFF"><img id="stereoIcon" src="images/coffee.svg"></a>
                     <span>Kaffee</span>
                 </div>
-                <div id="tv">
-                    <a href="http://192.168.0.107/TVONOFF"><img id="tvIcon" src="images/tv.svg"></a>
+                <div tabIndex="2" id="tv">
+                    <a tabIndex="-1" href="http://192.168.0.107/TVONOFF"><img id="tvIcon" src="images/tv.svg"></a>
                     <span>TV Wohnzimmer</span>
                 </div>
             </section>
@@ -125,7 +123,7 @@
         <h2>Licht</h2>
 
         <div id="expandLight">
-            <section class="bulb" id="bulb">
+            <section tabIndex="3" class="bulb" id="bulb">
                 <%if(lights[0].ip != 0){%>
                 <% for(var i = 0; i < lights.length; i++) { %>
                 <div class="light1">
@@ -137,7 +135,6 @@
 
                 <% } %>
                 <% } %>
-
             </section>
 
             <section class="bulb">
@@ -178,19 +175,19 @@
             var artNo = 0;
 
             document.getElementById("news").innerHTML =
-                "<a href=\""
+                "<a tabIndex=\"-1\" href=\""
                 +  (res['articles'][artNo].url)
                 + "\"><h3>"
                 + (res['articles'][artNo].title)
                 + "</h3><br><p>"
                 + (res['articles'][artNo].description)
-                + "</p></a><br><br><a href=\""
+                + "</p></a><br><br><a tabIndex=\"-1\" href=\""
                 + (res['articles'][artNo + 1].url)
                 + "\"><h3>"
                 + (res['articles'][artNo + 1].title)
                 + "</h3><br><p>"
                 + (res['articles'][artNo + 1].description)
-                + "</p></a><br><br><a href=\""
+                + "</p></a><br><br><a tabIndex=\"-1\" href=\""
                 + (res['articles'][artNo + 2].url)
                 + "\"><h3>"
                 + (res['articles'][artNo + 2].title)
@@ -203,19 +200,19 @@
                 else artNo = 0;
 
                 document.getElementById("news").innerHTML =
-                    "<a href=\""
+                    "<a tabIndex=\"-1\" href=\""
                     +  (res['articles'][artNo].url)
                     + "\"><h3>"
                     + (res['articles'][artNo].title)
                     + "</h3><br><p>"
                     + (res['articles'][artNo].description)
-                    + "</p></a><br><br><a href=\""
+                    + "</p></a><br><br><a tabIndex=\"-1\" href=\""
                     + (res['articles'][artNo + 1].url)
                     + "\"><h3>"
                     + (res['articles'][artNo + 1].title)
                     + "</h3><br><p>"
                     + (res['articles'][artNo + 1].description)
-                    + "</p></a><br><br><a href=\""
+                    + "</p></a><br><br><a tabIndex=\"-1\" href=\""
                     + (res['articles'][artNo + 2].url)
                     + "\"><h3>"
                     + (res['articles'][artNo + 2].title)

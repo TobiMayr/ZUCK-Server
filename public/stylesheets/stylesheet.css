@@ -28,6 +28,10 @@ header {
     display: none;
 }
 
+:focus {
+      border-bottom: 5px solid white;
+}
+
 /*----- NEWS----*/
 label, input{
     display: none;
