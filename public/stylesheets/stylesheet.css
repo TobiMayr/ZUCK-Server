@@ -10,7 +10,17 @@
 html {
     box-sizing: border-box;
 }
+#bla path {
+                fill: yellow;
 
+            }
+.svg{
+    width: 50%;
+    margin: 7%;
+}
+            #bla:hover path {
+                fill: pink;
+            }
 body {
     height: 100%;
     width: 100%;
@@ -41,7 +51,6 @@ label, input{
     float: left;
     margin: 2% 0;
     padding: 0 2%;
-    height: 40vh;
 }
 #newsSection h2{
     display: block;
@@ -74,7 +83,6 @@ aside {
     width: 31%;
     float: right;
     padding-right: 2%;
-    height: 100vh;
 }
 
 #obenrechts {
@@ -159,7 +167,6 @@ aside {
 }
 
 #indoorcontainer {
-    margin-top: 20%;
     border-top: solid #fff;
     border-bottom: solid #fff;
     border-width: 0.05em;
@@ -218,7 +225,6 @@ aside {
 .inner-wrapper {
     width: 66.66666%;
     float: left;
-    height: 50vh;
 }
 
 .inner-wrapper h2 {
