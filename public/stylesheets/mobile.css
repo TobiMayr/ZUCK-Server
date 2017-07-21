@@ -47,6 +47,11 @@ box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
         position: relative;
     }
     
+    /*#newsicon path {
+        fill: #000000;
+    }*/
+
+    
 /*----------NEWS ------*/
     label {
         display: block;

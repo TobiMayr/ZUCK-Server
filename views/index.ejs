@@ -128,9 +128,10 @@
             <section tabIndex="3" class="bulb" id="bulb">
                 <%if(lights[0].ip != 0){%>
                 <% for(var i = 0; i < lights.length; i++) { %>
+                <%var lightIp = lights[i].ip%>
                 <div class="light1">
-                    <a href="/lights/<%=lights[i].ip %>">
-                        <img name="bulbIcon" src="<%=lights[i].imgSrc%>">
+                    <a href="/lights/<%=lights[i].ip %>" onclick="changeIcon('<%=lightIp%>')">
+                        <img name="bulbIcon" src="<%=lights[i].imgSrc%>" id="<%=lightIp%>">
                         <p><%=lights[i].label %></p>
                     </a>
                 </div>
@@ -183,13 +184,13 @@
                 + (res['articles'][artNo].title)
                 + "</h3><br><p>"
                 + (res['articles'][artNo].description)
-                + "</p></a><br><br><a tabIndex=\"-1\" href=\""
+                + "</p></a><br><a tabIndex=\"-1\" href=\""
                 + (res['articles'][artNo + 1].url)
                 + "\"><h3>"
                 + (res['articles'][artNo + 1].title)
                 + "</h3><br><p>"
                 + (res['articles'][artNo + 1].description)
-                + "</p></a><br><br><a tabIndex=\"-1\" href=\""
+                + "</p></a><br><a tabIndex=\"-1\" href=\""
                 + (res['articles'][artNo + 2].url)
                 + "\"><h3>"
                 + (res['articles'][artNo + 2].title)
@@ -245,9 +246,6 @@
 <!--------- TIME SCRIPT ------->
 <script src="javascript/zuckJS.js"></script>
 <script type="text/javascript">
-    /*setTimeout(function(){
-     window.location.reload(1);
-     }, 5000);     */
 
     function updateTimeAndDate() {
         var weekdays = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
@@ -272,8 +270,10 @@
 
 <!--------- REFRESH LIGHT BULBS SCRIPT ------->
 <script>
+    /*
+    var lightClasses = document.getElementsByName("bulbIcon");
     setInterval(function() {
-        var lightClasses = document.getElementsByName("bulbIcon");
+        $.get("");
         var lightsVar = <%- JSON.stringify(lights) %>;
         var needsRefresh = false;
         if(lightClasses[0]) {
@@ -286,22 +286,45 @@
 
                 if (lightsVar[i].imgSrc != imageLink) {
                     needsRefresh = true;
-                    document.getElementsByClassName("bulbIcon")[i].src = lightsVar[i].imgSrc;
+                    //document.getElementsByClassName("bulbIcon")[i].src = lightsVar[i].imgSrc;
                 }
-                console.log(document.getElementsByClassName("bulbIcon"));
+                console.log(imageLink);
                 console.log(lightsVar[i].imgSrc);
                 console.log('\n\n');
             }
         }
-        if(needsRefresh){
-            console.log("needs refresh");
-
-            $("#bulb").load(location.href + " #bulb>*", "");
-        }else{
-            console.log("no refresh");
-        }
+        setTimeout(function(){
+            if(needsRefresh){
+                console.log("needs refresh");
+                $("#bulb").load(location.href + " #bulb>*", "");
+            }else{
+                //console.log("no refresh");
+            }
+        }, 500);
     }, 1000); //bulb section jede Sekunde neu laden
+*/
 
+
+
+
+</script>
+<script>
+    function changeIcon(currentIp){
+        console.log("hi");
+        var imageLink = document.getElementById(currentIp).src;
+        imageLink = imageLink.split("/");
+        imageLink = imageLink[imageLink.length - 2] + '/' + imageLink[imageLink.length - 1];
+
+        console.log(imageLink);
+        if(imageLink == 'images/lightbulbOn.svg'){
+
+            document.getElementById(currentIp).src = 'images/lightbulb_new.svg';
+
+        }else if(imageLink == 'images/lightbulb_new.svg'){
+            document.getElementById(currentIp).src   = 'images/lightbulbOn.svg';
+            console.log("yo2");
+        }
+    }
 
 </script>
 <script>
