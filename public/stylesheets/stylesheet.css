@@ -10,7 +10,17 @@
 html {
     box-sizing: border-box;
 }
+#bla path {
+                fill: yellow;
 
+            }
+.svg{
+    width: 50%;
+    margin: 7%;
+}
+            #bla:hover path {
+                fill: pink;
+            }
 body {
     height: 100%;
     width: 100%;
@@ -58,6 +68,7 @@ label, input{
 #news p {
     font-size: 1.1em;
     line-height: 1.5;
+    font-weight: 200;
     border: solid #ffffff;
     border-width: 0 0 0 0.1em;
     padding-left: 2%;
@@ -156,10 +167,8 @@ aside {
 }
 
 #indoorcontainer {
-
-    /*border-top: solid #fff;
-    border-bottom: solid #fff;*/
-
+    border-top: solid #fff;
+    border-bottom: solid #fff;
     border-width: 0.05em;
 }
 #indoorcontainer img {
@@ -182,7 +191,7 @@ aside {
 
 /*----- SENSOR DATA----*/
 #sensor {
-    padding: 0% 0 0 10%;
+    padding: 0 0 0 10%;
 
 }
 
@@ -192,8 +201,12 @@ aside {
     width: 50%;
 }
 
-#plantIcon, #windowIcon {
+#plantIcon {
     width: 33.3%;
+    float: left;
+}
+#windowIcon {
+    width: 28.3%;
     float: left;
 }
 

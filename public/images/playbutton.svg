@@ -5,39 +5,11 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   id="svg8"
-   version="1.1"
-   viewBox="0 0 180.09119 180.09119"
-   height="180.09119mm"
    width="180.09119mm"
-   sodipodi:docname="playbutton.svg"
-   inkscape:version="0.92.1 r15371">
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="3000"
-     inkscape:window-height="1881"
-     id="namedview8"
-     showgrid="false"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0"
-     inkscape:zoom="1.766117"
-     inkscape:cx="398.77869"
-     inkscape:cy="191.55016"
-     inkscape:window-x="-14"
-     inkscape:window-y="-14"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg8" />
+   height="180.09119mm"
+   viewBox="0 0 180.09119 180.09119"
+   version="1.1"
+   id="svg8">
   <defs
      id="defs2" />
   <metadata
@@ -53,20 +25,19 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(-38.751116,-6.5701847)"
+     style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:7.40304176;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="layer1"
-     style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:7.40304176;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
+     transform="translate(-38.751116,-6.5701847)">
     <circle
-       r="86.34407"
-       cy="96.615776"
-       cx="128.79671"
+       style="opacity:0.98999999;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:7.40304176;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path4485"
-       style="opacity:0.98999999;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:7.40304176;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       cx="128.79671"
+       cy="96.615776"
+       r="86.34407" />
     <path
-       transform="matrix(1.4909833,-0.65661105,0.47596488,2.0568662,-47.610037,-94.629201)"
-       d="M 100.17162,124.56406 65.907261,132.15686 76.46388,98.686655 Z"
-       id="path4491"
        style="opacity:0.98999999;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:4.02715464;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:connector-curvature="0" />
+       id="path4491"
+       d="M 100.17162,124.56406 65.907261,132.15686 76.46388,98.686655 Z"
+       transform="matrix(1.4909833,-0.65661105,0.47596488,2.0568662,-47.610037,-94.629201)" />
   </g>
 </svg>
