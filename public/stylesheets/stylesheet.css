@@ -41,6 +41,7 @@ label, input{
     float: left;
     margin: 2% 0;
     padding: 0 2%;
+    height: 40vh;
 }
 #newsSection h2{
     display: block;
@@ -58,6 +59,7 @@ label, input{
 #news p {
     font-size: 1.1em;
     line-height: 1.5;
+    font-weight: 200;
     border: solid #ffffff;
     border-width: 0 0 0 0.1em;
     padding-left: 2%;
@@ -72,6 +74,7 @@ aside {
     width: 31%;
     float: right;
     padding-right: 2%;
+    height: 100vh;
 }
 
 #obenrechts {
@@ -156,14 +159,13 @@ aside {
 }
 
 #indoorcontainer {
-
-    /*border-top: solid #fff;
-    border-bottom: solid #fff;*/
-
+    margin-top: 20%;
+    border-top: solid #fff;
+    border-bottom: solid #fff;
     border-width: 0.05em;
 }
 #indoorcontainer img {
-    width: 20%;
+    width: 15%;
     height: auto;
     margin: 1%;
    float: left;    
@@ -182,7 +184,8 @@ aside {
 
 /*----- SENSOR DATA----*/
 #sensor {
-    padding: 0% 0 0 10%;
+    padding: 0 0 0 10%;
+
 }
 
 .plants, .windows {
@@ -191,8 +194,12 @@ aside {
     width: 50%;
 }
 
-#plantIcon, #windowIcon {
+#plantIcon {
     width: 33.3%;
+    float: left;
+}
+#windowIcon {
+    width: 28.3%;
     float: left;
 }
 
@@ -211,6 +218,7 @@ aside {
 .inner-wrapper {
     width: 66.66666%;
     float: left;
+    height: 50vh;
 }
 
 .inner-wrapper h2 {
