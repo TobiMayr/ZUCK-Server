@@ -103,9 +103,7 @@ aside {
 
 #weather {
     display: flex;
-    position: absolute;
     flex-direction: column;
-    top: 15%;
     float: right;
     margin-top: 5%;
 }
@@ -148,8 +146,8 @@ aside {
     position: relative;
     font-size: 1.3em;
     text-align: left;
-    margin-top: 0%;
-    margin-bottom: 0%;
+    margin-top: 4%;
+    margin-bottom: 4%;
 }
 
 #indoortemphumid th {
@@ -158,9 +156,7 @@ aside {
 }
 
 #indoorcontainer {
-    position: absolute;
-    top: 40%;
-    left: 75%;
+
     /*border-top: solid #fff;
     border-bottom: solid #fff;*/
 
@@ -187,8 +183,7 @@ aside {
 /*----- SENSOR DATA----*/
 #sensor {
     padding: 0% 0 0 10%;
-    position: absolute;
-    top: 35%;
+
 }
 
 .plants, .windows {
