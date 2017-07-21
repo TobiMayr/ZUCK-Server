@@ -102,7 +102,7 @@ aside {
 }
 
 #weather {
-    /*display: flex;*/
+    display: flex;
     flex-direction: column;
     float: right;
     margin-top: 5%;
