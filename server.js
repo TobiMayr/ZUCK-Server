@@ -283,8 +283,11 @@ app.get('/sensor/mailbox/:status/:id', function(req, res){
             foundIp = true;
             console.log('found IP!');
             mailboxSensors[i].status = req.params.status;
-            if(req.params.status == 'Filled'){
-                mailboxSensors[i].imgSrc = mailboxImgFilled
+            if(req.params.status == 'Voll'){
+                mailboxSensors[i].imgSrc = mailboxImgFilled;
+            }else
+            {
+                mailboxSensors[i].imgSrc = mailboxImgEmpty;
             }
         }
     }
