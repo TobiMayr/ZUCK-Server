@@ -46,7 +46,9 @@ box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
     #sensor{
         position: relative;
     }
-    
+    .svg path{
+                fill: #31333F;
+            }
     
 /*----------NEWS ------*/
     label {
@@ -146,10 +148,28 @@ box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
         margin: 0;
         background-color: #F7F7F7;
     }
-    #stereo, #tv{
+   /* #stereo, #tv{
         margin: 5%;
         font-weight: 0;
-    }
+    }*/
+    .device{
+    display: flex;
+    flex-direction: row;
+    padding-left: 10%;
+}
+
+#stereo, #tv {
+    float: left;
+    width: 30%;
+    text-align: center;
+    margin: 5%;
+}
+
+
+#tvIcon, #stereoIcon{
+    width: 50%;
+    margin: 7%;
+}
 /*----------LIGHT------*/
     .light label{
         /*background-color: #677FB0;*/
