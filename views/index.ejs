@@ -105,7 +105,7 @@
         <label for="toggleMedia"><img src="images/playbutton.svg">MEDIA</label>
         <h2>Media</h2>
         <div id="expandMedia">
-            <section id="device">
+           <div id="device">
                 <div tabIndex="1" id="stereo">
                     <a tabIndex="-1" href="http://192.168.0.107/socketONOFF"><img id="stereoIcon" class="svg" src="images/coffee.svg"></a>
                     <span>Kaffee</span>
@@ -114,7 +114,7 @@
                     <a tabIndex="-1" href="http://192.168.0.107/TVONOFF"><img id="tvIcon" class="svg" src="images/tv.svg"></a>
                     <span>TV</span>
                 </div>
-            </section>
+               </div>
         </div>
     </section>
 
@@ -131,7 +131,8 @@
                 <%var lightIp = lights[i].ip%>
                 <div class="light1">
                     <a href="/lights/<%=lights[i].ip %>" onclick="changeIcon('<%=lightIp%>')">
-                        <img class="svg" name="bulbIcon" src="<%=lights[i].imgSrc%>" id="<%=lightIp%>">
+                       
+                        <img class="svg bulbIcon" name="bulbIcon" src="<%=lights[i].imgSrc%>" id="<%=lightIp%>">
                         <p><%=lights[i].label %></p>
                     </a>
                 </div>
@@ -139,21 +140,26 @@
                 <% } %>
                 <% } %>
             </section>
-
+            <!--
             <section class="bulb">
 
                 <div class="light1">
                     <a href="/LichtRed">
-                        <img id="bulb1" class="svg" src="images/lightbulb_new.svg">
+                        <div id="bla">
+                        <img id="bulb1" class="svg" name="bulbIcon" src="images/lightbulb_new.svg">
+                            </div>
                         <p>Flur Unten</p>
                     </a>
                 </div>
                 <div class="light1">
                     <a href="/LichtBlue">
-                        <img id="bulb1" class="svg" src="images/lightbulb_new.svg">
+                        <img id="bulb1" class="svg"
+                             name="bulbIcon"src="images/lightbulb_new.svg">
                         <p>Flur Oben</p>
                     </a>
                 </div>
+                
+                
                 <div class="light1">
                     <a href="/LichtGreen">
                         <img id="bulb1" class="svg" src="images/lightbulb_new.svg">
@@ -161,7 +167,9 @@
                     </a>
                 </div>
 
+
             </section>
+-->
         </div>
     </section>
 </section>
@@ -236,7 +244,7 @@
         var api = "http://api.openweathermap.org/data/2.5/weather?q=Berlin&units=metric&lang=de&APPID=bf0a224a7b36d53836dd5e19f4b986a8";
         $.getJSON(api, function (data) {
 
-            document.getElementById("currentWeather").innerHTML = data.main.temp + " °C, " + data.weather[0].description;
+            document.getElementById("currentWeather").innerHTML = data.main.temp + "°C, " + data.weather[0].description;
             document.getElementById("location").innerHTML = data.name + ", " + data.sys.country;
 
         });

@@ -10,6 +10,7 @@
         position: fixed;
         top: 0px;
         height: auto;
+        z-index: 200;
        -webkit-box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
 -moz-box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
 box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
@@ -147,17 +148,15 @@ box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
     #media{
         margin: 0;
         background-color: #F7F7F7;
+        
+
     }
-   /* #stereo, #tv{
-        margin: 5%;
-        font-weight: 0;
-    }*/
-    .device{
-    display: flex;
+    #device{
+         display: flex;
     flex-direction: row;
     padding-left: 10%;
-}
-
+        margin: 2% 0 2% 0;
+    }
 #stereo, #tv {
     float: left;
     width: 30%;
