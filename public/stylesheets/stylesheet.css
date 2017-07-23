@@ -227,6 +227,7 @@ aside {
 
 /*----- MEDIA----*/
 
+/*LEFT BOTTOM PART CONTAINING LIGHTS AND MEDIA SECTION*/
 .inner-wrapper {
     width: 66.66666%;
     float: left;
@@ -257,6 +258,7 @@ aside {
     width: 20%;
 }
 
+/*WHOLE MEDIA SECTION WITH TITLE AND EVERYTHING*/
 #media {
     position: absolute;
     width: 30%;
@@ -265,10 +267,15 @@ aside {
     top: 50%;
 }
 
+#device{
+/*SECTION CONTAINING ALL LIGHTS*/
+}
+
 #media span, #sensor p {
     margin-left: 10%
 }
 
+/*DIV CONTAINING ICONS AND NAME*/
 #stereo, #tv {
     margin-left: 10%;
     margin-top: 10%;
@@ -281,6 +288,8 @@ aside {
 }
 
 /*----- LIGHT----*/
+
+/*WHOLE LIGHT SECTION WITH TITLE AND EVERYTHING*/
 .light {
     /*float: right;*/
     position: absolute;
@@ -289,13 +298,13 @@ aside {
     left: 25%;
 
 }
-
+/*SECTION CONTAINING ALL LIGHTS*/
 .bulb{
     display: flex;
     flex-direction: row;
     padding-left: 10%;
 }
-
+/*DIV CONTAINING BULBICON AND NAME*/
 .light1 {
     float: left;
     width: 30%;
@@ -304,8 +313,8 @@ aside {
 
 }
 
-
-#bulb1{
+/*BULB ICON*/
+.bulbIcon{
     width: 50%;
     margin: 7%;
 }
