@@ -11,6 +11,8 @@ html {
     box-sizing: border-box;
 }
 
+
+           
 body {
     height: 100%;
     width: 100%;
@@ -41,7 +43,6 @@ label, input{
     float: left;
     margin: 2% 0;
     padding: 0 2%;
-    height: 40vh;
 }
 #newsSection h2{
     display: block;
@@ -74,7 +75,6 @@ aside {
     width: 31%;
     float: right;
     padding-right: 2%;
-    height: 100vh;
 }
 
 #obenrechts {
@@ -159,12 +159,11 @@ aside {
 }
 
 #indoorcontainer {
-    margin-top: 20%;
     border-top: solid #fff;
     border-bottom: solid #fff;
     border-width: 0.05em;
 }
-#indoorcontainer img {
+/*#indoorcontainer img {
     width: 15%;
     height: auto;
     margin: 1%;
@@ -172,7 +171,15 @@ aside {
     margin-left: 10%;
     margin-right: 2%;
 }
-
+*/
+#houseIcon{
+     width: 15%;
+    height: auto;
+    margin: 1%;
+   float: left;    
+    margin-left: 10%;
+    margin-right: 2%;
+}
 #weatherIcon {
     width: 50%;
 }
@@ -203,22 +210,27 @@ aside {
     float: left;
 }
 
-.plantHumid img, .plantTemp img {
+/*.plantHumid img, .plantTemp img {
     width: 15%;
     margin: 1%;
     vertical-align: middle;
 }
-
+*/
+#humid1{
+    width: 15%;
+    margin: 1%;
+    vertical-align: middle;
+}
 .plantTemp img, .plantHumid img, .sensorName, .sensorStatus {
     margin-left: 5%;
 }
 
 /*----- MEDIA----*/
 
+/*LEFT BOTTOM PART CONTAINING LIGHTS AND MEDIA SECTION*/
 .inner-wrapper {
     width: 66.66666%;
     float: left;
-    height: 50vh;
 }
 
 .inner-wrapper h2 {
@@ -246,6 +258,7 @@ aside {
     width: 20%;
 }
 
+/*WHOLE MEDIA SECTION WITH TITLE AND EVERYTHING*/
 #media {
     position: absolute;
     width: 30%;
@@ -254,10 +267,15 @@ aside {
     top: 50%;
 }
 
+#device{
+/*SECTION CONTAINING ALL LIGHTS*/
+}
+
 #media span, #sensor p {
     margin-left: 10%
 }
 
+/*DIV CONTAINING ICONS AND NAME*/
 #stereo, #tv {
     margin-left: 10%;
     margin-top: 10%;
@@ -270,6 +288,8 @@ aside {
 }
 
 /*----- LIGHT----*/
+
+/*WHOLE LIGHT SECTION WITH TITLE AND EVERYTHING*/
 .light {
     /*float: right;*/
     position: absolute;
@@ -278,13 +298,13 @@ aside {
     left: 25%;
 
 }
-
+/*SECTION CONTAINING ALL LIGHTS*/
 .bulb{
     display: flex;
     flex-direction: row;
     padding-left: 10%;
 }
-
+/*DIV CONTAINING BULBICON AND NAME*/
 .light1 {
     float: left;
     width: 30%;
@@ -293,12 +313,11 @@ aside {
 
 }
 
-.light img {
+/*BULB ICON*/
+.bulbIcon{
     width: 50%;
     margin: 7%;
-
 }
-
 img:hover {
     opacity: 0.5;
 }

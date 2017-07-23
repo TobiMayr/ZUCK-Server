@@ -10,7 +10,13 @@
     <link rel="stylesheet" href="stylesheets/stylesheet.css">
     <link rel="stylesheet" href="stylesheets/responsive.css">
     <link rel="stylesheet" href="stylesheets/mobile.css">
+<<<<<<< HEAD
     <link rel="shortcut icon" href="">
+=======
+    
+    <link rel="icon" type="image/png" href="images/z.png">
+    
+>>>>>>> 8f561c861e7cf09017b62718a0241b8c795573ee
 </head>
 
 <body id="top">
@@ -40,14 +46,14 @@
 
         <div id="weather">
             <div id="weatherIconAndInfo">
-                <img id="weatherIcon" src="images/weather.svg">
+                <img id="weatherIcon" class="svg" src="images/weather.svg">
                 <div id="CelsiusAndLoc">
                     <p id="currentWeather"></p>
                     <p id="location"></p>
                 </div>
             </div>
               <div id="indoorcontainer">
-                <img src="images/chiphouse.svg">
+                <img id="houseIcon" class="svg" src="images/chiphouse.svg">
 
                 <table id="indoortemphumid">
                     <tr>
@@ -71,25 +77,25 @@
         <div id="expand2">
             <%for (var i = 0; i < soilSensors.length; i++) { %>
             <div class="plants">
-                <img id="plantIcon" src="images/plant.svg">
+                <img id="plantIcon" class="svg"  src="images/plant.svg">
 
                 <span class="sensorName">Pflanze <%=i + 1%></span>
 
                 <div class="plantHumid">
-                    <img src="images/humidity.svg">
+                    <img id="humid1" class="svg" src="images/humidity.svg">
                     <span><%=soilSensors[0].humidity%></span>
                 </div>
             </div>
             <%}%>
             <div class="windows">
                 <%for (var i = 0; i < windowSensors.length; i++) { %>
-                <img id="windowIcon" src="<%=windowSensors[i].imgSrc%>">
+                <img id="windowIcon" class="svg" src="<%=windowSensors[i].imgSrc%>">
                 <span class="sensorName">Fenster <%=i + 1%></span><br>
                 <span class="sensorStatus"><%= windowSensors[i].status %></span>
                 <%}%>
             </div>
             <div class="windows">
-                <img id="windowIcon" src="images/mailboxEmpty.svg">
+                <img id="windowIcon" class="svg" src="images/mailboxEmpty.svg">
                 <span class="sensorName">Briefkasten</span><br>
                 <span class="sensorStatus"><%=mailboxSensors[0].status%></span>
             </div>
@@ -105,16 +111,16 @@
         <label for="toggleMedia"><img src="images/playbutton.svg">MEDIA</label>
         <h2>Media</h2>
         <div id="expandMedia">
-            <section id="device">
+           <div id="device">
                 <div tabIndex="1" id="stereo">
-                    <a tabIndex="-1" href="http://192.168.0.107/socketONOFF"><img id="stereoIcon" src="images/coffee.svg"></a>
+                    <a tabIndex="-1" href="http://192.168.0.107/socketONOFF"><img id="stereoIcon" class="svg" src="images/coffee.svg"></a>
                     <span>Kaffee</span>
                 </div>
                 <div tabIndex="2" id="tv">
-                    <a tabIndex="-1" href="http://192.168.0.107/TVONOFF"><img id="tvIcon" src="images/tv.svg"></a>
-                    <span>TV Wohnzimmer</span>
+                    <a tabIndex="-1" href="http://192.168.0.107/TVONOFF"><img id="tvIcon" class="svg" src="images/tv.svg"></a>
+                    <span>TV</span>
                 </div>
-            </section>
+               </div>
         </div>
     </section>
 
@@ -131,7 +137,8 @@
                 <%var lightIp = lights[i].ip%>
                 <div class="light1">
                     <a href="/lights/<%=lights[i].ip %>" onclick="changeIcon('<%=lightIp%>')">
-                        <img name="bulbIcon" src="<%=lights[i].imgSrc%>" id="<%=lightIp%>">
+                       
+                        <img class="svg bulbIcon" name="bulbIcon" src="<%=lights[i].imgSrc%>" id="<%=lightIp%>">
                         <p><%=lights[i].label %></p>
                     </a>
                 </div>
@@ -139,29 +146,36 @@
                 <% } %>
                 <% } %>
             </section>
-
+            <!--
             <section class="bulb">
 
                 <div class="light1">
                     <a href="/LichtRed">
-                        <img src="images/lightbulb_new.svg">
+                        <div id="bla">
+                        <img id="bulb1" class="svg" name="bulbIcon" src="images/lightbulb_new.svg">
+                            </div>
                         <p>Flur Unten</p>
                     </a>
                 </div>
                 <div class="light1">
                     <a href="/LichtBlue">
-                        <img src="images/lightbulb_new.svg">
+                        <img id="bulb1" class="svg"
+                             name="bulbIcon"src="images/lightbulb_new.svg">
                         <p>Flur Oben</p>
                     </a>
                 </div>
+                
+                
                 <div class="light1">
                     <a href="/LichtGreen">
-                        <img src="images/lightbulb_new.svg">
+                        <img id="bulb1" class="svg" src="images/lightbulb_new.svg">
                         <p>Garage</p>
                     </a>
                 </div>
 
+
             </section>
+-->
         </div>
     </section>
 </section>
@@ -236,7 +250,7 @@
         var api = "http://api.openweathermap.org/data/2.5/weather?q=Berlin&units=metric&lang=de&APPID=bf0a224a7b36d53836dd5e19f4b986a8";
         $.getJSON(api, function (data) {
 
-            document.getElementById("currentWeather").innerHTML = data.main.temp + " °C, " + data.weather[0].description;
+            document.getElementById("currentWeather").innerHTML = data.main.temp + "°C, " + data.weather[0].description;
             document.getElementById("location").innerHTML = data.name + ", " + data.sys.country;
 
         });
@@ -308,6 +322,7 @@
 
 
 </script>
+<!--------- CHANGE LIGHT BULB ICONS ------->
 <script>
     function changeIcon(currentIp){
         console.log("hi");
@@ -327,6 +342,7 @@
     }
 
 </script>
+
 <script>
     var timeOut;
     function scrollToTop() {
@@ -338,5 +354,56 @@
     }
 </script>
 
+<!--------- TABABBLE ------->
+<script src="javascript/jquery.tabbable.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(document).keydown(handleDocumentKeyDown);
+    });
+
+    function handleDocumentKeyDown(event){
+        if(event.which === 83){
+            $.tabNext();
+
+        }else if (event.which === 87) {
+            $.tabPrev();
+        }
+    }
+</script>
+
+<script>  
+            jQuery(document).ready(function() {
+                /*
+                 * Replace all SVG images with inline SVG
+                 */
+                    jQuery('img.svg').each(function(){
+                        var $img = jQuery(this);
+                        var imgID = $img.attr('id');
+                        var imgClass = $img.attr('class');
+                        var imgURL = $img.attr('src');
+                
+                        jQuery.get(imgURL, function(data) {
+                            // Get the SVG tag, ignore the rest
+                            var $svg = jQuery(data).find('svg');
+                
+                            // Add replaced image's ID to the new SVG
+                            if(typeof imgID !== 'undefined') {
+                                $svg = $svg.attr('id', imgID);
+                            }
+                            // Add replaced image's classes to the new SVG
+                            if(typeof imgClass !== 'undefined') {
+                                $svg = $svg.attr('class', imgClass+' replaced-svg');
+                            }
+                            
+                            // Remove any invalid XML tags as per http://validator.w3.org
+                            $svg = $svg.removeAttr('xmlns:a');
+                            
+                            // Replace image with new SVG
+                            $img.replaceWith($svg);
+                        });
+    
+                    });
+            });
+        </script>
 </body>
 </html>
