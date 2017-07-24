@@ -69,6 +69,9 @@
         <label for="toggle2"><img src="images/chip.svg">SENSOR</label>
 
         <div id="expand2">
+            <%if (soilSensors[0].id == 0 && soilSensors.length > 1){%>
+            <%soilSensors.shift()%>
+            <%}%>
             <%for (var i = 0; i < soilSensors.length; i++) { %>
             <div class="plants">
                 <img id="plantIcon" class="svg"  src="images/plant.svg">
@@ -82,6 +85,9 @@
             </div>
             <%}%>
             <div class="windows">
+                <%if (windowSensors[0].id == 0 && windowSensors.length > 1){%>
+                    <%windowSensors.shift()%>
+                <%}%>
                 <%for (var i = 0; i < windowSensors.length; i++) { %>
                 <img id="windowIcon" class="svg" src="<%=windowSensors[i].imgSrc%>">
                 <span class="sensorName">Fenster <%=i + 1%></span><br>
@@ -106,12 +112,12 @@
         <h2>Media</h2>
         <div id="expandMedia">
            <div id="device">
-                <div tabIndex="1" id="stereo">
-                    <a tabIndex="-1" href="http://192.168.0.107/socketONOFF"><img id="stereoIcon" class="svg" src="images/coffee.svg"></a>
+                <div id="stereo">
+                    <div tabIndex="1" onclick="makeReq('http://192.168.0.107/socketONOFF')"><img id="stereoIcon" class="svg" src="images/coffee.svg"></div>
                     <span>Kaffee</span>
                 </div>
-                <div tabIndex="2" id="tv">
-                    <a tabIndex="-1" href="http://192.168.0.107/TVONOFF"><img id="tvIcon" class="svg" src="images/tv.svg"></a>
+                <div id="tv">
+                    <div tabIndex="2" onclick="makeReq('http://192.168.0.107/TVONOFF')"><img id="tvIcon" class="svg" src="images/tv.svg"></div>
                     <span>TV</span>
                 </div>
                </div>
@@ -131,7 +137,7 @@
                 <%var lightIp = lights[i].ip%>
                 <div class="light1">
                     <%console.log(lights[i].toggleStatus);%>
-                    <a tabindex="3" href="/lights/<%=lights[i].ip %>" onclick="changeIcon('<%=lightIp%>')">
+                    <div tabindex="3" onclick="makeReq('/lights/<%=lights[i].ip %>'); changeIcon('<%=lightIp%>');">
                         <%if(lights[i].toggleStatus == 'on'){ %>
                                 <%console.log('on');%>
                            <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>">
@@ -143,7 +149,7 @@
                         <%}%>
 
                         <p style="margin-top: 10px"><%=lights[i].label %></p>
-                    </a>
+                    </div>
                 </div>
 
                 <% } %>
@@ -193,7 +199,7 @@
             var artNo = 0;
 
             document.getElementById("news").innerHTML =
-                "<a target=\"popup\" onclick=\"window.open('','popup','width=580,height=360,scrollbars=no,toolbar=no,status=no,resizable=yes,menubar=no,location=no,directories=no,top=10,left=10') tabIndex=\"-1\" href=\""
+                "<a tabindex='-1' href=\""
                 +  (res['articles'][artNo].url)
                 + "\"><h3>"
                 + (res['articles'][artNo].title)
@@ -218,7 +224,7 @@
                 else artNo = 0;
 
                 document.getElementById("news").innerHTML =
-                    "<a target=\"popup\" onclick=\"window.open('','popup','width=580,height=360,scrollbars=no,toolbar=no,status=no,resizable=yes,menubar=no,location=no,directories=no,top=10,left=10') tabIndex=\"-1\" href=\""
+                    "<a tabIndex=\"-1\" href=\""
                     +  (res['articles'][artNo].url)
                     + "\"><h3>"
                     + (res['articles'][artNo].title)
@@ -337,7 +343,7 @@
             images[0].style.display = 'none';
             images[1].style.display = 'inline';
         }
-
+        console.log("changeIcon");
 
         /*var imgUrl = '';
         var oldImg = document.getElementById(currentIp);
@@ -397,6 +403,13 @@
         */
     }
 
+</script>
+
+<script>
+    function makeReq(url){
+        $.get(url);
+        console.log("made Req");
+    }
 </script>
 
 <script>
