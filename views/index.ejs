@@ -99,7 +99,7 @@
             <div class="windows">
                 <img id="windowIcon" class="svg" src="images/mailboxEmpty.svg">
                 <span class="sensorName">Briefkasten</span><br>
-                <span class="sensorStatus"><%=mailboxSensors[0].status%></span>
+                <span class="sensorStatus"><%=mailboxSensors[1].status%></span>
             </div>
         </div>
     </div>
@@ -433,15 +433,31 @@
     });
 
     function handleDocumentKeyDown(event){
-        if(event.which === 83){
+        if(event.which === 83){ //s
             $.tabNext();
 
-        }else if (event.which === 87) {
+        }else if (event.which === 87) { //w
             $.tabPrev();
         }
     }
 </script>
 
+<script>
+    $(document).ready(function(){
+        $(document).keydown(handleDocumentKeyDown);
+    });
+
+
+    function handleDocumentKeyDown(event){
+        var selectedElement = document.activeElement;
+        console.log(selectedElement);
+        if (event.keyCode == 13) {
+            selectedElement.click();
+        }
+    }
+
+
+</script>
 <script>  
             jQuery(document).ready(function() {
                 /*
