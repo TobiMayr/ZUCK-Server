@@ -1,24 +1,32 @@
-@media screen and (max-width: 1025px){
+@media screen and (max-width: 700px){
     *{
         overflow: visible;
         overflow-x: hidden;
     }
 /*-----------HEADER-------*/
+    
     header{
         display: block;
+        position: relative;
         width: 100%;
         position: fixed;
         top: 0px;
         height: auto;
         z-index: 200;
-       -webkit-box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
--moz-box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
+        -webkit-box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
+        -moz-box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
 box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
     }
     h1{
         /*background-color: #78B721;*/
        background-color: #4ACCC8;
-        font-size: 1.5em;
+        /*
+        font-size: 1.5em;*/
+        font-size: 200%;
+    }
+    #logo{
+        width: 40%;
+        
     }
     #top{
         cursor: pointer;
@@ -58,6 +66,7 @@ box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
         padding: 8% 0 8% 35%;
         text-align: left;
         height: 15%;
+        font-size: 100%;
         
     }
     label img, .light label img {
@@ -69,7 +78,8 @@ box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
     #newsSection label{
         /*background-color: #9BDD27;*/
         background-color: #53A3D0;
-        margin-top: 4em;
+        /*margin-top: 4em;*/
+        margin-top: 22%;
     }
     #news h3, p{
         color: #31333F;
@@ -77,10 +87,12 @@ box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
 
     }
     #news h3{
-        font-size: 1em;
+        /*font-size: 1em;*/
+        font-size: 140%;
     }
     #news p{
-        font-size: 0.9em;
+        /*font-size: 0.9em;*/
+        font-size: 110%;
         font-weight: 200;
         border: solid #31333F;
         border-width: 0 0 0 0.05em;
@@ -124,7 +136,8 @@ box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
         margin: 5%;
     }
     .sensorName, #tv span, #stereo span, .light1 p{
-        font-size: 0.9em;
+        /*font-size: 0.9em;*/
+        font-size: 110%;
         font-weight: 200;
         color: #31333F;
     }
@@ -161,7 +174,7 @@ box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
     float: left;
     width: 30%;
     text-align: center;
-    margin: 5%;
+    margin: 0%;
 }
 
 

@@ -274,7 +274,7 @@ aside {
 }
 
 #media span, #sensor p {
-    margin-left: 10%
+    margin: 0 10% 0 10%;
 }
 
 /*DIV CONTAINING ICONS AND NAME*/
@@ -318,7 +318,7 @@ aside {
 /*BULB ICON*/
 .bulbIcon{
     width: 50%;
-    margin: 7%;
+    margin: 7%; 
 }
 img:hover {
     opacity: 0.5;
