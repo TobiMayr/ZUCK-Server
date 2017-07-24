@@ -176,11 +176,12 @@ aside {
 #houseIcon{
     width: 15%;
     height: auto;
-    margin-top: 3%;
     float: left;
     margin-left: 12%;
     margin-right: 2%;
+    margin-top: 4%;
 }
+
 #weatherIcon {
     width: 50%;
 }
