@@ -130,7 +130,7 @@ aside {
 #CelsiusAndLoc {
     display: flex;
     flex-direction: column;
-    margin-top: 12%;
+    margin-top: 0;
     padding-right: 2%;
 }
 
@@ -147,6 +147,7 @@ aside {
 
 #indoortemphumid {
     position: relative;
+    left: 10%;
     font-size: 1.3em;
     text-align: left;
     margin-top: 4%;
@@ -173,13 +174,14 @@ aside {
 }
 */
 #houseIcon{
-     width: 15%;
+    width: 15%;
     height: auto;
-    margin: 1%;
-   float: left;    
-    margin-left: 10%;
+    float: left;
+    margin-left: 12%;
     margin-right: 2%;
+    margin-top: 4%;
 }
+
 #weatherIcon {
     width: 50%;
 }
