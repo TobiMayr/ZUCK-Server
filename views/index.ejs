@@ -97,9 +97,12 @@
                 <%}%>
             </div>
             <div class="windows">
-                <img id="windowIcon" class="svg" src="images/mailboxEmpty.svg">
-                <span class="sensorName">Briefkasten</span><br>
-                <span class="sensorStatus"><%=mailboxSensors[1].status%></span>
+                    <%if (mailboxSensors[0].id == 0 && mailboxSensors.length > 1){%>
+                    <%mailboxSensors.shift()%>
+                <%}%>
+                    <img id="windowIcon" class="svg" src="images/mailboxEmpty.svg">
+                    <span class="sensorName">Briefkasten</span><br>
+                    <span class="sensorStatus"><%=mailboxSensors[0].status%></span>
             </div>
         </div>
     </div>
