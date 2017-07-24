@@ -9,14 +9,8 @@
     <link rel="stylesheet" href="stylesheets/reset.css">
     <link rel="stylesheet" href="stylesheets/stylesheet.css">
     <link rel="stylesheet" href="stylesheets/responsive.css">
-    <link rel="stylesheet" href="stylesheets/mobile.css">
-<<<<<<< HEAD
-    <link rel="shortcut icon" href="">
-=======
-    
+    <link rel="stylesheet" href="stylesheets/mobile.css">    
     <link rel="icon" type="image/png" href="images/z.png">
-    
->>>>>>> 8f561c861e7cf09017b62718a0241b8c795573ee
 </head>
 
 <body id="top">
@@ -192,7 +186,7 @@
             var artNo = 0;
 
             document.getElementById("news").innerHTML =
-                "<a tabIndex=\"-1\" href=\""
+                "<a target=\"popup\" onclick=\"window.open('','popup','width=580,height=360,scrollbars=no,toolbar=no,status=no,resizable=yes,menubar=no,location=no,directories=no,top=10,left=10') tabIndex=\"-1\" href=\""
                 +  (res['articles'][artNo].url)
                 + "\"><h3>"
                 + (res['articles'][artNo].title)
@@ -217,7 +211,7 @@
                 else artNo = 0;
 
                 document.getElementById("news").innerHTML =
-                    "<a tabIndex=\"-1\" href=\""
+                    "<a target=\"popup\" onclick=\"window.open('','popup','width=580,height=360,scrollbars=no,toolbar=no,status=no,resizable=yes,menubar=no,location=no,directories=no,top=10,left=10') tabIndex=\"-1\" href=\""
                     +  (res['articles'][artNo].url)
                     + "\"><h3>"
                     + (res['articles'][artNo].title)
