@@ -250,10 +250,14 @@
 </script>
 <!--------- TIME SCRIPT ------->
 <!--<script src="javascript/zuckJS.js"></script>-->
+<!--------- TIME SCRIPT ------->
+<!--<script src="javascript/zuckJS.js"></script>-->
 <script type="text/javascript">
+
+    var weekdays = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
+    var months = new Array("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
+
     function updateTimeAndDate() {
-        var weekdays = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
-        var months = new Array("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
         var currDate = new Date();
         var weekday = weekdays[currDate.getDay()];
         var day = currDate.getDate();
@@ -266,8 +270,8 @@
             min = "0" + min;
         }
         document.getElementById("clock").innerHTML = hr + ":" + min;
-        setInterval(updateTimeAndDate, 10000);
     }
+    setInterval(updateTimeAndDate, 10000);
     updateTimeAndDate();
 </script>
 
@@ -319,6 +323,7 @@
             images[1].style.display = 'inline';
         }
         console.log("changeIcon");
+
         /*var imgUrl = '';
         var oldImg = document.getElementById(currentIp);
         var imgParent = oldImg.parentNode;
@@ -372,6 +377,13 @@
     }
 </script>
 <script>
+    function makeReq(url){
+        $.get(url);
+        console.log("made Req");
+    }
+</script>
+
+<script>
     var timeOut;
     function scrollToTop() {
         if (document.body.scrollTop!=0 || document.documentElement.scrollTop!=0){
@@ -390,15 +402,18 @@
     function handleDocumentKeyDown(event){
         if(event.which === 83){ //s
             $.tabNext();
+
         }else if (event.which === 87) { //w
             $.tabPrev();
         }
     }
 </script>
+
 <script>
     $(document).ready(function(){
         $(document).keydown(handleDocumentKeyDown);
     });
+
     function handleDocumentKeyDown(event){
         var selectedElement = document.activeElement;
         console.log(selectedElement);
@@ -406,6 +421,7 @@
             selectedElement.click();
         }
     }
+
 </script>
 <script>  
             jQuery(document).ready(function() {
