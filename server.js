@@ -35,6 +35,7 @@ app.get('/', function(req, res){
 
     if(!windowSensors[0]){
         windowSensors.push(windowSens = {
+            id: 0,
             status: 'kein Sensor',
             imgSrc: windowImgOpen
         });
@@ -90,53 +91,57 @@ app.set('views', path.join(__dirname, 'views'));
 function discoverBulbs() {
 //IPs der Glühbirnen bekommen
     PythonShell.run('python/discover_bulbs.py', options, function (err, bulb_ips) {
-        if (err) throw err;
-        // results is an array consisting of messages collected during execution
-        var cleanLightsString = bulb_ips.toString().replace(/u/g, '').replace(/'/g, '"').replace(/[\[\]']+/g, '');
-        cleanLightsString = '[' + cleanLightsString + ']';
-        console.log(cleanLightsString);
-        try {
-            var lightsObj = JSON.parse(cleanLightsString);
-        } catch (e) {
-            console.log(e);
-        }
-        lights = [];
-        if (lightsObj) {
-            for (var i = 0; i < lightsObj.length; i++){
-
-                var imageSrc = '';
-
-                if (lightsObj[i].capabilities.power == 'on') {
-                    imageSrc = lightImgOn
-                } else if (lightsObj[i].capabilities.power == 'off') {
-                    imageSrc = lightImgOff
-                }
-
-
-                var light = {
-                    ip: lightsObj[i].ip,
-                    label: lightsObj[i].capabilities.name,
-                    toggleStatus: lightsObj[i].capabilities.power,
-                    imgSrc: imageSrc,
-                    colour: lightsObj[i].capabilities.rgb,
-                    brightness: lightsObj[i].capabilities.bright
-                };
-                lights.push(light);
+        if (err){
+            console.log("Could not load Lights. Probably Network down");
+            console.log(err);
+        }else {
+            // results is an array consisting of messages collected during execution
+            var cleanLightsString = bulb_ips.toString().replace(/u/g, '').replace(/'/g, '"').replace(/[\[\]']+/g, '');
+            cleanLightsString = '[' + cleanLightsString + ']';
+            console.log(cleanLightsString);
+            try {
+                var lightsObj = JSON.parse(cleanLightsString);
+            } catch (e) {
+                console.log(e);
             }
-        }
-        //lights sortieren mit Hilfe der letzten Zahl der IP
-        lights.sort(function(a,b) {
-            var a = a.ip;
-            var b = b.ip;
+            lights = [];
+            if (lightsObj) {
+                for (var i = 0; i < lightsObj.length; i++) {
 
-            a = a.split(".");
-            b = b.split(".");
-            if (a[a.length - 1] < b[b.length - 1])
-                return -1;
-            if (a[a.length - 1] > b[b.length - 1])
-                return 1;
-            return 0;
-        });
+                    var imageSrc = '';
+
+                    if (lightsObj[i].capabilities.power == 'on') {
+                        imageSrc = lightImgOn
+                    } else if (lightsObj[i].capabilities.power == 'off') {
+                        imageSrc = lightImgOff
+                    }
+
+
+                    var light = {
+                        ip: lightsObj[i].ip,
+                        label: lightsObj[i].capabilities.name,
+                        toggleStatus: lightsObj[i].capabilities.power,
+                        imgSrc: imageSrc,
+                        colour: lightsObj[i].capabilities.rgb,
+                        brightness: lightsObj[i].capabilities.bright
+                    };
+                    lights.push(light);
+                }
+            }
+            //lights sortieren mit Hilfe der letzten Zahl der IP
+            lights.sort(function (a, b) {
+                var a = a.ip;
+                var b = b.ip;
+
+                a = a.split(".");
+                b = b.split(".");
+                if (a[a.length - 1] < b[b.length - 1])
+                    return -1;
+                if (a[a.length - 1] > b[b.length - 1])
+                    return 1;
+                return 0;
+            });
+        }
     });
 
 }
