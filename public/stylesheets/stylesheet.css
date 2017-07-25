@@ -274,18 +274,30 @@ aside {
 }
 
 #media span, #sensor p {
-    margin: 0 10% 0 10%;
+    margin: 13% 10% 0 10%;
 }
 
 /*DIV CONTAINING ICONS AND NAME*/
-#stereo, #tv {
-    margin-left: 10%;
+#stereo div {
+    display: flex;
+    flex-direction: row;
+    margin-left: 18%;
     margin-top: 10%;
+}
 
+#tv div {
+    display: flex;
+    flex-direction: row;
+    margin-left: 18%;
+    margin-top: 5%;
+}
+
+#tv span {
+    margin-top: 19%;
 }
 
 #stereoIcon, #tvIcon {
-    width: 23.3%;
+    width: 30%;
     vertical-align: middle;
 }
 
