@@ -411,6 +411,9 @@
 
         }else if (event.which === 87) { //w
             $.tabPrev();
+        }else if (event.which == 13) { //enter
+            var selectedElement = document.activeElement;
+            selectedElement.click();
         }
     }
 </script>
