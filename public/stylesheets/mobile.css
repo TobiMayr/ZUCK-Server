@@ -35,7 +35,7 @@
         background-color: #BFC0C0;
     }
     #obenrechts{
-        display: block;
+        display: none;
         padding-bottom: 0;
     }
      #time{
@@ -129,16 +129,7 @@
         width: 50%;
         float: right;
     }
-    #indoorcontainer{
-        background-color: midnightblue;
-        font-size: 70%;
-    }
-    #houseIcon{
-        width: 30%;
-    }
-    #temp, #humid{
-        
-    }
+   
 /*----------SENSOR------*/
     #sensor label{
       /*  background-color: #5CC4BD;*/
@@ -183,23 +174,27 @@
 
     }
     #device{
-         display: flex;
-    flex-direction: row;
-    padding-left: 10%;
+        display: flex;
+        flex-direction: row;
+        padding-left: 10%;
         margin: 2% 0 2% 0;
     }
-#stereo, #tv {
-    float: left;
-    width: 30%;
-    text-align: center;
-    margin: 0%;
-}
+    #stereo, #tv {
+        float: left;
+        width: 30%;
+        text-align: center;
+        margin: 0%;
+    }
+    #stereo div, #tv div{
+        display: block;
+        margin: 0;
+    }
 
 
-#tvIcon, #stereoIcon{
-    width: 50%;
-    margin: 7%;
-}
+    #tvIcon, #stereoIcon{
+        width: 60%;
+        margin: 7%;
+    }
 /*----------LIGHT------*/
     .light label{
         /*background-color: #677FB0;*/

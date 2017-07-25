@@ -32,6 +32,8 @@ header {
 
 :focus {
       border-bottom: 5px solid white;
+    outline:none;
+    box-sizing: content-box;
 }
 
 /*----- NEWS----*/
