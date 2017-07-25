@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="stylesheets/reset.css">
     <link rel="stylesheet" href="stylesheets/stylesheet.css">
     <link rel="stylesheet" href="stylesheets/responsive.css">
-    <link rel="stylesheet" href="stylesheets/mobile.css">
+    <link rel="stylesheet" href="stylesheets/mobile.css">    
     <link rel="icon" type="image/png" href="images/z.png">
 </head>
 
@@ -17,7 +17,7 @@
 
 <header>
     <!--<h1 onclick="topFunction()" id="topHeader">ZUCK</h1>-->
-    <h1 href="#top" onclick="scrollToTop();return false"><img id="logo" src="/images/zuckDick.svg"></h1>
+    <h1 href="#top" onclick="scrollToTop();return false"><img id="logo" src="/images/zucktextSchwarz.svg"></h1>
     
 </header>
 
@@ -31,6 +31,7 @@
         </section>
     </div>
 </div>
+
 <!--------- SIDE ------->
 <aside>
     <div id="obenrechts">
@@ -38,6 +39,7 @@
             <div><p id="clock"></p></div>
             <div><p id="date"></p></div>
         </div>
+
         <div id="weather">
             <div id="weatherIconAndInfo">
                 <img id="weatherIcon" class="svg" src="images/weather.svg">
@@ -46,8 +48,9 @@
                     <p id="location"></p>
                 </div>
             </div>
-            <div id="indoorcontainer">
+              <div id="indoorcontainer">
                 <img id="houseIcon" class="svg" src="images/chiphouse.svg">
+
                 <table id="indoortemphumid">
                     <tr>
                         <th id="temp">Raumtemperatur: <%= temperature1 %> °C</th>
@@ -60,7 +63,7 @@
                 <div id="humid"><p>Luftfeuchtigkeit: <%= humidity1 %> %</p></div>-->
             </div>
         </div>
-
+      
     </div>
 
     <div id="sensor">
@@ -68,13 +71,12 @@
         <label for="toggle2"><img src="images/chip.svg">SENSOR</label>
 
         <div id="expand2">
-            <%if (soilSensors[0].id == 0 && soilSensors.length > 1){%>
-            <%soilSensors.shift()%>
-            <%}%>
             <%for (var i = 0; i < soilSensors.length; i++) { %>
             <div class="plants">
                 <img id="plantIcon" class="svg"  src="images/plant.svg">
+
                 <span class="sensorName">Pflanze <%=i + 1%></span>
+
                 <div class="plantHumid">
                     <img id="humid1" class="svg" src="images/humidity.svg">
                     <span><%=soilSensors[0].humidity%></span>
@@ -82,9 +84,6 @@
             </div>
             <%}%>
             <div class="windows">
-                <%if (windowSensors[0].id == 0 && windowSensors.length > 1){%>
-                    <%windowSensors.shift()%>
-                <%}%>
                 <%for (var i = 0; i < windowSensors.length; i++) { %>
                 <img id="windowIcon" class="svg" src="<%=windowSensors[i].imgSrc%>">
                 <span class="sensorName">Fenster <%=i + 1%></span><br>
@@ -92,12 +91,9 @@
                 <%}%>
             </div>
             <div class="windows">
-                    <%if (mailboxSensors[0].id == 0 && mailboxSensors.length > 1){%>
-                    <%mailboxSensors.shift()%>
-                <%}%>
-                    <img id="windowIcon" class="svg" src="images/mailboxEmpty.svg">
-                    <span class="sensorName">Briefkasten</span><br>
-                    <span class="sensorStatus"><%=mailboxSensors[0].status%></span>
+                <img id="windowIcon" class="svg" src="images/mailboxEmpty.svg">
+                <span class="sensorName">Briefkasten</span><br>
+                <span class="sensorStatus"><%=mailboxSensors[0].status%></span>
             </div>
         </div>
     </div>
@@ -112,26 +108,24 @@
         <h2>Media</h2>
         <div id="expandMedia">
            <div id="device">
-                <div id="stereo">
-                    <div tabIndex="1" onclick="makeReq('http://192.168.0.107/socketONOFF')">
-                        <img id="stereoIcon" class="svg" src="images/coffee.svg">
-                        <span>Kaffee</span>
-                    </div>
+                <div tabIndex="1" id="stereo">
+                    <a tabIndex="-1" href="http://192.168.0.107/socketONOFF"><img id="stereoIcon" class="svg" src="images/coffee.svg"></a>
+                    <span>Kaffee</span>
                 </div>
-                <div id="tv">
-                    <div tabIndex="2" onclick="makeReq('http://192.168.0.107/TVONOFF')">
-                        <img id="tvIcon" class="svg" src="images/tv.svg">
-                        <span>TV</span>
-                    </div>
+                <div tabIndex="2" id="tv">
+                    <a tabIndex="-1" href="http://192.168.0.107/TVONOFF"><img id="tvIcon" class="svg" src="images/tv.svg"></a>
+                    <span>TV</span>
                 </div>
-            </div>
+               </div>
         </div>
     </section>
+
     <!--------- LIGHT ------->
     <section class="light">
         <input id="toggleLight" type="checkbox" unchecked>
         <label for="toggleLight"><img src="images/lamp.svg">LIGHT</label>
         <h2>Licht</h2>
+
         <div id="expandLight">
             <section class="bulb" id="bulb">
                 <%if(lights[0].ip != 0){%>
@@ -141,28 +135,29 @@
                     <%console.log(lights[i].toggleStatus);%>
                     <a tabindex="3" href="/lights/<%=lights[i].ip %>" onclick="changeIcon('<%=lightIp%>')">
                         <%if(lights[i].toggleStatus == 'on'){ %>
-                        <%console.log('on');%>
-                        <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>">
-                        <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>">
+                                <%console.log('on');%>
+                           <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>">
+                           <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>">
                         <%  }else{%>
                         <%console.log('off');%>
-                        <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>">
-                        <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>">
+                              <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>">
+                              <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>">
                         <%}%>
 
                         <p style="margin-top: 10px"><%=lights[i].label %></p>
                     </a>
                 </div>
+
                 <% } %>
                 <% } %>
             </section>
             <section class="bulb">
 
-                <!--<div class="light1">
+                <div class="light1">
                     <a href="/LichtRed">
                         <div id="bla">
-                            <img id="bulb1" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg">
-                        </div>
+                        <img id="bulb1" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg">
+                            </div>
                         <p>Flur Unten</p>
                     </a>
                 </div>
@@ -173,29 +168,39 @@
                         <p>Flur Oben</p>
                     </a>
                 </div>
-
-
+                
+                
                 <div class="light1">
                     <a href="/LichtGreen">
                         <img id="bulb1" class="svg bulbIcon" src="images/lightbulb_new.svg">
                         <p>Garage</p>
                     </a>
-                </div>-->
+                </div>
 
 
             </section>
         </div>
     </section>
 </section>
+
+<!--<script>-->
+    <!--var auto_refresh = setInterval(-->
+        <!--function(){-->
+            <!--$('body').fadeOut('slow').load('index.ejs').fadeIn("slow");-->
+        <!--}, 3000);-->
+<!--</script>-->
+
 <!--------- NEWS SCRIPT ------->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         var url = 'https://newsapi.org/v1/articles?source=die-zeit&sortBy=latest&apiKey=a1ef913e98c94358994dc8a8f7347aff&lang=de';
         $.getJSON(url).then(function (res) {
+
             var artNo = 0;
+
             document.getElementById("news").innerHTML =
-                "<a tabindex='-1' href=\""
+                "<a target=\"popup\" onclick=\"window.open('','popup','width=580,height=360,scrollbars=no,toolbar=no,status=no,resizable=yes,menubar=no,location=no,directories=no,top=10,left=10') tabIndex=\"-1\" href=\""
                 +  (res['articles'][artNo].url)
                 + "\"><h3>"
                 + (res['articles'][artNo].title)
@@ -214,11 +219,13 @@
                 + "</h3><br><p>"
                 + (res['articles'][artNo + 2].description)
                 + "</p></a>";
+
             setInterval(function () {
                 if (artNo <= 6) artNo += 3;
                 else artNo = 0;
+
                 document.getElementById("news").innerHTML =
-                    "<a tabIndex=\"-1\" href=\""
+                    "<a target=\"popup\" onclick=\"window.open('','popup','width=580,height=360,scrollbars=no,toolbar=no,status=no,resizable=yes,menubar=no,location=no,directories=no,top=10,left=10') tabIndex=\"-1\" href=\""
                     +  (res['articles'][artNo].url)
                     + "\"><h3>"
                     + (res['articles'][artNo].title)
@@ -237,47 +244,57 @@
                     + "</h3><br><p>"
                     + (res['articles'][artNo + 2].description)
                     + "</p></a>";
+
             }, 30000);
         })
     })
+
 </script>
+
 <!--------- WEATHER SCRIPT ------->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         var api = "http://api.openweathermap.org/data/2.5/weather?q=Berlin&units=metric&lang=de&APPID=bf0a224a7b36d53836dd5e19f4b986a8";
         $.getJSON(api, function (data) {
+
             document.getElementById("currentWeather").innerHTML = data.main.temp + "°C, " + data.weather[0].description;
             document.getElementById("location").innerHTML = data.name + ", " + data.sys.country;
+
         });
     })
 </script>
-<!--------- TIME SCRIPT ------->
-<!--<script src="javascript/zuckJS.js"></script>-->
+
 <!--------- TIME SCRIPT ------->
 <!--<script src="javascript/zuckJS.js"></script>-->
 <script type="text/javascript">
 
     var weekdays = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
     var months = new Array("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
+    var currDate;
+    var weekday;
+    var day;
+    var month;
+    var year;
+    var hr;
+    var min;
 
     function updateTimeAndDate() {
-        var currDate = new Date();
-        var weekday = weekdays[currDate.getDay()];
-        var day = currDate.getDate();
-        var month = months[currDate.getMonth()];
-        var year = currDate.getFullYear();
+        currDate = new Date();
+        weekday = weekdays[currDate.getDay()];
+        day = currDate.getDate();
+        month = months[currDate.getMonth()];
+        year = currDate.getFullYear();
         document.getElementById("date").innerHTML = weekday + ", " + day + ". " + month + " " + year;
-        var hr = currDate.getHours();
-        var min = currDate.getMinutes();
+        hr = currDate.getHours();
+        min = currDate.getMinutes();
         if (min < 10) {
             min = "0" + min;
         }
         document.getElementById("clock").innerHTML = hr + ":" + min;
+        setInterval(updateTimeAndDate, 10000);
     }
-    setInterval(updateTimeAndDate, 10000);
     updateTimeAndDate();
-    setInterval(updateTimeAndDate, 10000);
 
 </script>
 
@@ -291,10 +308,12 @@
         var needsRefresh = false;
         if(lightClasses[0]) {
             for (var i = 0; i < lightsVar.length; i++) {
+
                 var lightClass = lightClasses[i];
                 var imageLink = lightClass.src;
                 imageLink = imageLink.split("/");
                 imageLink = imageLink[imageLink.length - 2] + '/' + imageLink[imageLink.length - 1];
+
                 if (lightsVar[i].imgSrc != imageLink) {
                     needsRefresh = true;
                     //document.getElementsByClassName("bulbIcon")[i].src = lightsVar[i].imgSrc;
@@ -314,6 +333,10 @@
         }, 500);
     }, 1000); //bulb section jede Sekunde neu laden
 */
+
+
+
+
 </script>
 <!--------- CHANGE LIGHT BULB ICONS ------->
 <script>
@@ -321,6 +344,7 @@
         var img = document.getElementById(currentIp);
         var div = img.parentNode;
         var images = div.getElementsByTagName("svg");
+
         if(images[0].style.display == 'none' ){
             images[0].style.display = 'inline';
             images[1].style.display = 'none';
@@ -328,23 +352,29 @@
             images[0].style.display = 'none';
             images[1].style.display = 'inline';
         }
-        console.log("changeIcon");
+
 
         /*var imgUrl = '';
         var oldImg = document.getElementById(currentIp);
         var imgParent = oldImg.parentNode;
         var pathCount = oldImg.getElementsByTagName('path').length;
         var currentId = oldImg.getAttribute("id");
+
         if(pathCount == 4){
             console.log(pathCount);
             imgUrl = 'images/lightbulb_new.svg';
+
         }else if(pathCount == 1){
             console.log(pathCount);
             imgUrl = 'images/lightbulbOn.svg';
             console.log("yo2");
         }
+
         imgParent.removeChild(oldImg);
+
+
         var newImg = new Image();
+
         newImg.src = imgUrl;
         newImg.class="svg bulbIcon";
         newImg.name="bulbIcon";
@@ -352,13 +382,17 @@
         imgParent.appendChild(newImg);
         console.log(newImg.id);
         console.log(newImg.name);
+
+
         var $img = jQuery(newImg);
         var imgID = $img.attr('id');
         var imgClass = $img.attr('class');
         var imgURL = $img.attr('src');
+
         jQuery.get(imgURL, function(data) {
             // Get the SVG tag, ignore the rest
             var $svg = jQuery(data).find('svg');
+
             // Add replaced image's ID to the new SVG
             if(typeof imgID !== 'undefined') {
                 $svg = $svg.attr('id', imgID);
@@ -367,26 +401,17 @@
             if(typeof imgClass !== 'undefined') {
                 $svg = $svg.attr('class', imgClass+' replaced-svg');
             }
+
             // Remove any invalid XML tags as per http://validator.w3.org
             $svg = $svg.removeAttr('xmlns:a');
+
             // Replace image with new SVG
             $img.replaceWith($svg);
         });
         //$("#bulb").load(location.href + " #bulb>*", "");
         */
     }
-</script>
-<script>
-    function makeReq(url){
-        $.get(url);
-        console.log("made Req");
-    }
-</script>
-<script>
-    function makeReq(url){
-        $.get(url);
-        console.log("made Req");
-    }
+
 </script>
 
 <script>
@@ -399,58 +424,60 @@
         else clearTimeout(timeOut);
     }
 </script>
+
 <!--------- TABABBLE ------->
 <script src="javascript/jquery.tabbable.min.js"></script>
 <script>
     $(document).ready(function(){
         $(document).keydown(handleDocumentKeyDown);
     });
+
     function handleDocumentKeyDown(event){
-        if(event.which === 83){ //s
+        if(event.which === 83){
             $.tabNext();
 
-        }else if (event.which === 87) { //w
+        }else if (event.which === 87) {
             $.tabPrev();
         }
     }
 </script>
 
-<script>
-    jQuery(document).ready(function() {
-        /*
-         * Replace all SVG images with inline SVG
-         */
-        jQuery('img.svg').each(function(){
-            var $img = jQuery(this);
-            var imgID = $img.attr('id');
-            var imgClass = $img.attr('class');
-            var imgURL = $img.attr('src');
-            var imgStyle = $img.attr('style');
+<script>  
+            jQuery(document).ready(function() {
+                /*
+                 * Replace all SVG images with inline SVG
+                 */
+                    jQuery('img.svg').each(function(){
+                        var $img = jQuery(this);
+                        var imgID = $img.attr('id');
+                        var imgClass = $img.attr('class');
+                        var imgURL = $img.attr('src');
+                        var imgStyle = $img.attr('style');
+                
+                        jQuery.get(imgURL, function(data) {
+                            // Get the SVG tag, ignore the rest
+                            var $svg = jQuery(data).find('svg');
+                
+                            // Add replaced image's ID to the new SVG
+                            if(typeof imgID !== 'undefined') {
+                                $svg = $svg.attr('id', imgID);
+                            }
+                            // Add replaced image's classes to the new SVG
+                            if(typeof imgClass !== 'undefined') {
+                                $svg = $svg.attr('class', imgClass+' replaced-svg');
+                            }
+                            
+                            // Remove any invalid XML tags as per http://validator.w3.org
+                            $svg = $svg.removeAttr('xmlns:a');
 
-            jQuery.get(imgURL, function(data) {
-                // Get the SVG tag, ignore the rest
-                var $svg = jQuery(data).find('svg');
-
-                // Add replaced image's ID to the new SVG
-                if(typeof imgID !== 'undefined') {
-                    $svg = $svg.attr('id', imgID);
-                }
-                // Add replaced image's classes to the new SVG
-                if(typeof imgClass !== 'undefined') {
-                    $svg = $svg.attr('class', imgClass+' replaced-svg');
-                }
-
-                // Remove any invalid XML tags as per http://validator.w3.org
-                $svg = $svg.removeAttr('xmlns:a');
-
-                $svg = $svg.attr('style', imgStyle);
-                // Replace image with new SVG
-                $img.replaceWith($svg);
+                            $svg = $svg.attr('style', imgStyle);
+                            // Replace image with new SVG
+                            $img.replaceWith($svg);
+                        });
+    
+                    });
             });
-
-        });
-    });
-</script>
+        </script>
 <script>
     setTimeout(handleDocumentKeyDown, 5000);
     setTimeout(scrollToTop, 5000);
