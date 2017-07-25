@@ -283,13 +283,22 @@
 
 <!--------- REFRESH LIGHT BULBS SCRIPT ------->
 <script>
-    /*
-    var lightClasses = document.getElementsByName("bulbIcon");
     setInterval(function() {
         $.get("");
-        var lightsVar = <%- JSON.stringify(lights) %>;
-        var needsRefresh = false;
-        if(lightClasses[0]) {
+        //var lightsVar = <%- JSON.stringify(lights) %>;
+        //var needsRefresh = false;
+
+        var bulbIcons = document.getElementsByClassName("bulbIcon");
+        console.log(bulbIcons);
+        for(var i = 0; i < bulbIcons.length; i++){
+            var currentIp = bulbIcons[i].getAttribute("id");
+            console.log(currentIp);
+            console.log(location.href + "#" + currentIp + ">*");
+            $("#" + currentIp).load(location.href +"#" + currentIp + ">*", "");
+        }
+
+        /*
+        if(lightsVar[0].ip != 0) {
             for (var i = 0; i < lightsVar.length; i++) {
                 var lightClass = lightClasses[i];
                 var imageLink = lightClass.src;
@@ -297,7 +306,7 @@
                 imageLink = imageLink[imageLink.length - 2] + '/' + imageLink[imageLink.length - 1];
                 if (lightsVar[i].imgSrc != imageLink) {
                     needsRefresh = true;
-                    //document.getElementsByClassName("bulbIcon")[i].src = lightsVar[i].imgSrc;
+                    document.getElementsByClassName("bulbIcon")[i].src = lightsVar[i].imgSrc;
                 }
                 console.log(imageLink);
                 console.log(lightsVar[i].imgSrc);
@@ -312,23 +321,27 @@
                 //console.log("no refresh");
             }
         }, 500);
+        */
     }, 1000); //bulb section jede Sekunde neu laden
-*/
 </script>
 <!--------- CHANGE LIGHT BULB ICONS ------->
 <script>
+
     function changeIcon(currentIp){
-        var img = document.getElementById(currentIp);
-        var div = img.parentNode;
-        var images = div.getElementsByTagName("svg");
-        if(images[0].style.display == 'none' ){
-            images[0].style.display = 'inline';
-            images[1].style.display = 'none';
-        }else if(images[0].style.display != 'none'){
-            images[0].style.display = 'none';
-            images[1].style.display = 'inline';
-        }
-        console.log("changeIcon");
+        setTimeout(function(){
+            var img = document.getElementById(currentIp);
+            var div = img.parentNode;
+            var images = div.getElementsByTagName("svg");
+            if(images[0].style.display == 'none' ){
+                images[0].style.display = 'inline';
+                images[1].style.display = 'none';
+            }else if(images[0].style.display != 'none'){
+                images[0].style.display = 'none';
+                images[1].style.display = 'inline';
+            }
+            console.log("changeIcon");
+        },500);
+
 
         /*var imgUrl = '';
         var oldImg = document.getElementById(currentIp);
@@ -374,12 +387,6 @@
         });
         //$("#bulb").load(location.href + " #bulb>*", "");
         */
-    }
-</script>
-<script>
-    function makeReq(url){
-        $.get(url);
-        console.log("made Req");
     }
 </script>
 <script>

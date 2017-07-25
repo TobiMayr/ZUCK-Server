@@ -178,9 +178,6 @@ app.get('/lights/:ip', function (req, res) {
             // results is an array consisting of messages collected during execution
         });
     }
-    setTimeout(function(){
-        res.redirect('back')
-    }, 10000);
 });
 
 
