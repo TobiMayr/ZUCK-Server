@@ -352,5 +352,7 @@ app.get('/sensor/temphumid/:temp', function(req, res){
     sensorHumid1 = strArray[1];
 });
 
+setTimeout(discoverBulbs, 5000);
+
 console.log('Server started at port:' + port);
 

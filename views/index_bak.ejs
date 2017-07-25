@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="stylesheets/reset.css">
     <link rel="stylesheet" href="stylesheets/stylesheet.css">
     <link rel="stylesheet" href="stylesheets/responsive.css">
-    <link rel="stylesheet" href="stylesheets/mobile.css">
+    <link rel="stylesheet" href="stylesheets/mobile.css">    
     <link rel="icon" type="image/png" href="images/z.png">
 </head>
 
@@ -18,7 +18,7 @@
 <header>
     <!--<h1 onclick="topFunction()" id="topHeader">ZUCK</h1>-->
     <h1 href="#top" onclick="scrollToTop();return false"><img id="logo" src="/images/zucktextSchwarz.svg"></h1>
-
+    
 </header>
 
 <!--------- NEWS ------->
@@ -48,7 +48,7 @@
                     <p id="location"></p>
                 </div>
             </div>
-            <div id="indoorcontainer">
+              <div id="indoorcontainer">
                 <img id="houseIcon" class="svg" src="images/chiphouse.svg">
 
                 <table id="indoortemphumid">
@@ -63,7 +63,7 @@
                 <div id="humid"><p>Luftfeuchtigkeit: <%= humidity1 %> %</p></div>-->
             </div>
         </div>
-
+      
     </div>
 
     <div id="sensor">
@@ -107,7 +107,7 @@
         <label for="toggleMedia"><img src="images/playbutton.svg">MEDIA</label>
         <h2>Media</h2>
         <div id="expandMedia">
-            <div id="device">
+           <div id="device">
                 <div tabIndex="1" id="stereo">
                     <a tabIndex="-1" href="http://192.168.0.107/socketONOFF"><img id="stereoIcon" class="svg" src="images/coffee.svg"></a>
                     <span>Kaffee</span>
@@ -116,7 +116,7 @@
                     <a tabIndex="-1" href="http://192.168.0.107/TVONOFF"><img id="tvIcon" class="svg" src="images/tv.svg"></a>
                     <span>TV</span>
                 </div>
-            </div>
+               </div>
         </div>
     </section>
 
@@ -135,13 +135,13 @@
                     <%console.log(lights[i].toggleStatus);%>
                     <a tabindex="3" href="/lights/<%=lights[i].ip %>" onclick="changeIcon('<%=lightIp%>')">
                         <%if(lights[i].toggleStatus == 'on'){ %>
-                        <%console.log('on');%>
-                        <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>">
-                        <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>">
+                                <%console.log('on');%>
+                           <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>">
+                           <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>">
                         <%  }else{%>
                         <%console.log('off');%>
-                        <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>">
-                        <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>">
+                              <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>">
+                              <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>">
                         <%}%>
 
                         <p style="margin-top: 10px"><%=lights[i].label %></p>
@@ -156,8 +156,8 @@
                 <div class="light1">
                     <a href="/LichtRed">
                         <div id="bla">
-                            <img id="bulb1" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg">
-                        </div>
+                        <img id="bulb1" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg">
+                            </div>
                         <p>Flur Unten</p>
                     </a>
                 </div>
@@ -168,8 +168,8 @@
                         <p>Flur Oben</p>
                     </a>
                 </div>
-
-
+                
+                
                 <div class="light1">
                     <a href="/LichtGreen">
                         <img id="bulb1" class="svg bulbIcon" src="images/lightbulb_new.svg">
@@ -184,10 +184,10 @@
 </section>
 
 <!--<script>-->
-<!--var auto_refresh = setInterval(-->
-<!--function(){-->
-<!--$('body').fadeOut('slow').load('index.ejs').fadeIn("slow");-->
-<!--}, 3000);-->
+    <!--var auto_refresh = setInterval(-->
+        <!--function(){-->
+            <!--$('body').fadeOut('slow').load('index.ejs').fadeIn("slow");-->
+        <!--}, 3000);-->
 <!--</script>-->
 
 <!--------- NEWS SCRIPT ------->
@@ -271,62 +271,68 @@
 
     var weekdays = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
     var months = new Array("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
+    var currDate;
+    var weekday;
+    var day;
+    var month;
+    var year;
+    var hr;
+    var min;
 
     function updateTimeAndDate() {
-        var currDate = new Date();
-        var weekday = weekdays[currDate.getDay()];
-        var day = currDate.getDate();
-        var month = months[currDate.getMonth()];
-        var year = currDate.getFullYear();
+        currDate = new Date();
+        weekday = weekdays[currDate.getDay()];
+        day = currDate.getDate();
+        month = months[currDate.getMonth()];
+        year = currDate.getFullYear();
         document.getElementById("date").innerHTML = weekday + ", " + day + ". " + month + " " + year;
-        var hr = currDate.getHours();
-        var min = currDate.getMinutes();
+        hr = currDate.getHours();
+        min = currDate.getMinutes();
         if (min < 10) {
             min = "0" + min;
         }
         document.getElementById("clock").innerHTML = hr + ":" + min;
-
+        setInterval(updateTimeAndDate, 10000);
     }
     updateTimeAndDate();
-    setInterval(updateTimeAndDate, 10000);
 
 </script>
 
 <!--------- REFRESH LIGHT BULBS SCRIPT ------->
 <script>
     /*
-     var lightClasses = document.getElementsByName("bulbIcon");
-     setInterval(function() {
-     $.get("");
-     var lightsVar = <%- JSON.stringify(lights) %>;
-     var needsRefresh = false;
-     if(lightClasses[0]) {
-     for (var i = 0; i < lightsVar.length; i++) {
+    var lightClasses = document.getElementsByName("bulbIcon");
+    setInterval(function() {
+        $.get("");
+        var lightsVar = <%- JSON.stringify(lights) %>;
+        var needsRefresh = false;
+        if(lightClasses[0]) {
+            for (var i = 0; i < lightsVar.length; i++) {
 
-     var lightClass = lightClasses[i];
-     var imageLink = lightClass.src;
-     imageLink = imageLink.split("/");
-     imageLink = imageLink[imageLink.length - 2] + '/' + imageLink[imageLink.length - 1];
+                var lightClass = lightClasses[i];
+                var imageLink = lightClass.src;
+                imageLink = imageLink.split("/");
+                imageLink = imageLink[imageLink.length - 2] + '/' + imageLink[imageLink.length - 1];
 
-     if (lightsVar[i].imgSrc != imageLink) {
-     needsRefresh = true;
-     //document.getElementsByClassName("bulbIcon")[i].src = lightsVar[i].imgSrc;
-     }
-     console.log(imageLink);
-     console.log(lightsVar[i].imgSrc);
-     console.log('\n\n');
-     }
-     }
-     setTimeout(function(){
-     if(needsRefresh){
-     console.log("needs refresh");
-     $("#bulb").load(location.href + " #bulb>*", "");
-     }else{
-     //console.log("no refresh");
-     }
-     }, 500);
-     }, 1000); //bulb section jede Sekunde neu laden
-     */
+                if (lightsVar[i].imgSrc != imageLink) {
+                    needsRefresh = true;
+                    //document.getElementsByClassName("bulbIcon")[i].src = lightsVar[i].imgSrc;
+                }
+                console.log(imageLink);
+                console.log(lightsVar[i].imgSrc);
+                console.log('\n\n');
+            }
+        }
+        setTimeout(function(){
+            if(needsRefresh){
+                console.log("needs refresh");
+                $("#bulb").load(location.href + " #bulb>*", "");
+            }else{
+                //console.log("no refresh");
+            }
+        }, 500);
+    }, 1000); //bulb section jede Sekunde neu laden
+*/
 
 
 
@@ -349,61 +355,61 @@
 
 
         /*var imgUrl = '';
-         var oldImg = document.getElementById(currentIp);
-         var imgParent = oldImg.parentNode;
-         var pathCount = oldImg.getElementsByTagName('path').length;
-         var currentId = oldImg.getAttribute("id");
+        var oldImg = document.getElementById(currentIp);
+        var imgParent = oldImg.parentNode;
+        var pathCount = oldImg.getElementsByTagName('path').length;
+        var currentId = oldImg.getAttribute("id");
 
-         if(pathCount == 4){
-         console.log(pathCount);
-         imgUrl = 'images/lightbulb_new.svg';
+        if(pathCount == 4){
+            console.log(pathCount);
+            imgUrl = 'images/lightbulb_new.svg';
 
-         }else if(pathCount == 1){
-         console.log(pathCount);
-         imgUrl = 'images/lightbulbOn.svg';
-         console.log("yo2");
-         }
+        }else if(pathCount == 1){
+            console.log(pathCount);
+            imgUrl = 'images/lightbulbOn.svg';
+            console.log("yo2");
+        }
 
-         imgParent.removeChild(oldImg);
-
-
-         var newImg = new Image();
-
-         newImg.src = imgUrl;
-         newImg.class="svg bulbIcon";
-         newImg.name="bulbIcon";
-         newImg.id = currentId;
-         imgParent.appendChild(newImg);
-         console.log(newImg.id);
-         console.log(newImg.name);
+        imgParent.removeChild(oldImg);
 
 
-         var $img = jQuery(newImg);
-         var imgID = $img.attr('id');
-         var imgClass = $img.attr('class');
-         var imgURL = $img.attr('src');
+        var newImg = new Image();
 
-         jQuery.get(imgURL, function(data) {
-         // Get the SVG tag, ignore the rest
-         var $svg = jQuery(data).find('svg');
+        newImg.src = imgUrl;
+        newImg.class="svg bulbIcon";
+        newImg.name="bulbIcon";
+        newImg.id = currentId;
+        imgParent.appendChild(newImg);
+        console.log(newImg.id);
+        console.log(newImg.name);
 
-         // Add replaced image's ID to the new SVG
-         if(typeof imgID !== 'undefined') {
-         $svg = $svg.attr('id', imgID);
-         }
-         // Add replaced image's classes to the new SVG
-         if(typeof imgClass !== 'undefined') {
-         $svg = $svg.attr('class', imgClass+' replaced-svg');
-         }
 
-         // Remove any invalid XML tags as per http://validator.w3.org
-         $svg = $svg.removeAttr('xmlns:a');
+        var $img = jQuery(newImg);
+        var imgID = $img.attr('id');
+        var imgClass = $img.attr('class');
+        var imgURL = $img.attr('src');
 
-         // Replace image with new SVG
-         $img.replaceWith($svg);
-         });
-         //$("#bulb").load(location.href + " #bulb>*", "");
-         */
+        jQuery.get(imgURL, function(data) {
+            // Get the SVG tag, ignore the rest
+            var $svg = jQuery(data).find('svg');
+
+            // Add replaced image's ID to the new SVG
+            if(typeof imgID !== 'undefined') {
+                $svg = $svg.attr('id', imgID);
+            }
+            // Add replaced image's classes to the new SVG
+            if(typeof imgClass !== 'undefined') {
+                $svg = $svg.attr('class', imgClass+' replaced-svg');
+            }
+
+            // Remove any invalid XML tags as per http://validator.w3.org
+            $svg = $svg.removeAttr('xmlns:a');
+
+            // Replace image with new SVG
+            $img.replaceWith($svg);
+        });
+        //$("#bulb").load(location.href + " #bulb>*", "");
+        */
     }
 
 </script>
@@ -436,42 +442,42 @@
     }
 </script>
 
-<script>
-    jQuery(document).ready(function() {
-        /*
-         * Replace all SVG images with inline SVG
-         */
-        jQuery('img.svg').each(function(){
-            var $img = jQuery(this);
-            var imgID = $img.attr('id');
-            var imgClass = $img.attr('class');
-            var imgURL = $img.attr('src');
-            var imgStyle = $img.attr('style');
+<script>  
+            jQuery(document).ready(function() {
+                /*
+                 * Replace all SVG images with inline SVG
+                 */
+                    jQuery('img.svg').each(function(){
+                        var $img = jQuery(this);
+                        var imgID = $img.attr('id');
+                        var imgClass = $img.attr('class');
+                        var imgURL = $img.attr('src');
+                        var imgStyle = $img.attr('style');
+                
+                        jQuery.get(imgURL, function(data) {
+                            // Get the SVG tag, ignore the rest
+                            var $svg = jQuery(data).find('svg');
+                
+                            // Add replaced image's ID to the new SVG
+                            if(typeof imgID !== 'undefined') {
+                                $svg = $svg.attr('id', imgID);
+                            }
+                            // Add replaced image's classes to the new SVG
+                            if(typeof imgClass !== 'undefined') {
+                                $svg = $svg.attr('class', imgClass+' replaced-svg');
+                            }
+                            
+                            // Remove any invalid XML tags as per http://validator.w3.org
+                            $svg = $svg.removeAttr('xmlns:a');
 
-            jQuery.get(imgURL, function(data) {
-                // Get the SVG tag, ignore the rest
-                var $svg = jQuery(data).find('svg');
-
-                // Add replaced image's ID to the new SVG
-                if(typeof imgID !== 'undefined') {
-                    $svg = $svg.attr('id', imgID);
-                }
-                // Add replaced image's classes to the new SVG
-                if(typeof imgClass !== 'undefined') {
-                    $svg = $svg.attr('class', imgClass+' replaced-svg');
-                }
-
-                // Remove any invalid XML tags as per http://validator.w3.org
-                $svg = $svg.removeAttr('xmlns:a');
-
-                $svg = $svg.attr('style', imgStyle);
-                // Replace image with new SVG
-                $img.replaceWith($svg);
+                            $svg = $svg.attr('style', imgStyle);
+                            // Replace image with new SVG
+                            $img.replaceWith($svg);
+                        });
+    
+                    });
             });
-
-        });
-    });
-</script>
+        </script>
 <script>
     setTimeout(handleDocumentKeyDown, 5000);
     setTimeout(scrollToTop, 5000);
