@@ -275,11 +275,14 @@
 
 <!--------- TIME SCRIPT ------->
 <!--<script src="javascript/zuckJS.js"></script>-->
+<!--------- TIME SCRIPT ------->
+<!--<script src="javascript/zuckJS.js"></script>-->
 <script type="text/javascript">
 
+    var weekdays = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
+    var months = new Array("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
+
     function updateTimeAndDate() {
-        var weekdays = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
-        var months = new Array("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
         var currDate = new Date();
         var weekday = weekdays[currDate.getDay()];
         var day = currDate.getDate();
@@ -292,8 +295,8 @@
             min = "0" + min;
         }
         document.getElementById("clock").innerHTML = hr + ":" + min;
-        setInterval(updateTimeAndDate, 10000);
     }
+    setInterval(updateTimeAndDate, 10000);
     updateTimeAndDate();
 
 </script>
