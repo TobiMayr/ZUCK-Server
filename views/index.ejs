@@ -139,7 +139,7 @@
                 <%var lightIp = lights[i].ip%>
                 <div class="light1">
                     <%console.log(lights[i].toggleStatus);%>
-                    <div tabindex="3" onclick="makeReq('/lights/<%=lights[i].ip %>'); changeIcon('<%=lightIp%>');">
+                    <a tabindex="3" href="/lights/<%=lights[i].ip %>" onclick="changeIcon('<%=lightIp%>')">
                         <%if(lights[i].toggleStatus == 'on'){ %>
                         <%console.log('on');%>
                         <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>">
@@ -149,8 +149,9 @@
                         <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>">
                         <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>">
                         <%}%>
+
                         <p style="margin-top: 10px"><%=lights[i].label %></p>
-                    </div>
+                    </a>
                 </div>
                 <% } %>
                 <% } %>
