@@ -55,7 +55,7 @@
         display: none;
         visibility: hidden;
     }
-    .svg path{
+    .svg path, .svg stroke{
         fill: #31333F;
     }
     label {
