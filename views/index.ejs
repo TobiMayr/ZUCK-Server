@@ -284,18 +284,21 @@
 <!--------- REFRESH LIGHT BULBS SCRIPT ------->
 <script>
     setInterval(function() {
-        $.get("");
-        //var lightsVar = <%- JSON.stringify(lights) %>;
-        //var needsRefresh = false;
+        setTimeout(function () {
+            $.get("");
+            //var lightsVar = <%- JSON.stringify(lights) %>;
+            //var needsRefresh = false;
 
-        var bulbIcons = document.getElementsByClassName("bulbIcon");
-        console.log(bulbIcons);
-        for(var i = 0; i < bulbIcons.length; i++){
-            var currentIp = bulbIcons[i].getAttribute("id");
-            console.log(currentIp);
-            console.log(location.href + "#" + currentIp + ">*");
-            $("#" + currentIp).load(location.href +"#" + currentIp + ">*", "");
-        }
+            var bulbIcons = document.getElementsByClassName("bulbIcon");
+            console.log(bulbIcons);
+            for(var i = 0; i < bulbIcons.length; i++){
+                var currentIp = bulbIcons[i].getAttribute("id");
+                console.log(currentIp);
+                console.log(location.href + "#" + currentIp + ">*");
+                $("#" + currentIp).load(location.href +"#" + currentIp + ">*", "");
+            }
+        }, 5000);
+
 
         /*
         if(lightsVar[0].ip != 0) {
@@ -322,7 +325,7 @@
             }
         }, 500);
         */
-    }, 1000); //bulb section jede Sekunde neu laden
+    }, 10000); //bulb section jede Sekunde neu laden
 </script>
 <!--------- CHANGE LIGHT BULB ICONS ------->
 <script>
@@ -340,6 +343,7 @@
                 images[1].style.display = 'inline';
             }
             console.log("changeIcon");
+            window.stop();
         },500);
 
 
@@ -418,8 +422,8 @@
 
         }else if (event.which === 87) { //w
             $.tabPrev();
-        }else if (event.which == 13) { //enter
-            var selectedElement = document.activeElement;
+        }else if (event.which === 13) { //enter
+            var selectedElement = document.activeElement.parentNode;
             selectedElement.click();
         }
     }
