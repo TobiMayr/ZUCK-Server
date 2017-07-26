@@ -29,6 +29,13 @@ var lightImgOn = 'images/lightbulbOn.svg';
 var lightImgOff = 'images/lightbulb_new.svg';
 var plantImgDry ='images/plantDry.svg';
 var plantImgHealthy = 'images/plant.svg';
+var tvImgOn = 'images/tvOn.svg';
+var tvImgOff = 'images/tv.svg';
+var coffeeImgOn = 'images/coffeeOn.svg';
+var coffeeImgOff = 'images/coffee.svg';
+
+var tvStatus = 'false';
+var funkStatus = 'false';
 
 
 app.get('/', function(req, res){
@@ -74,7 +81,9 @@ app.get('/', function(req, res){
         humidity1: sensorHumid1,
         lights: lights,
         soilSensors: soilSensors,
-        mailboxSensors: mailboxSensors
+        mailboxSensors: mailboxSensors,
+        tvStatus: tvStatus,
+        funkStatus: funkStatus
     });
 });
 
@@ -155,7 +164,7 @@ app.get('/lights/:ip', function (req, res) {
     for(var i = 0; i <lights.length; i++){
         console.log("im array" + i);
         if(req.params.ip == lights[i].ip){
-            console.log("ip gefunden");
+            console.log("lampen ip gefunden");
             if(lights[i].toggleStatus == 'on'){
                 discoverBulbs();
                 lights[i].imgSrc = lightImgOn
@@ -235,7 +244,7 @@ app.get('/sensor/window/:open/:id', function(req, res){
     for(var i = 0; i < windowSensors.length; i++){
         if(parseInt(req.params.id) == windowSensors[i].id){
             foundIp = true;
-            console.log('found IP!');
+            console.log('found window sensor IP!');
             if(req.params.open === 'true')
             {
                 console.log("Window open");
@@ -286,7 +295,7 @@ app.get('/sensor/mailbox/:status/:id', function(req, res){
     for(var i = 0; i < mailboxSensors.length; i++){
         if(parseInt(req.params.id) == mailboxSensors[i].id){
             foundIp = true;
-            console.log('found IP!');
+            console.log('found mailbox IP!');
             mailboxSensors[i].status = req.params.status;
             if(req.params.status == 'Voll'){
                 mailboxSensors[i].imgSrc = mailboxImgFilled;
@@ -310,7 +319,7 @@ app.get('/sensor/signin/mailbox/', function(req, res){
 
     var mailboxSens = {
         id: currentId,
-        status: 'empty',
+        status: 'Leer',
         imgSrc: mailboxImgEmpty
     };
     mailboxSensors.push(mailboxSens);
@@ -352,6 +361,16 @@ app.get('/sensor/temphumid/:temp', function(req, res){
     var strArray = sensorTempHumidity.split("-");
     sensorTemp1 = strArray[0];
     sensorHumid1 = strArray[1];
+});
+
+//Coffee
+app.get('/sensor/funk/:status', function(req, res){
+    funkStatus = req.params.status;
+});
+
+//TV
+app.get('/sensor/infrarot/:status', function(req, res){
+    tvStatus = req.params.status;
 });
 
 setTimeout(discoverBulbs, 5000);
