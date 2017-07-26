@@ -1,13 +1,15 @@
-@media screen and (max-width: 700px){
+@media only screen 
+and (min-device-width : 375px) 
+and (orientation : portrait){
+    
     *{
         overflow: visible;
         overflow-x: hidden;
     }
 /*-----------HEADER-------*/
-    
+
     header{
         display: block;
-        position: relative;
         width: 100%;
         position: fixed;
         top: 0px;
@@ -15,7 +17,7 @@
         z-index: 200;
         -webkit-box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
         -moz-box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
-box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
+        box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
     }
     h1{
         /*background-color: #78B721;*/
@@ -26,17 +28,23 @@ box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
     }
     #logo{
         width: 40%;
-        
     }
     #top{
         cursor: pointer;
     }
-/*-----------GENERAL LAYOUT-------*/
+/*-------GENERAL LAYOUT-------*/
     body{
         background-color: #BFC0C0;
     }
-     #time, #weather{
+    #obenrechts{
         display: none;
+        padding-bottom: 0;
+    }
+     #time{
+        display: none;
+    }
+    #weather{
+        display: block;
     }
     aside{
         width: 100%;
@@ -49,17 +57,9 @@ box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
         display: none;
         visibility: hidden;
     }
-    #obenrechts{
-        display: none;   
+    .svg path, .svg stroke{
+        fill: #31333F;
     }
-    #sensor{
-        position: relative;
-    }
-    .svg path{
-                fill: #31333F;
-            }
-    
-/*----------NEWS ------*/
     label {
         display: block;
         cursor: pointer;
@@ -67,42 +67,13 @@ box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
         text-align: left;
         height: 15%;
         font-size: 100%;
-        
     }
-    label img, .light label img {
+    label img{
         margin: 0%;
         margin-right: 10%;
         width: 10%;
-        vertical-align: middle;       
+        vertical-align: middle; 
     }
-    #newsSection label{
-        /*background-color: #9BDD27;*/
-        background-color: #53A3D0;
-        /*margin-top: 4em;*/
-        margin-top: 22%;
-    }
-    #news h3, p{
-        color: #31333F;
-        margin-right: 10%;
-
-    }
-    #news h3{
-        /*font-size: 1em;*/
-        font-size: 140%;
-    }
-    #news p{
-        /*font-size: 0.9em;*/
-        font-size: 110%;
-        font-weight: 200;
-        border: solid #31333F;
-        border-width: 0 0 0 0.05em;
-    }
-    
-    #news{
-        width: 100%;
-        background-color: #F7F7F7;
-        padding: 5%;
-    } 
     #expand, #expand2, #expandMedia, #expandLight {
         height: 0px;
         overflow: hidden;
@@ -112,16 +83,64 @@ box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
     #toggle:checked ~ #expand, #toggleMedia:checked ~ #expandMedia, #toggle2:checked ~ #expand2, #toggleLight:checked ~ #expandLight {
         height: auto;
     }
+    
+    #filler{
+        background-color: #53A3D0;
+        height: 90px;
+        z-index: -100;
+    }
+    :focus{
+        border-bottom: 0;
+    }
+/*----------NEWS ------*/
+    #news{
+        width: 100%;
+        background-color: #F7F7F7;
+        padding: 5%;
+    }
     #newsSection{
         width: 100%;
         margin: 0;
         padding: 0;
     }
-    
-/*----------SENSOR------*/
-    #obenrechts{
-        padding-bottom: 0;
+    #newsSection label{
+        background-color: #53A3D0;
+        /*margin-top: 4em;*/
+        margin-top: 0
     }
+    #news h3, p{
+        color: #31333F;
+        margin-right: 10%;
+    }
+    #news h3{
+        /*font-size: 1em;*/
+        font-size: 120%;
+    }
+    #news p{
+        /*font-size: 0.9em;*/
+        font-size: 100%;
+        border: solid #31333F;
+        border-width: 0 0 0 0.05em;
+    }
+/*--------OBENRECHTS-----*/
+
+    #weather{
+        background-color: green;
+    }
+    #weatherIconAndInfo{
+        display: inline;
+        width: 50%;
+        background-color: pink;
+    }
+    #weatherIconAndInfo p{
+        font-size: 80%;
+    }
+    #weatherIcon{
+        width: 50%;
+        float: right;
+    }
+   
+/*----------SENSOR------*/
     #sensor label{
       /*  background-color: #5CC4BD;*/
         background-color: #47709E;
@@ -129,6 +148,7 @@ box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
     #sensor{
         width: 100%;
         padding: 0 0 0 0;
+        position: relative;
         background-color: #F7F7F7;
     }
     .plants, .windows{
@@ -138,12 +158,12 @@ box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
     .sensorName, #tv span, #stereo span, .light1 p{
         /*font-size: 0.9em;*/
         font-size: 110%;
-        font-weight: 200;
+        font-weight: 500;
         color: #31333F;
     }
     .plantHumid span, .sensorStatus{
-        font-size: 0.7em;
-        font-weight: 100;
+        font-weight: 550;
+        font-size: 80%;
         color: #31333F;
     }
     
@@ -165,23 +185,27 @@ box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
 
     }
     #device{
-         display: flex;
-    flex-direction: row;
-    padding-left: 10%;
+        display: flex;
+        flex-direction: row;
+        padding-left: 10%;
         margin: 2% 0 2% 0;
     }
-#stereo, #tv {
-    float: left;
-    width: 30%;
-    text-align: center;
-    margin: 0%;
-}
+    #stereo, #tv {
+        float: left;
+        width: 30%;
+        text-align: center;
+        margin: 0%;
+    }
+    #stereo div, #tv div{
+        display: block;
+        margin: 0;
+    }
 
 
-#tvIcon, #stereoIcon{
-    width: 50%;
-    margin: 7%;
-}
+    #tvIcon, #stereoIcon{
+        width: 60%;
+        margin: 7%;
+    }
 /*----------LIGHT------*/
     .light label{
         /*background-color: #677FB0;*/
@@ -193,6 +217,34 @@ box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
     .light{
         background-color: #F7F7F7;
     }
-   
-   
+}
+
+/*---------TABLET MEDIA QUERY-------*/
+@media screen and (min-width: 755px) and (max-device-width : 1024px){
+    label{
+        font-size: 120%;
+    }
+    #humid1{
+        width: 11%;
+    }
+    .sensorName, #tv span, #stereo span, .light1 p{
+        /*font-size: 0.9em;*/
+        font-size: 130%;
+        font-weight: 200;
+        color: #31333F;
+    }
+    .plantHumid span, .sensorStatus{
+        font-size: 100%;
+        color: #31333F;
+    }
+    h1{
+        padding: 3% 0 2% 0;
+    }
+    #filler{
+        height: 150px;
+    }
+    #newsSection label{
+        margin-top: 0%;
+    }
+    
 }

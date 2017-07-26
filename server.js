@@ -1,6 +1,6 @@
 // Load the http module to create an http server.
 
-var http = require('http');
+var http = require('http').Server(app);
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
@@ -150,9 +150,7 @@ discoverBulbs();
 setInterval(discoverBulbs, 30000);
 
 
-
-
-app.get('/lights/:ip', function (req, res, next) {
+app.get('/lights/:ip', function (req, res) {
 
     for(var i = 0; i <lights.length; i++){
         console.log("im array" + i);
@@ -163,9 +161,10 @@ app.get('/lights/:ip', function (req, res, next) {
                 lights[i].imgSrc = lightImgOn
                 console.log("lampe an");
             }else if(lights[i].toggleStatus == 'off'){
-                discoverBulbs();
+
                 lights[i].imgSrc = lightImgOff
                 console.log("lampe aus");
+                discoverBulbs();
             }
         }
     }
@@ -180,6 +179,7 @@ app.get('/lights/:ip', function (req, res, next) {
         });
     }
 });
+
 
 /*
  app.get('/LichtRed', function (req, res, next) {
@@ -353,6 +353,8 @@ app.get('/sensor/temphumid/:temp', function(req, res){
     sensorTemp1 = strArray[0];
     sensorHumid1 = strArray[1];
 });
+
+setTimeout(discoverBulbs, 5000);
 
 console.log('Server started at port:' + port);
 

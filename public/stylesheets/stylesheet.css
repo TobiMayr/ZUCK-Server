@@ -31,7 +31,9 @@ header {
 }
 
 :focus {
-      border-bottom: 5px solid white;
+    border-bottom: 5px solid white;
+    outline:none;
+    box-sizing: content-box;
 }
 
 /*----- NEWS----*/
@@ -332,9 +334,7 @@ aside {
     width: 50%;
     margin: 7%; 
 }
-img:hover {
-    opacity: 0.5;
-}
+
 
 a, a:visited, a:link, a:hover {
     text-decoration: none;
