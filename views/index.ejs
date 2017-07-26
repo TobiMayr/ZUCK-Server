@@ -121,14 +121,26 @@
         <div id="expandMedia">
            <div id="device">
                 <div id="stereo">
-                    <div tabIndex="1" onclick="makeReq('http://192.168.0.107/socketONOFF')">
-                        <img id="stereoIcon" class="svg" src="images/coffee.svg">
+                    <div tabIndex="1" onclick="changeIcon('stereo')">
+                        <%if(funkStatus == "false"){ %>
+                        <img style="display:inline" id="stereoIcon" class="svg" src="images/coffee.svg">
+                        <img style="display:none" id="stereoIcon" class="svg" src="images/coffeeOn.svg">
+                        <%}else{%>
+                        <img style="display:none" id="stereoIcon" class="svg" src="images/coffee.svg">
+                        <img style="display:inline" id="stereoIcon" class="svg" src="images/coffeeOn.svg">
+                        <%}%>
                         <span>Kaffee</span>
                     </div>
                 </div>
                 <div id="tv">
-                    <div tabIndex="2" onclick="makeReq('http://192.168.0.107/TVONOFF')">
-                        <img id="tvIcon" class="svg" src="images/tv.svg">
+                    <div tabIndex="2" onclick="changeIcon('tv')">
+                        <%if(tvStatus == 'false'){ %>
+                            <img style="display:none;" id="tvIcon" class="svg" src="images/tvOn.svg">
+                            <img style="display:inline;" id="tvIcon" class="svg" src="images/tv.svg">
+                        <%}else{%>
+                            <img style="display:inline;" id="tvIcon" class="svg" src="images/tvOn.svg">
+                            <img style="display:none;" id="tvIcon" class="svg" src="images/tv.svg">
+                        <%}%>
                         <span>TV</span>
                     </div>
                 </div>
@@ -150,11 +162,9 @@
                     <%console.log(lights[i].toggleStatus);%>
                     <a tabindex="3" href="/lights/<%=lights[i].ip %>" onclick="changeIcon('<%=lightIp%>')">
                         <%if(lights[i].toggleStatus == 'on'){ %>
-                        <%console.log('on');%>
                         <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>">
                         <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>">
                         <%  }else{%>
-                        <%console.log('off');%>
                         <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>">
                         <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>">
                         <%}%>
@@ -296,18 +306,21 @@
 <script>
     setInterval(function() {
         setTimeout(function () {
-            $.get("");
+            makeReq(location.href);
             //var lightsVar = <%- JSON.stringify(lights) %>;
             //var needsRefresh = false;
 
             var bulbIcons = document.getElementsByClassName("bulbIcon");
             console.log(bulbIcons);
+            $("#expandLight").load(location.href +" #expandLight>*", "");
+            /*
             for(var i = 0; i < bulbIcons.length; i++){
                 var currentIp = bulbIcons[i].getAttribute("id");
                 console.log(currentIp);
-                console.log(location.href + "#" + currentIp + ">*");
-                $("#" + currentIp).load(location.href +"#" + currentIp + ">*", "");
+                console.log(location.href + " #" + currentIp + ">*");
+                $("#" + currentIp).load(location.href +" #" + currentIp + ">*", "");
             }
+            */
         }, 5000);
 
 
@@ -341,11 +354,19 @@
 <!--------- CHANGE LIGHT BULB ICONS ------->
 <script>
 
-    function changeIcon(currentIp){
+    function changeIcon(id){
+        if(id == 'tv'){
+            makeReq("http://192.168.0.107/TVONOFF");
+            makeReq('/sensor/infrarot/:status');
+        }else if(id == "stereo"){
+            makeReq("http://192.168.0.107/socketONOFF");
+            makeReq('/sensor/funk/:status');
+        }
         setTimeout(function(){
-            var img = document.getElementById(currentIp);
+            var img = document.getElementById(id);
             var div = img.parentNode;
             var images = div.getElementsByTagName("svg");
+            console.log(images);
             if(images[0].style.display == 'none' ){
                 images[0].style.display = 'inline';
                 images[1].style.display = 'none';
@@ -356,6 +377,14 @@
             console.log("changeIcon");
             window.stop();
         },500);
+    }
+
+ /*
+        makeReq(url);
+        makeReq(location.href);
+        makeReq(location.href + "sensor/infrarot/status");
+        $("#tv").load(location.href +" #tv>*", "");
+        */
 
 
         /*var imgUrl = '';
@@ -402,12 +431,12 @@
         });
         //$("#bulb").load(location.href + " #bulb>*", "");
         */
-    }
+
 </script>
 <script>
     function makeReq(url){
         $.get(url);
-        console.log("made Req");
+        console.log("made Req on: " + url);
     }
 </script>
 
