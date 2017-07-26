@@ -44,7 +44,6 @@ app.get('/', function(req, res){
         windowSensors.push(windowSens = {
             id: 0,
             status: 'kein Sensor',
-            imgSrc: windowImgOpen
         });
     }
 
@@ -69,7 +68,8 @@ app.get('/', function(req, res){
     if(!soilSensors[0]){
         soilSensors.push(soilSens = {
             id: 0,
-            humidity: 'kein Sensor'
+            humidity: 'kein Sensor',
+            healthyStatus: 'true'
         });
     }
 
@@ -249,13 +249,11 @@ app.get('/sensor/window/:open/:id', function(req, res){
             {
                 console.log("Window open");
                 windowSensors[i].status = 'Auf';
-                windowSensors[i].imgSrc = windowImgOpen
             }
             else
             {
                 console.log("Window closed");
                 windowSensors[i].status = 'Zu';
-                windowSensors[i].imgSrc = windowImgClosed
             }
         }
     }
@@ -277,6 +275,9 @@ app.get('/sensor/soil/:humidity/:id', function(req, res){
             foundIp = true;
             console.log('found IP from soil sensor');
             soilSensors[i].humidity = parseInt(req.params.humidity) + '%';
+            if(soilSensors[i].humidity < 20){
+                soilSensors[i].healthyStatus = 'false'
+            }
         }
     }
     if(!foundIp){
@@ -297,12 +298,6 @@ app.get('/sensor/mailbox/:status/:id', function(req, res){
             foundIp = true;
             console.log('found mailbox IP!');
             mailboxSensors[i].status = req.params.status;
-            if(req.params.status == 'Voll'){
-                mailboxSensors[i].imgSrc = mailboxImgFilled;
-            }else
-            {
-                mailboxSensors[i].imgSrc = mailboxImgEmpty;
-            }
         }
     }
     if(!foundIp){
@@ -320,7 +315,6 @@ app.get('/sensor/signin/mailbox/', function(req, res){
     var mailboxSens = {
         id: currentId,
         status: 'Leer',
-        imgSrc: mailboxImgEmpty
     };
     mailboxSensors.push(mailboxSens);
     res.write('\z' + currentId + '\z');
@@ -334,7 +328,7 @@ app.get('/sensor/signin/soil/', function(req, res){
     var soilSens = {
         id: currentId,
         humidity: 0,
-        imgSrc: plantImgHealthy
+        healthyStatus: 'true'
     };
     soilSensors.push(soilSens);
     res.write('\z' + currentId + '\z');
@@ -347,7 +341,6 @@ app.get('/sensor/signin/window/', function(req, res){
     var windowSens = {
         id: currentId,
         status: 'Auf',
-        imgSrc: windowImgOpen
     };
     windowSensors.push(windowSens);
     res.write('\z' + currentId + '\z');
