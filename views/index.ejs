@@ -16,11 +16,12 @@
 <body id="top">
 
 <header>
-    <!--<h1 onclick="topFunction()" id="topHeader">ZUCK</h1>-->
-    <h1 href="#top" onclick="scrollToTop();return false"><img id="logo" src="/images/zuckDick.svg"></h1>
-    
+    <h1 href="#top" onclick="scrollToTop();return false"><img id="logo" src="/images/zuckDick.svg"></h1> 
 </header>
 
+<div id="filler">
+    
+</div>
 <!--------- NEWS ------->
 <div id="newsSection">
     <input id="toggle" type="checkbox" unchecked>
@@ -38,6 +39,7 @@
             <div><p id="clock"></p></div>
             <div><p id="date"></p></div>
         </div>
+        <!-------- WEATHER ------->
         <div id="weather">
             <div id="weatherIconAndInfo">
                 <img id="weatherIcon" class="svg" src="images/weather.svg">
@@ -46,6 +48,7 @@
                     <p id="location"></p>
                 </div>
             </div>
+            <!--------- INDOOR -------->
             <div id="indoorcontainer">
                 <img id="houseIcon" class="svg" src="images/chiphouse.svg">
                 <table id="indoortemphumid">
@@ -56,13 +59,12 @@
                         <th id="humid">Luftfeuchtigkeit: <%= humidity1 %> %</th>
                     </tr>
                 </table>
-                <!--<div id="temp"><p>Raumtemperatur: <%= temperature1 %> °C</p></div>
-                <div id="humid"><p>Luftfeuchtigkeit: <%= humidity1 %> %</p></div>-->
             </div>
         </div>
 
     </div>
 
+    <!--------- SENSOR --------->
     <div id="sensor">
         <input id="toggle2" type="checkbox" unchecked>
         <label for="toggle2"><img src="images/chip.svg">SENSOR</label>
@@ -72,6 +74,8 @@
             <%soilSensors.shift()%>
             <%}%>
             <%for (var i = 0; i < soilSensors.length; i++) { %>
+            
+            <!---------- PLANTS -------->
             <div class="plants">
                 <img id="plantIcon" class="svg"  src="images/plant.svg">
                 <span class="sensorName">Pflanze <%=i + 1%></span>
@@ -81,6 +85,8 @@
                 </div>
             </div>
             <%}%>
+            
+            <!--------- WINDOW ---------->
             <div class="windows">
                 <%if (windowSensors[0].id == 0 && windowSensors.length > 1){%>
                     <%windowSensors.shift()%>
@@ -91,6 +97,8 @@
                 <span class="sensorStatus"><%= windowSensors[i].status %></span>
                 <%}%>
             </div>
+            
+            <!---------- MAILBOX -------->
             <div class="windows">
                     <%if (mailboxSensors[0].id == 0 && mailboxSensors.length > 1){%>
                     <%mailboxSensors.shift()%>
@@ -127,6 +135,7 @@
             </div>
         </div>
     </section>
+    
     <!--------- LIGHT ------->
     <section class="light">
         <input id="toggleLight" type="checkbox" unchecked>
@@ -187,6 +196,8 @@
         </div>
     </section>
 </section>
+    
+    
 <!--------- NEWS SCRIPT ------->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript">
