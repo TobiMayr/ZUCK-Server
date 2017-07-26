@@ -18,6 +18,8 @@ and (orientation : portrait){
         -webkit-box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
         -moz-box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
         box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+
     }
     h1{
         /*background-color: #78B721;*/
