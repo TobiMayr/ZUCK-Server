@@ -16,11 +16,12 @@
 <body id="top">
 
 <header>
-    <!--<h1 onclick="topFunction()" id="topHeader">ZUCK</h1>-->
-    <h1 href="#top" onclick="scrollToTop();return false"><img id="logo" src="/images/zuckDick.svg"></h1>
-    
+    <h1 href="#top" onclick="scrollToTop();return false"><img id="logo" src="/images/zuckDick.svg"></h1> 
 </header>
 
+<div id="filler">
+    
+</div>
 <!--------- NEWS ------->
 <div id="newsSection">
     <input id="toggle" type="checkbox" unchecked>
@@ -38,6 +39,7 @@
             <div><p id="clock"></p></div>
             <div><p id="date"></p></div>
         </div>
+        <!-------- WEATHER ------->
         <div id="weather">
             <div id="weatherIconAndInfo">
                 <img id="weatherIcon" class="svg" src="images/weather.svg">
@@ -46,6 +48,7 @@
                     <p id="location"></p>
                 </div>
             </div>
+            <!--------- INDOOR -------->
             <div id="indoorcontainer">
                 <img id="houseIcon" class="svg" src="images/chiphouse.svg">
                 <table id="indoortemphumid">
@@ -56,13 +59,12 @@
                         <th id="humid">Luftfeuchtigkeit: <%= humidity1 %> %</th>
                     </tr>
                 </table>
-                <!--<div id="temp"><p>Raumtemperatur: <%= temperature1 %> °C</p></div>
-                <div id="humid"><p>Luftfeuchtigkeit: <%= humidity1 %> %</p></div>-->
             </div>
         </div>
 
     </div>
 
+    <!--------- SENSOR --------->
     <div id="sensor">
         <input id="toggle2" type="checkbox" unchecked>
         <label for="toggle2"><img src="images/chip.svg">SENSOR</label>
@@ -72,6 +74,8 @@
             <%soilSensors.shift()%>
             <%}%>
             <%for (var i = 0; i < soilSensors.length; i++) { %>
+            
+            <!---------- PLANTS -------->
             <div class="plants">
                 <img id="plantIcon" class="svg"  src="images/plant.svg">
                 <span class="sensorName">Pflanze <%=i + 1%></span>
@@ -81,6 +85,8 @@
                 </div>
             </div>
             <%}%>
+            
+            <!--------- WINDOW ---------->
             <div class="windows">
                 <%if (windowSensors[0].id == 0 && windowSensors.length > 1){%>
                     <%windowSensors.shift()%>
@@ -91,6 +97,8 @@
                 <span class="sensorStatus"><%= windowSensors[i].status %></span>
                 <%}%>
             </div>
+            
+            <!---------- MAILBOX -------->
             <div class="windows">
                     <%if (mailboxSensors[0].id == 0 && mailboxSensors.length > 1){%>
                     <%mailboxSensors.shift()%>
@@ -127,6 +135,7 @@
             </div>
         </div>
     </section>
+    
     <!--------- LIGHT ------->
     <section class="light">
         <input id="toggleLight" type="checkbox" unchecked>
@@ -187,6 +196,8 @@
         </div>
     </section>
 </section>
+    
+    
 <!--------- NEWS SCRIPT ------->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript">
@@ -284,18 +295,21 @@
 <!--------- REFRESH LIGHT BULBS SCRIPT ------->
 <script>
     setInterval(function() {
-        $.get("");
-        //var lightsVar = <%- JSON.stringify(lights) %>;
-        //var needsRefresh = false;
+        setTimeout(function () {
+            $.get("");
+            //var lightsVar = <%- JSON.stringify(lights) %>;
+            //var needsRefresh = false;
 
-        var bulbIcons = document.getElementsByClassName("bulbIcon");
-        console.log(bulbIcons);
-        for(var i = 0; i < bulbIcons.length; i++){
-            var currentIp = bulbIcons[i].getAttribute("id");
-            console.log(currentIp);
-            console.log(location.href + "#" + currentIp + ">*");
-            $("#" + currentIp).load(location.href +"#" + currentIp + ">*", "");
-        }
+            var bulbIcons = document.getElementsByClassName("bulbIcon");
+            console.log(bulbIcons);
+            for(var i = 0; i < bulbIcons.length; i++){
+                var currentIp = bulbIcons[i].getAttribute("id");
+                console.log(currentIp);
+                console.log(location.href + "#" + currentIp + ">*");
+                $("#" + currentIp).load(location.href +"#" + currentIp + ">*", "");
+            }
+        }, 5000);
+
 
         /*
         if(lightsVar[0].ip != 0) {
@@ -322,7 +336,7 @@
             }
         }, 500);
         */
-    }, 1000); //bulb section jede Sekunde neu laden
+    }, 10000); //bulb section jede Sekunde neu laden
 </script>
 <!--------- CHANGE LIGHT BULB ICONS ------->
 <script>
@@ -340,6 +354,7 @@
                 images[1].style.display = 'inline';
             }
             console.log("changeIcon");
+            window.stop();
         },500);
 
 
@@ -402,6 +417,8 @@
         if (document.body.scrollTop!=0 || document.documentElement.scrollTop!=0){
             window.scrollBy(0,-50);
             timeOut=setTimeout('scrollToTop()',10);
+            document.addEventListener("touchstart", function(){}, true);
+
         }
         else clearTimeout(timeOut);
     }
@@ -413,14 +430,17 @@
         $(document).keydown(handleDocumentKeyDown);
     });
     function handleDocumentKeyDown(event){
-        if(event.which === 83){ //s
-            $.tabNext();
 
-        }else if (event.which === 87) { //w
-            $.tabPrev();
-        }else if (event.which == 13) { //enter
-            var selectedElement = document.activeElement;
-            selectedElement.click();
+        if(event) {
+            if (event.which === 83) { //s
+                $.tabNext();
+
+            } else if (event.which === 87) { //w
+                $.tabPrev();
+            } else if (event.which === 13) { //enter
+                var selectedElement = document.activeElement.parentNode;
+                selectedElement.click();
+            }
         }
     }
 </script>
@@ -461,10 +481,11 @@
         });
     });
 </script>
-<script>
+<!--<script>
     setTimeout(handleDocumentKeyDown, 5000);
     setTimeout(scrollToTop, 5000);
     setTimeout(updateTimeAndDate, 5000);
 </script>
+-->
 </body>
 </html>
