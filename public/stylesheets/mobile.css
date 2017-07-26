@@ -88,7 +88,9 @@ and (orientation : portrait){
         background-color: #53A3D0;
         height: 90px;
         z-index: -100;
-        
+    }
+    :focus{
+        border-bottom: 0;
     }
 /*----------NEWS ------*/
     #news{
