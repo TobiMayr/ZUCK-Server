@@ -1,11 +1,13 @@
-@media screen and (max-width: 1025px){
+@media only screen 
+and (min-device-width : 375px) 
+and (orientation : portrait){
     
     *{
         overflow: visible;
         overflow-x: hidden;
     }
 /*-----------HEADER-------*/
-    
+
     header{
         display: block;
         width: 100%;
@@ -86,7 +88,9 @@
         background-color: #53A3D0;
         height: 90px;
         z-index: -100;
-        
+    }
+    :focus{
+        border-bottom: 0;
     }
 /*----------NEWS ------*/
     #news{
@@ -154,10 +158,11 @@
     .sensorName, #tv span, #stereo span, .light1 p{
         /*font-size: 0.9em;*/
         font-size: 110%;
-        font-weight: 200;
+        font-weight: 500;
         color: #31333F;
     }
     .plantHumid span, .sensorStatus{
+        font-weight: 550;
         font-size: 80%;
         color: #31333F;
     }
@@ -214,3 +219,32 @@
     }
 }
 
+/*---------TABLET MEDIA QUERY-------*/
+@media screen and (min-width: 755px) and (max-device-width : 1024px){
+    label{
+        font-size: 120%;
+    }
+    #humid1{
+        width: 11%;
+    }
+    .sensorName, #tv span, #stereo span, .light1 p{
+        /*font-size: 0.9em;*/
+        font-size: 130%;
+        font-weight: 200;
+        color: #31333F;
+    }
+    .plantHumid span, .sensorStatus{
+        font-size: 100%;
+        color: #31333F;
+    }
+    h1{
+        padding: 3% 0 2% 0;
+    }
+    #filler{
+        height: 150px;
+    }
+    #newsSection label{
+        margin-top: 0%;
+    }
+    
+}
