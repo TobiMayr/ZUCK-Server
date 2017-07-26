@@ -428,14 +428,17 @@
         $(document).keydown(handleDocumentKeyDown);
     });
     function handleDocumentKeyDown(event){
-        if(event.which === 83){ //s
-            $.tabNext();
 
-        }else if (event.which === 87) { //w
-            $.tabPrev();
-        }else if (event.which === 13) { //enter
-            var selectedElement = document.activeElement.parentNode;
-            selectedElement.click();
+        if(event) {
+            if (event.which === 83) { //s
+                $.tabNext();
+
+            } else if (event.which === 87) { //w
+                $.tabPrev();
+            } else if (event.which === 13) { //enter
+                var selectedElement = document.activeElement.parentNode;
+                selectedElement.click();
+            }
         }
     }
 </script>
@@ -476,10 +479,11 @@
         });
     });
 </script>
-<script>
+<!--<script>
     setTimeout(handleDocumentKeyDown, 5000);
     setTimeout(scrollToTop, 5000);
     setTimeout(updateTimeAndDate, 5000);
 </script>
+-->
 </body>
 </html>
