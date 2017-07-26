@@ -20,38 +20,28 @@ and (orientation : portrait){
         box-shadow: 1px -21px 26px 12px rgba(0,0,0,1);
     }
     h1{
-        /*background-color: #78B721;*/
        background-color: #4ACCC8;
-        /*
-        font-size: 1.5em;*/
+        /*font-size: 1.5em;*/
         font-size: 200%;
     }
     #logo{
         width: 40%;
     }
-    #top{
-        cursor: pointer;
-    }
+
 /*-------GENERAL LAYOUT-------*/
     body{
         background-color: #BFC0C0;
     }
-    #obenrechts{
+    #obenrechts, #time{
         display: none;
         padding-bottom: 0;
-    }
-     #time{
-        display: none;
     }
     #weather{
         display: block;
     }
-    aside{
+    aside, .inner-wrapper{
         width: 100%;
         padding-right: 0%;
-    }
-    .inner-wrapper{
-        width: 100%;
     }
     input, #media h2, .light h2{
         display: none;
@@ -77,25 +67,24 @@ and (orientation : portrait){
     #expand, #expand2, #expandMedia, #expandLight {
         height: 0px;
         overflow: hidden;
-        transition: height 0.5s;
-        color: #FFF;
     }
     #toggle:checked ~ #expand, #toggleMedia:checked ~ #expandMedia, #toggle2:checked ~ #expand2, #toggleLight:checked ~ #expandLight {
         height: auto;
     }
-    
     #filler{
         background-color: #53A3D0;
-        height: 90px;
+        height: 80px;
         z-index: -100;
     }
     :focus{
         border-bottom: 0;
     }
+    #news, #sensor, #media, .light{
+        background-color: #F7F7F7;
+    }
 /*----------NEWS ------*/
     #news{
         width: 100%;
-        background-color: #F7F7F7;
         padding: 5%;
     }
     #newsSection{
@@ -122,34 +111,15 @@ and (orientation : portrait){
         border: solid #31333F;
         border-width: 0 0 0 0.05em;
     }
-/*--------OBENRECHTS-----*/
-
-    #weather{
-        background-color: green;
-    }
-    #weatherIconAndInfo{
-        display: inline;
-        width: 50%;
-        background-color: pink;
-    }
-    #weatherIconAndInfo p{
-        font-size: 80%;
-    }
-    #weatherIcon{
-        width: 50%;
-        float: right;
-    }
-   
+    
 /*----------SENSOR------*/
     #sensor label{
-      /*  background-color: #5CC4BD;*/
         background-color: #47709E;
     }
     #sensor{
-        width: 100%;
-        padding: 0 0 0 0;
+        width: 100%; 
+        padding: 0;
         position: relative;
-        background-color: #F7F7F7;
     }
     .plants, .windows{
         width: 40%;
@@ -158,11 +128,9 @@ and (orientation : portrait){
     .sensorName, #tv span, #stereo span, .light1 p{
         /*font-size: 0.9em;*/
         font-size: 110%;
-        font-weight: 500;
         color: #31333F;
     }
     .plantHumid span, .sensorStatus{
-        font-weight: 550;
         font-size: 80%;
         color: #31333F;
     }
@@ -179,10 +147,7 @@ and (orientation : portrait){
         margin-top: 5%;
     }
     #media{
-        margin: 0;
-        background-color: #F7F7F7;
-        
-
+        margin: 0;        
     }
     #device{
         display: flex;
@@ -200,22 +165,17 @@ and (orientation : portrait){
         display: block;
         margin: 0;
     }
-
-
     #tvIcon, #stereoIcon{
         width: 60%;
         margin: 7%;
     }
+    
 /*----------LIGHT------*/
     .light label{
-        /*background-color: #677FB0;*/
         background-color: #524464;
     }
     .bulb{
         margin: 2% 0 2% 0;
-    }
-    .light{
-        background-color: #F7F7F7;
     }
 }
 
@@ -246,5 +206,4 @@ and (orientation : portrait){
     #newsSection label{
         margin-top: 0%;
     }
-    
 }

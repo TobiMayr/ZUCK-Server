@@ -10,16 +10,14 @@
 html {
     box-sizing: border-box;
 }
-
-
-           
+  
 body {
     height: 100%;
     width: 100%;
     background: #000;
     color: white;
-      font-family: 'Open Sans', Arial, sans-serif;
-        line-height: normal;
+    font-family: 'Open Sans', Arial, sans-serif;
+    line-height: normal;
 
 }
 
@@ -37,12 +35,13 @@ header {
 }
 
 /*----- NEWS----*/
-label, input{
+label, input, #newsIcon{
     display: none;
 }
 #newsSection {
     width: 60%;
     float: left;
+    font-size: 92%;
     margin: 2% 0;
     padding: 0 2%;
 }
@@ -51,14 +50,11 @@ label, input{
 }
 #news h3 {
     font-size: 1.3em;
-
     text-transform: none;
     /*letter-spacing: 0.2em;*/
     text-align: left;
     font-weight: bold;
-
 }
-
 #news p {
     font-size: 1.1em;
     line-height: 1.5;
@@ -68,17 +64,12 @@ label, input{
     padding-left: 2%;
 }
 
-#newsIcon {
-    display: none;
-}
-
 /*----- SIDE----*/
 aside {
     width: 31%;
     float: right;
     padding-right: 2%;
 }
-
 #obenrechts {
     display: block;
     width: 100%;
@@ -236,12 +227,10 @@ aside {
     width: 66.66666%;
     float: left;
 }
-
 .inner-wrapper h2 {
     font-size: 1.5em;
     text-align: center;
 }
-
 .inner-wrapper h2:after {
     display: inline-block;
     margin: 0 0 8px 20px;
@@ -251,7 +240,6 @@ aside {
     background-color: #fff;
     width: 20%;
 }
-
 .inner-wrapper h2:before {
     display: inline-block;
     margin: 0 20px 8px 0;
@@ -326,7 +314,6 @@ aside {
     width: 30%;
     text-align: center;
     margin-top: 2%;
-
 }
 
 /*BULB ICON*/
