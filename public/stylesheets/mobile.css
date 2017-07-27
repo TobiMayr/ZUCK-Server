@@ -168,7 +168,7 @@ and (orientation : portrait){
         display: block;
         margin: 0;
     }
-    #tvIcon, #stereoIcon{
+    #tvIcon, #stereoIcon1, #stereoIcon2{
         width: 60%;
         margin: 7%;
     }

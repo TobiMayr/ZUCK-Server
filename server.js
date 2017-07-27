@@ -11,9 +11,9 @@ var fs = require('fs');
 var request = require('request');
 var app = express();
 
-var sensorTempHumidity = 'test';
-var sensorTemp1;
-var sensorHumid1 = 'test';
+var sensorTempHumidity = 'kein Sensor';
+var sensorTemp1 = 'kein Sensor';
+var sensorHumid1 = 'kein Sensor';
 var lights = [];
 var windowSensors = [];
 var soilSensors = [];
