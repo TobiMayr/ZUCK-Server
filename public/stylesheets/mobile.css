@@ -50,6 +50,9 @@ and (orientation : portrait){
     .svg path, .svg stroke{
         fill: #31333F;
     }
+    .bulbIcon path{
+        fill: white;
+    }
     label {
         display: block;
         cursor: pointer;
@@ -73,13 +76,13 @@ and (orientation : portrait){
     }
     #filler{
         background-color: #53A3D0;
-        height: 80px;
+        height: 70px;
         z-index: -100;
     }
     :focus{
         border-bottom: 0;
     }
-    #news, #sensor, #media, .light{
+    #news, #sensor, #media{
         background-color: #F7F7F7;
     }
 /*----------NEWS ------*/
@@ -177,15 +180,12 @@ and (orientation : portrait){
     .bulb{
         margin: 2% 0 2% 0;
     }
-
     .light{
-        background-color: #F7F7F7;
+        background-color: #5E5E65;
     }
-/*
-    .lightColor img{
-        display: inline-block;
+    .light p{
+        color: white;
     }
-    */
 }
 
 /*---------TABLET MEDIA QUERY-------*/
@@ -210,7 +210,7 @@ and (orientation : portrait){
         padding: 3% 0 2% 0;
     }
     #filler{
-        height: 150px;
+        height: 140px;
     }
     #newsSection label{
         margin-top: 0%;
