@@ -50,6 +50,9 @@ and (orientation : portrait){
     .svg path, .svg stroke{
         fill: #31333F;
     }
+    .bulbIcon path{
+        fill: white;
+    }
     label {
         display: block;
         cursor: pointer;
@@ -79,7 +82,7 @@ and (orientation : portrait){
     :focus{
         border-bottom: 0;
     }
-    #news, #sensor, #media, .light{
+    #news, #sensor, #media{
         background-color: #F7F7F7;
     }
 /*----------NEWS ------*/
@@ -176,6 +179,12 @@ and (orientation : portrait){
     }
     .bulb{
         margin: 2% 0 2% 0;
+    }
+    .light{
+        background-color: #5E5E65;
+    }
+    .light p{
+        color: white;
     }
 }
 
