@@ -340,7 +340,7 @@ app.get('/sensor/signin/window/', function(req, res){
     console.log('signed in with currentId: ' + currentId);
     var windowSens = {
         id: currentId,
-        status: 'Auf',
+        status: 'Auf'
     };
     windowSensors.push(windowSens);
     res.write('\z' + currentId + '\z');
@@ -350,20 +350,21 @@ app.get('/sensor/signin/window/', function(req, res){
 
 app.get('/sensor/temphumid/:temp', function(req, res){
     sensorTempHumidity = req.params.temp;
-
+    console.log(sensorTempHumidity);
     var strArray = sensorTempHumidity.split("-");
     sensorTemp1 = strArray[0];
     sensorHumid1 = strArray[1];
 });
 
 //Coffee
-app.get('/sensor/funk/:status', function(req, res){
-    funkStatus = req.params.status;
+app.get('/sensor/funk/:stat', function(req, res){
+    funkStatus = req.params.stat;
+    console.log(funkStatus);
 });
 
 //TV
-app.get('/sensor/infrarot/:status', function(req, res){
-    tvStatus = req.params.status;
+app.get('/sensor/infrarot/:stat', function(req, res){
+    tvStatus = req.params.stat;
 });
 
 setTimeout(discoverBulbs, 5000);

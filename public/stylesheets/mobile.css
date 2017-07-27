@@ -76,7 +76,7 @@ and (orientation : portrait){
     }
     #filler{
         background-color: #53A3D0;
-        height: 70px;
+        height: 90px;
         z-index: -100;
     }
     :focus{
@@ -168,7 +168,7 @@ and (orientation : portrait){
         display: block;
         margin: 0;
     }
-    #tvIcon, #stereoIcon1, #stereoIcon2{
+    #tvIcon1, #tvIcon2, #stereoIcon1, #stereoIcon2{
         width: 60%;
         margin: 7%;
     }
@@ -207,7 +207,7 @@ and (orientation : portrait){
     }
     .plantHumid span, .sensorStatus{
         font-size: 100%;
-        color: #31333F;
+        color: white;
     }
     h1{
         padding: 3% 0 2% 0;
