@@ -369,6 +369,7 @@
 
         var tempra = <%- JSON.stringify(temperature1) %>;
         console.log("Tempratur: " + tempra);
+
         var lights = <%- JSON.stringify(lights) %>;
         for(var i = 0; i < lights.length; i++){
             refreshImgStyle('', lights[i].ip + 1, lights[i].ip + 2, lights[i].toggleStatus);
