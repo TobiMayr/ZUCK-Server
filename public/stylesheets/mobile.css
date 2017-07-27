@@ -188,6 +188,9 @@ and (orientation : portrait){
     }
 }
 
+#music{
+    display: none;
+}
 /*---------TABLET MEDIA QUERY-------*/
 @media screen and (min-width: 755px) and (max-device-width : 1024px){
     label{
