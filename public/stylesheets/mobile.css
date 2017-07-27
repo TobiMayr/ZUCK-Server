@@ -207,7 +207,7 @@ and (orientation : portrait){
     }
     .plantHumid span, .sensorStatus{
         font-size: 100%;
-        color: #31333F;
+        color: white;
     }
     h1{
         padding: 3% 0 2% 0;
