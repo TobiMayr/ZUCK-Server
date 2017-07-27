@@ -314,7 +314,7 @@ app.get('/sensor/signin/mailbox/', function(req, res){
 
     var mailboxSens = {
         id: currentId,
-        status: 'Leer',
+        status: 'Leer'
     };
     mailboxSensors.push(mailboxSens);
     res.write('\z' + currentId + '\z');

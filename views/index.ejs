@@ -14,7 +14,7 @@
 </head>
 
 <body id="top">
-
+<div id="music"><embed name="Aria" src="http://kevinwrede.de/Bach_Aria.mp3" loop="true" hidden="true" autostart="true"></div>
 <header>
     <h1 href="#top" onclick="scrollToTop();return false"><img id="logo" src="/images/zuckDick.svg"></h1> 
 </header>
@@ -141,7 +141,7 @@
         <div id="expandMedia">
            <div id="device">
                 <div id="stereo">
-                    <div tabIndex="1" onclick="changeIcon('stereo')">
+                    <div tabIndex="1" onclick="changeIcon('stereoIcon')">
                         <%if(funkStatus == "false"){ %>
                         <img style="display:inline" id="stereoIcon" class="svg" src="images/coffee.svg">
                         <img style="display:none" id="stereoIcon" class="svg" src="images/coffeeOn.svg">
@@ -153,7 +153,7 @@
                     </div>
                 </div>
                 <div id="tv">
-                    <div tabIndex="2" onclick="changeIcon('tv')">
+                    <div tabIndex="2" onclick="changeIcon('tvIcon')">
                         <%if(tvStatus == 'false'){ %>
                             <img style="display:none;" id="tvIcon" class="svg" src="images/tvOn.svg">
                             <img style="display:inline;" id="tvIcon" class="svg" src="images/tv.svg">
@@ -191,24 +191,25 @@
 
                         <p style="margin-top: 10px"><%=lights[i].label %></p>
                     </a>
-                    
-                                        <a class="lightColor" href="/">
-                        <img src="images/red.svg">
-                    </a>
-                    <a class="lightColor" href="/">
-                        <img src="images/green.svg">
-                    </a>
-                    <a class="lightColor" href="/">
-                        <img src="images/blue.svg">
-                    </a>
+
                     
                 </div>
+                <a class="lightColor" href="/">
+                    <img src="images/red.svg">
+                </a>
+                <a class="lightColor" href="/">
+                    <img src="images/green.svg">
+                </a>
+                <a class="lightColor" href="/">
+                    <img src="images/blue.svg">
+                </a>
                 <% } %>
                 <% } %>
             </section>
+            <!--
             <section class="bulb">
 
-                <!--<div class="light1">
+                <div class="light1">
                     <a href="/LichtRed">
                         <div id="bla">
                             <img id="bulb1" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg">
@@ -230,10 +231,11 @@
                         <img id="bulb1" class="svg bulbIcon" src="images/lightbulb_new.svg">
                         <p>Garage</p>
                     </a>
-                </div>-->
+                </div>
 
 
             </section>
+-->
         </div>
     </section>
 </section>
@@ -336,13 +338,14 @@
 <!--------- REFRESH LIGHT BULBS SCRIPT ------->
 <script>
     setInterval(function() {
+        convertImgToSvg();
         setTimeout(function () {
             makeReq(location.href);
             //var lightsVar = <%- JSON.stringify(lights) %>;
             //var needsRefresh = false;
 
-            var bulbIcons = document.getElementsByClassName("bulbIcon");
-            console.log(bulbIcons);
+            //var bulbIcons = document.getElementsByClassName("bulbIcon");
+            //console.log(bulbIcons);
             $("#expandLight").load(location.href +" #expandLight>*", "");
             /*
             for(var i = 0; i < bulbIcons.length; i++){
@@ -353,7 +356,7 @@
             }
             */
         }, 5000);
-
+        convertImgToSvg();
 
         /*
         if(lightsVar[0].ip != 0) {
@@ -386,12 +389,12 @@
 <script>
 
     function changeIcon(id){
-        if(id == 'tv'){
+        if(id == 'tvIcon'){
             makeReq("http://192.168.0.107/TVONOFF");
-            makeReq(location.href + '/sensor/infrarot/:status');
-        }else if(id == "stereo"){
+            makeReq(location.href + 'sensor/infrarot/status');
+        }else if(id == 'stereoIcon'){
             makeReq("http://192.168.0.107/socketONOFF");
-            makeReq(location.href + '/sensor/funk/:status');
+            makeReq(location.href + 'sensor/funk/status');
         }
         setTimeout(function(){
             var img = document.getElementById(id);
@@ -513,28 +516,31 @@
 </script>
 
 <script>
-    jQuery(document).ready(function() {
+    jQuery(document).readys(convertImgToSvg);
+
+    function convertImgToSvg() {
         /*
          * Replace all SVG images with inline SVG
          */
-        jQuery('img.svg').each(function(){
+        console.log("converting");
+        jQuery('img.svg').each(function () {
             var $img = jQuery(this);
             var imgID = $img.attr('id');
             var imgClass = $img.attr('class');
             var imgURL = $img.attr('src');
             var imgStyle = $img.attr('style');
 
-            jQuery.get(imgURL, function(data) {
+            jQuery.get(imgURL, function (data) {
                 // Get the SVG tag, ignore the rest
                 var $svg = jQuery(data).find('svg');
 
                 // Add replaced image's ID to the new SVG
-                if(typeof imgID !== 'undefined') {
+                if (typeof imgID !== 'undefined') {
                     $svg = $svg.attr('id', imgID);
                 }
                 // Add replaced image's classes to the new SVG
-                if(typeof imgClass !== 'undefined') {
-                    $svg = $svg.attr('class', imgClass+' replaced-svg');
+                if (typeof imgClass !== 'undefined') {
+                    $svg = $svg.attr('class', imgClass + ' replaced-svg');
                 }
 
                 // Remove any invalid XML tags as per http://validator.w3.org
@@ -545,8 +551,8 @@
                 $img.replaceWith($svg);
             });
 
-        });
-    });
+        })
+    }
 </script>
 <!--<script>
     setTimeout(handleDocumentKeyDown, 5000);
