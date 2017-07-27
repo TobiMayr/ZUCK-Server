@@ -179,14 +179,13 @@
                 <% for(var i = 0; i < lights.length; i++) { %>
                 <%var lightIp = lights[i].ip%>
                 <div class="light1">
-                    <%console.log(lights[i].toggleStatus);%>
                     <a tabindex="3" href="/lights/<%=lights[i].ip %>" onclick="changeIcon('<%=lightIp%>')">
                         <%if(lights[i].toggleStatus == 'on'){ %>
-                        <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>">
-                        <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>">
+                            <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>">
+                            <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>">
                         <%  }else{%>
-                        <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>">
-                        <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>">
+                            <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>">
+                            <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>">
                         <%}%>
 
                         <p style="margin-top: 10px"><%=lights[i].label %></p>
@@ -399,6 +398,7 @@
         setTimeout(function(){
             var img = document.getElementById(id);
             var div = img.parentNode;
+            console.log(div);
             var images = div.getElementsByTagName("svg");
             console.log(images);
             if(images[0].style.display == 'none' ){
@@ -418,6 +418,7 @@
         makeReq(location.href);
         $("#indoortemphumid").load(location.href +" #indoortemphumid>*", "");
         $("#sensor").load(location.href +" #sensor>*", "");
+        $("#media").load(location.href +" #media>*", "");
     }, 30000)
 
  /*
