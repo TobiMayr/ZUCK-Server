@@ -142,24 +142,24 @@
            <div id="device">
                 <div id="stereo">
                     <div tabIndex="1" onclick="changeIcon('stereoIcon1')">
-                        <%if(funkStatus == "false"){ %>
-                        <img style="display:inline" id="stereoIcon1" class="svg" src="images/coffee.svg">
-                        <img style="display:none" id="stereoIcon2" class="svg" src="images/coffeeOn.svg">
-                        <%}else{%>
+                        <%if(funkStatus == "true"){ %>
                         <img style="display:none" id="stereoIcon1" class="svg" src="images/coffee.svg">
                         <img style="display:inline" id="stereoIcon2" class="svg" src="images/coffeeOn.svg">
+                        <%}else{%>
+                        <img style="display:inline" id="stereoIcon1" class="svg" src="images/coffee.svg">
+                        <img style="display:none" id="stereoIcon2" class="svg" src="images/coffeeOn.svg">
                         <%}%>
                         <span>Kaffee</span>
                     </div>
                 </div>
                 <div id="tv">
-                    <div tabIndex="2" onclick="changeIcon('tvIcon')">
-                        <%if(tvStatus == 'false'){ %>
-                            <img style="display:inline;" id="tvIcon1" class="svg" src="images/tv.svg">
-                            <img style="display:none;" id="tvIcon2" class="svg" src="images/tvOn.svg">
+                    <div tabIndex="2" onclick="changeIcon('tvIcon1')">
+                        <%if(tvStatus == "true"){ %>
+                        <img style="display:none;" id="tvIcon1" class="svg" src="images/tv.svg">
+                        <img style="display:inline;" id="tvIcon2" class="svg" src="images/tvOn.svg">
                         <%}else{%>
-                            <img style="display:none;" id="tvIcon1" class="svg" src="images/tv.svg">
-                            <img style="display:inline;" id="tvIcon2" class="svg" src="images/tvOn.svg">
+                        <img style="display:inline;" id="tvIcon1" class="svg" src="images/tv.svg">
+                        <img style="display:none;" id="tvIcon2" class="svg" src="images/tvOn.svg">
                         <%}%>
                         <span>TV</span>
                     </div>
@@ -179,7 +179,7 @@
                 <% for(var i = 0; i < lights.length; i++) { %>
                 <%var lightIp = lights[i].ip%>
                 <div class="light1">
-                    <a tabindex="3" href="/lights/<%=lights[i].ip %>" onclick="changeIcon('<%=lightIp%>')">
+                    <a tabindex="3" href="/lights/<%-lights[i].ip%>" onclick="changeIcon('<%=lightIp%>')">
                         <%if(lights[i].toggleStatus == 'on'){ %>
                             <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>1">
                             <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>2">
@@ -333,47 +333,59 @@
 
 </script>
 
-<!--------- REFRESH LIGHT BULBS SCRIPT ------->
+<!--------- REFRESH ICONS SCRIPT ------->
 <script>
 
 
-    function refreshImgStyle(reqLink, imgOn, imgOff, serverStatus){
-        if(reqLink != ''){
-            makeReq(location.href + reqLink);
-            console.log("thisVar: " + serverStatus);
-        }
+    function refreshImgStyle(reqLink, imgOff, imgOn, serverStatus){
+        makeReq(location.href + reqLink);
+        console.log("thisVar: " + serverStatus);
 
-        var SvgOff = document.getElementById(imgOn);
-        var SvgOn = document.getElementById(imgOff);
+
+        var SvgOff = document.getElementById(imgOff);
+        var SvgOn = document.getElementById(imgOn);
+        console.log("imgOFF: " + imgOff);
+        console.log("imgON: " + imgOn);
 
         if(serverStatus == 'false' || serverStatus == 'off'){
             SvgOn.style.display = 'none';
             SvgOff.style.display = 'inline';
+            console.log("is offff");
         }else if (serverStatus == 'true' || serverStatus == 'on'){
             SvgOn.style.display = 'inline';
             SvgOff.style.display = 'none';
+            console.log("is ooooon");
         }
     }
-    setInterval(refreshImages, 10000);
+    setInterval(refreshImages, 20000);
 
     function refreshImages() {
 
         makeReq(location.href + 'sensor/temphumid/temp');
         makeReq(location.href);
 
+        /*
         var funkStatus = <%- JSON.stringify(funkStatus) %>;
-        refreshImgStyle('sensor/funk/status', 'stereoIcon1', 'stereoIcon2', funkStatus);
+        refreshImgStyle('sensor/funk/stat', 'stereoIcon1', 'stereoIcon2', funkStatus);
 
         var tvStatus = <%- JSON.stringify(tvStatus) %>;
-        refreshImgStyle('sensor/infrarot/status', 'tvIcon1', 'tvIcon2', tvStatus);
+        refreshImgStyle('sensor/infrarot/stat', 'tvIcon1', 'tvIcon2', tvStatus);
 
         var tempra = <%- JSON.stringify(temperature1) %>;
         console.log("Tempratur: " + tempra);
+
         var lights = <%- JSON.stringify(lights) %>;
         for(var i = 0; i < lights.length; i++){
             refreshImgStyle('', lights[i].ip + 1, lights[i].ip + 2, lights[i].toggleStatus);
         }
-        //$("#expandLight").load(location.href +" #expandLight>*", "");
+
+
+        if(lights[0].ip == 0){
+            $("#expandLight").load(location.href +" #expandLight>*", "");
+        }
+         */
+        $("#indoortemphumid").load(location.href +" #indoortemphumid>*", "");
+        //$("#sensor").load(location.href +" #sensor>*", "");
         /*
         setTimeout(function () {
 
@@ -400,23 +412,28 @@
 
     }
 </script>
-<!--------- CHANGE LIGHT BULB ICONS ------->
+<!--------- CHANGE ICONS ------->
 <script>
 
     function changeIcon(id){
-        if(id == 'tvIcon'){
+        if(id == 'tvIcon1'){
             makeReq("http://192.168.0.107/TVONOFF");
 
         }else if(id == 'stereoIcon1'){
             makeReq("http://192.168.0.107/socketONOFF");
 
+        }else{
+            //makeReq(location.href + "lights/" + id);
+            id = id + "1";
         }
         setTimeout(function(){
+            //console.log(id);
             var img = document.getElementById(id);
+            //console.log(img);
             var div = img.parentNode;
-            console.log(div);
+            //console.log(div);
             var images = div.getElementsByTagName("svg");
-            console.log(images);
+            //console.log(images);
             if(images[0].style.display == 'none' ){
                 images[0].style.display = 'inline';
                 images[1].style.display = 'none';
@@ -427,6 +444,7 @@
             console.log("changeIcon");
             window.stop();
         },500);
+        window.stop();
     }
 
  /*
@@ -474,7 +492,8 @@
             if(typeof imgClass !== 'undefined') {
                 $svg = $svg.attr('class', imgClass+' replaced-svg');
             }
-            // Remove any invalid XML tags as per http://validator.w3.org
+            // Remove any invalid XML tags as per
+ http://validator.w3.org
             $svg = $svg.removeAttr('xmlns:a');
             // Replace image with new SVG
             $img.replaceWith($svg);

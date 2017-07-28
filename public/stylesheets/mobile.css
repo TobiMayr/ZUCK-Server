@@ -50,9 +50,7 @@ and (orientation : portrait){
     .svg path, .svg stroke{
         fill: #31333F;
     }
-    .bulbIcon path{
-        fill: white;
-    }
+
     label {
         display: block;
         cursor: pointer;
@@ -76,13 +74,13 @@ and (orientation : portrait){
     }
     #filler{
         background-color: #53A3D0;
-        height: 70px;
+        height: 90px;
         z-index: -100;
     }
     :focus{
         border-bottom: 0;
     }
-    #news, #sensor, #media{
+    #news, #sensor, #media, .light{
         background-color: #F7F7F7;
     }
 /*----------NEWS ------*/
@@ -168,7 +166,7 @@ and (orientation : portrait){
         display: block;
         margin: 0;
     }
-    #tvIcon, #stereoIcon1, #stereoIcon2{
+    #tvIcon1, #tvIcon2, #stereoIcon1, #stereoIcon2{
         width: 60%;
         margin: 7%;
     }
@@ -180,12 +178,7 @@ and (orientation : portrait){
     .bulb{
         margin: 2% 0 2% 0;
     }
-    .light{
-        background-color: #5E5E65;
-    }
-    .light p{
-        color: white;
-    }
+
 }
 
 #music{
@@ -207,7 +200,7 @@ and (orientation : portrait){
     }
     .plantHumid span, .sensorStatus{
         font-size: 100%;
-        color: #31333F;
+        color: white;
     }
     h1{
         padding: 3% 0 2% 0;
