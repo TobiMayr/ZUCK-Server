@@ -141,7 +141,7 @@
         <div id="expandMedia">
            <div id="device">
                 <div id="stereo">
-                    <div tabIndex="1" onclick="changeIcon('stereoIcon1')">
+                    <a tabIndex="1" href="http://192.168.0.107/socketONOFF" onclick="changeIcon('stereoIcon1')">
                         <%if(funkStatus == "true"){ %>
                         <img style="display:none" id="stereoIcon1" class="svg" src="images/coffee.svg">
                         <img style="display:inline" id="stereoIcon2" class="svg" src="images/coffeeOn.svg">
@@ -150,10 +150,10 @@
                         <img style="display:none" id="stereoIcon2" class="svg" src="images/coffeeOn.svg">
                         <%}%>
                         <span>Kaffee</span>
-                    </div>
+                    </a>
                 </div>
                 <div id="tv">
-                    <div tabIndex="2" onclick="changeIcon('tvIcon1')">
+                    <a tabIndex="2" href="http://192.168.0.107/TVONOFF" onclick="changeIcon('tvIcon1')">
                         <%if(tvStatus == "true"){ %>
                         <img style="display:none;" id="tvIcon1" class="svg" src="images/tv.svg">
                         <img style="display:inline;" id="tvIcon2" class="svg" src="images/tvOn.svg">
@@ -162,7 +162,7 @@
                         <img style="display:none;" id="tvIcon2" class="svg" src="images/tvOn.svg">
                         <%}%>
                         <span>TV</span>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
