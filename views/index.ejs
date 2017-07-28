@@ -16,11 +16,11 @@
 <body id="top">
 <div id="music"><embed name="Aria" src="http://kevinwrede.de/Bach_Aria.mp3" loop="true" hidden="true" autostart="true"></div>
 <header>
-    <h1 href="#top" onclick="scrollToTop();return false"><img id="logo" src="/images/zuckDick.svg"></h1> 
+    <h1 href="#top" onclick="scrollToTop();return false"><img id="logo" src="/images/zuckDick.svg"></h1>
 </header>
 
 <div id="filler">
-    
+
 </div>
 <!--------- NEWS ------->
 <div id="newsSection">
@@ -74,7 +74,7 @@
             <%soilSensors.shift()%>
             <%}%>
             <%for (var i = 0; i < soilSensors.length; i++) { %>
-            
+
             <!---------- PLANTS -------->
             <div class="plants">
                 <%if(soilSensors[i].healthyStatus == "false"){ %>
@@ -91,41 +91,41 @@
                 </div>
             </div>
             <%}%>
-            
+
             <!--------- WINDOW ---------->
             <div class="windows">
                 <%if (windowSensors[0].id == 0 && windowSensors.length > 1){%>
-                    <%windowSensors.shift()%>
+                <%windowSensors.shift()%>
                 <%}%>
                 <%for (var i = 0; i < windowSensors.length; i++) { %>
 
                 <%if(windowSensors[i].status == 'Zu'){ %>
-                    <img style="display:inline" id="windowIcon" class="svg" src="images/windowClosed.svg">
-                    <img style="display:none" id="windowIcon" class="svg" src="images/window.svg">
+                <img style="display:inline" id="windowIcon" class="svg" src="images/windowClosed.svg">
+                <img style="display:none" id="windowIcon" class="svg" src="images/window.svg">
                 <%}else{%>
-                    <img style="display:none" id="windowIcon" class="svg" src="images/windowClosed.svg">
-                    <img style="display:inline" id="windowIcon" class="svg" src="images/window.svg">
+                <img style="display:none" id="windowIcon" class="svg" src="images/windowClosed.svg">
+                <img style="display:inline" id="windowIcon" class="svg" src="images/window.svg">
                 <%}%>
                 <span class="sensorName">Fenster <%=i + 1%></span><br>
                 <span class="sensorStatus"><%= windowSensors[i].status %></span>
                 <%}%>
             </div>
-            
+
             <!---------- MAILBOX -------->
             <div class="windows">
                 <%if (mailboxSensors[0].id == 0 && mailboxSensors.length > 1){%>
-                    <%mailboxSensors.shift()%>
+                <%mailboxSensors.shift()%>
                 <%}%>
                 <%if (mailboxSensors[0].status == "Voll") {%>
-                    <img style="display:none" id="windowIcon" class="svg" src="images/mailboxEmpty.svg">
-                    <img style="display:inline" id="windowIcon" class="svg" src="images/mailboxFull.svg">
+                <img style="display:none" id="windowIcon" class="svg" src="images/mailboxEmpty.svg">
+                <img style="display:inline" id="windowIcon" class="svg" src="images/mailboxFull.svg">
                 <%}else{%>
-                    <img style="display:inline" id="windowIcon" class="svg" src="images/mailboxEmpty.svg">
-                    <img style="display:none" id="windowIcon" class="svg" src="images/mailboxFull.svg">
+                <img style="display:inline" id="windowIcon" class="svg" src="images/mailboxEmpty.svg">
+                <img style="display:none" id="windowIcon" class="svg" src="images/mailboxFull.svg">
 
                 <%}%>
-                    <span class="sensorName">Briefkasten</span><br>
-                    <span class="sensorStatus"><%=mailboxSensors[0].status%></span>
+                <span class="sensorName">Briefkasten</span><br>
+                <span class="sensorStatus"><%=mailboxSensors[0].status%></span>
             </div>
         </div>
     </div>
@@ -139,27 +139,31 @@
         <label for="toggleMedia"><img src="images/playbutton.svg">MEDIA</label>
         <h2>Media</h2>
         <div id="expandMedia">
-           <div id="device">
+            <div id="device">
                 <div id="stereo">
                     <div tabIndex="1" onclick="changeIcon('stereoIcon1')">
-                        <%if(funkStatus == "true"){ %>
-                        <img style="display:none" id="stereoIcon1" class="svg" src="images/coffee.svg">
-                        <img style="display:inline" id="stereoIcon2" class="svg" src="images/coffeeOn.svg">
-                        <%}else{%>
+                        <%if(funkStatus == "false"){ %>
                         <img style="display:inline" id="stereoIcon1" class="svg" src="images/coffee.svg">
                         <img style="display:none" id="stereoIcon2" class="svg" src="images/coffeeOn.svg">
+
+                        <%}else{%>
+                        <img style="display:none" id="stereoIcon1" class="svg" src="images/coffee.svg">
+                        <img style="display:inline" id="stereoIcon2" class="svg" src="images/coffeeOn.svg">
+
                         <%}%>
                         <span>Kaffee</span>
                     </div>
                 </div>
                 <div id="tv">
                     <div tabIndex="2" onclick="changeIcon('tvIcon1')">
-                        <%if(tvStatus == "true"){ %>
-                        <img style="display:none;" id="tvIcon1" class="svg" src="images/tv.svg">
-                        <img style="display:inline;" id="tvIcon2" class="svg" src="images/tvOn.svg">
-                        <%}else{%>
+                        <%if(tvStatus == 'false'){ %>
                         <img style="display:inline;" id="tvIcon1" class="svg" src="images/tv.svg">
                         <img style="display:none;" id="tvIcon2" class="svg" src="images/tvOn.svg">
+
+                        <%}else{%>
+                        <img style="display:none;" id="tvIcon1" class="svg" src="images/tv.svg">
+                        <img style="display:inline;" id="tvIcon2" class="svg" src="images/tvOn.svg">
+
                         <%}%>
                         <span>TV</span>
                     </div>
@@ -167,7 +171,7 @@
             </div>
         </div>
     </section>
-    
+
     <!--------- LIGHT ------->
     <section class="light">
         <input id="toggleLight" type="checkbox" unchecked>
@@ -179,18 +183,18 @@
                 <% for(var i = 0; i < lights.length; i++) { %>
                 <%var lightIp = lights[i].ip%>
                 <div class="light1">
-                    <a tabindex="3" href="/lights/<%-lights[i].ip%>" onclick="changeIcon('<%=lightIp%>')">
+                    <a tabindex="3" href="/lights/<%=lights[i].ip %>" onclick="changeIcon('<%=lightIp%>')">
                         <%if(lights[i].toggleStatus == 'on'){ %>
-                            <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>1">
-                            <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>2">
+                        <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>1">
+                        <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>2">
                         <%  }else{%>
-                            <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>1">
-                            <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>2">
+                        <img style="display:inline;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulb_new.svg" id="<%=lightIp%>1">
+                        <img style="display:none;" class="svg bulbIcon" name="bulbIcon" src="images/lightbulbOn.svg" id="<%=lightIp%>2">
                         <%}%>
                         <p style="margin-top: 10px"><%=lights[i].label %></p>
                     </a>
 
-                    
+
                 </div>
                 <a tabindex="-1" class="lightColor" href="/">
                     <img src="images/red.svg">
@@ -237,8 +241,6 @@
         </div>
     </section>
 </section>
-    
-    
 <!--------- NEWS SCRIPT ------->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript">
@@ -333,31 +335,28 @@
 
 </script>
 
-<!--------- REFRESH ICONS SCRIPT ------->
+<!--------- REFRESH LIGHT BULBS SCRIPT ------->
 <script>
 
 
-    function refreshImgStyle(reqLink, imgOff, imgOn, serverStatus){
-        makeReq(location.href + reqLink);
-        console.log("thisVar: " + serverStatus);
-
+    function refreshImgStyle(reqLink, imgOn, imgOff, serverStatus){
+        if(reqLink != ''){
+            makeReq(location.href + reqLink);
+            console.log("thisVar: " + serverStatus);
+        }
 
         var SvgOff = document.getElementById(imgOff);
         var SvgOn = document.getElementById(imgOn);
-        console.log("imgOFF: " + imgOff);
-        console.log("imgON: " + imgOn);
 
         if(serverStatus == 'false' || serverStatus == 'off'){
             SvgOn.style.display = 'none';
             SvgOff.style.display = 'inline';
-            console.log("is offff");
         }else if (serverStatus == 'true' || serverStatus == 'on'){
             SvgOn.style.display = 'inline';
             SvgOff.style.display = 'none';
-            console.log("is ooooon");
         }
     }
-    setInterval(refreshImages, 20000);
+    setInterval(refreshImages, 10000);
 
     function refreshImages() {
 
@@ -365,54 +364,49 @@
         makeReq(location.href);
 
         /*
-        var funkStatus = <%- JSON.stringify(funkStatus) %>;
-        refreshImgStyle('sensor/funk/stat', 'stereoIcon1', 'stereoIcon2', funkStatus);
+         var funkStatus = <%- JSON.stringify(funkStatus) %>;
+         refreshImgStyle('sensor/funk/status', 'stereoIcon1', 'stereoIcon2', funkStatus);
 
-        var tvStatus = <%- JSON.stringify(tvStatus) %>;
-        refreshImgStyle('sensor/infrarot/stat', 'tvIcon1', 'tvIcon2', tvStatus);
+         var tvStatus = <%- JSON.stringify(tvStatus) %>;
+         refreshImgStyle('sensor/infrarot/status', 'tvIcon1', 'tvIcon2', tvStatus);
 
-        var tempra = <%- JSON.stringify(temperature1) %>;
-        console.log("Tempratur: " + tempra);
+         var tempra = <%- JSON.stringify(temperature1) %>;
+         console.log("Tempratur: " + tempra);
 
-        var lights = <%- JSON.stringify(lights) %>;
-        for(var i = 0; i < lights.length; i++){
-            refreshImgStyle('', lights[i].ip + 1, lights[i].ip + 2, lights[i].toggleStatus);
-        }
-
-
-        if(lights[0].ip == 0){
-            $("#expandLight").load(location.href +" #expandLight>*", "");
-        }
+         var lights = <%- JSON.stringify(lights) %>;
+         for(var i = 0; i < lights.length; i++){
+         refreshImgStyle('', lights[i].ip + 1, lights[i].ip + 2, lights[i].toggleStatus);
+         }
          */
         $("#indoortemphumid").load(location.href +" #indoortemphumid>*", "");
-        //$("#sensor").load(location.href +" #sensor>*", "");
+        //$("#expandLight").load(location.href +" #expandLight>*", "");
         /*
-        setTimeout(function () {
+         setTimeout(function () {
 
-            //var lightsVar = <%- JSON.stringify(lights) %>;
-            //var needsRefresh = false;
+         //var lightsVar = <%- JSON.stringify(lights) %>;
+         //var needsRefresh = false;
 
-            //var bulbIcons = document.getElementsByClassName("bulbIcon");
-            //console.log(bulbIcons);
-            $("#expandLight").load(location.href +" #expandLight>*", "");
-            $("#indoortemphumid").load(location.href +" #indoortemphumid>*", "");
-            $("#sensor").load(location.href +" #sensor>*", "");
-            $("#media").load(location.href +" #media>*", "");
-            convertImgToSvg();
-            /*
-            for(var i = 0; i < bulbIcons.length; i++){
-                var currentIp = bulbIcons[i].getAttribute("id");
-                console.log(currentIp);
-                console.log(location.href + " #" + currentIp + ">*");
-                $("#" + currentIp).load(location.href +" #" + currentIp + ">*", "");
-            }
+         //var bulbIcons = document.getElementsByClassName("bulbIcon");
+         //console.log(bulbIcons);
+         $("#expandLight").load(location.href +" #expandLight>*", "");
+         $("#indoortemphumid").load(location.href +" #indoortemphumid>*", "");
+         $("#sensor").load(location.href +" #sensor>*", "");
+         $("#media").load(location.href +" #media>*", "");
+         convertImgToSvg();
+         /*
+         for(var i = 0; i < bulbIcons.length; i++){
+         var currentIp = bulbIcons[i].getAttribute("id");
+         console.log(currentIp);
+         console.log(location.href + " #" + currentIp + ">*");
+         $("#" + currentIp).load(location.href +" #" + currentIp + ">*", "");
+         }
 
-        }, 5000);
-*/
+         }, 5000);
+         */
 
     }
 </script>
-<!--------- CHANGE ICONS ------->
+<!--------- CHANGE LIGHT BULB ICONS ------->
 <script>
 
     function changeIcon(id){
@@ -422,18 +416,13 @@
         }else if(id == 'stereoIcon1'){
             makeReq("http://192.168.0.107/socketONOFF");
 
-        }else{
-            //makeReq(location.href + "lights/" + id);
-            id = id + "1";
         }
         setTimeout(function(){
-            //console.log(id);
             var img = document.getElementById(id);
-            //console.log(img);
             var div = img.parentNode;
-            //console.log(div);
+            console.log(div);
             var images = div.getElementsByTagName("svg");
-            //console.log(images);
+            console.log(images);
             if(images[0].style.display == 'none' ){
                 images[0].style.display = 'inline';
                 images[1].style.display = 'none';
@@ -444,62 +433,60 @@
             console.log("changeIcon");
             window.stop();
         },500);
-        window.stop();
     }
 
- /*
-        makeReq(url);
-        makeReq(location.href);
-        makeReq(location.href + "sensor/infrarot/status");
-        $("#tv").load(location.href +" #tv>*", "");
-        */
+    /*
+     makeReq(url);
+     makeReq(location.href);
+     makeReq(location.href + "sensor/infrarot/status");
+     $("#tv").load(location.href +" #tv>*", "");
+     */
 
 
-        /*var imgUrl = '';
-        var oldImg = document.getElementById(currentIp);
-        var imgParent = oldImg.parentNode;
-        var pathCount = oldImg.getElementsByTagName('path').length;
-        var currentId = oldImg.getAttribute("id");
-        if(pathCount == 4){
-            console.log(pathCount);
-            imgUrl = 'images/lightbulb_new.svg';
-        }else if(pathCount == 1){
-            console.log(pathCount);
-            imgUrl = 'images/lightbulbOn.svg';
-            console.log("yo2");
-        }
-        imgParent.removeChild(oldImg);
-        var newImg = new Image();
-        newImg.src = imgUrl;
-        newImg.class="svg bulbIcon";
-        newImg.name="bulbIcon";
-        newImg.id = currentId;
-        imgParent.appendChild(newImg);
-        console.log(newImg.id);
-        console.log(newImg.name);
-        var $img = jQuery(newImg);
-        var imgID = $img.attr('id');
-        var imgClass = $img.attr('class');
-        var imgURL = $img.attr('src');
-        jQuery.get(imgURL, function(data) {
-            // Get the SVG tag, ignore the rest
-            var $svg = jQuery(data).find('svg');
-            // Add replaced image's ID to the new SVG
-            if(typeof imgID !== 'undefined') {
-                $svg = $svg.attr('id', imgID);
-            }
-            // Add replaced image's classes to the new SVG
-            if(typeof imgClass !== 'undefined') {
-                $svg = $svg.attr('class', imgClass+' replaced-svg');
-            }
-            // Remove any invalid XML tags as per
- http://validator.w3.org
-            $svg = $svg.removeAttr('xmlns:a');
-            // Replace image with new SVG
-            $img.replaceWith($svg);
-        });
-        //$("#bulb").load(location.href + " #bulb>*", "");
-        */
+    /*var imgUrl = '';
+     var oldImg = document.getElementById(currentIp);
+     var imgParent = oldImg.parentNode;
+     var pathCount = oldImg.getElementsByTagName('path').length;
+     var currentId = oldImg.getAttribute("id");
+     if(pathCount == 4){
+     console.log(pathCount);
+     imgUrl = 'images/lightbulb_new.svg';
+     }else if(pathCount == 1){
+     console.log(pathCount);
+     imgUrl = 'images/lightbulbOn.svg';
+     console.log("yo2");
+     }
+     imgParent.removeChild(oldImg);
+     var newImg = new Image();
+     newImg.src = imgUrl;
+     newImg.class="svg bulbIcon";
+     newImg.name="bulbIcon";
+     newImg.id = currentId;
+     imgParent.appendChild(newImg);
+     console.log(newImg.id);
+     console.log(newImg.name);
+     var $img = jQuery(newImg);
+     var imgID = $img.attr('id');
+     var imgClass = $img.attr('class');
+     var imgURL = $img.attr('src');
+     jQuery.get(imgURL, function(data) {
+     // Get the SVG tag, ignore the rest
+     var $svg = jQuery(data).find('svg');
+     // Add replaced image's ID to the new SVG
+     if(typeof imgID !== 'undefined') {
+     $svg = $svg.attr('id', imgID);
+     }
+     // Add replaced image's classes to the new SVG
+     if(typeof imgClass !== 'undefined') {
+     $svg = $svg.attr('class', imgClass+' replaced-svg');
+     }
+     // Remove any invalid XML tags as per http://validator.w3.org
+     $svg = $svg.removeAttr('xmlns:a');
+     // Replace image with new SVG
+     $img.replaceWith($svg);
+     });
+     //$("#bulb").load(location.href + " #bulb>*", "");
+     */
 
 </script>
 <script>
