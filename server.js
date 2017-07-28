@@ -158,7 +158,6 @@ function discoverBulbs() {
 discoverBulbs();
 setInterval(discoverBulbs, 30000);
 
-
 app.get('/lights/:ip', function (req, res) {
 
     for(var i = 0; i <lights.length; i++){
@@ -359,7 +358,6 @@ app.get('/sensor/temphumid/:temp', function(req, res){
 //Coffee
 app.get('/sensor/funk/:stat', function(req, res){
     funkStatus = req.params.stat;
-    console.log(funkStatus);
 });
 
 //TV
