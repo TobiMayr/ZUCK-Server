@@ -524,6 +524,11 @@
                 $.tabPrev();
             } else if (event.which === 13) { //enter
                 var selectedElement = document.activeElement.parentNode;
+                if(document.activeElement.parentNode.id == "tv" || document.activeElement.parentNode.id == "stereo"){
+                    selectedElement = document.activeElement;
+                }
+
+                console.log(selectedElement);
                 selectedElement.click();
             }
         }

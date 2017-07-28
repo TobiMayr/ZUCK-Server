@@ -12,8 +12,8 @@ var request = require('request');
 var app = express();
 
 var sensorTempHumidity = 'kein Sensor';
-var sensorTemp1 = 'kein Sensor';
-var sensorHumid1 = 'kein Sensor';
+var sensorTemp1 = '24';
+var sensorHumid1 = '60';
 var lights = [];
 var windowSensors = [];
 var soilSensors = [];
@@ -43,7 +43,7 @@ app.get('/', function(req, res){
     if(!windowSensors[0]){
         windowSensors.push(windowSens = {
             id: 0,
-            status: 'kein Sensor',
+            status: 'Auf',
         });
     }
 
@@ -61,14 +61,14 @@ app.get('/', function(req, res){
     if(!mailboxSensors[0]){
         mailboxSensors.push(mailboxSens = {
             id: 0,
-            status: 'kein Sensor'
+            status: 'Leer'
         });
     }
 
     if(!soilSensors[0]){
         soilSensors.push(soilSens = {
             id: 0,
-            humidity: 'kein Sensor',
+            humidity: '20',
             healthyStatus: 'true'
         });
     }
