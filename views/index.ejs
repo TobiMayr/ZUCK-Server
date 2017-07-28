@@ -385,7 +385,7 @@
         }
          */
         $("#indoortemphumid").load(location.href +" #indoortemphumid>*", "");
-        $("#sensor").load(location.href +" #sensor>*", "");
+        //$("#sensor").load(location.href +" #sensor>*", "");
         /*
         setTimeout(function () {
 
@@ -492,7 +492,8 @@
             if(typeof imgClass !== 'undefined') {
                 $svg = $svg.attr('class', imgClass+' replaced-svg');
             }
-            // Remove any invalid XML tags as per http://validator.w3.org
+            // Remove any invalid XML tags as per
+ http://validator.w3.org
             $svg = $svg.removeAttr('xmlns:a');
             // Replace image with new SVG
             $img.replaceWith($svg);
